@@ -5,7 +5,7 @@
     "readme": "README.md",
     "usercss": "appletify/user.css",
     "schemes": "appletify/color.ini",
-    "include": ["https://raw.githubusercontent.com/raysin1/Appletify/main/appletify/theme.js"],
+    "include": ["https://raw.githubusercontent.com/Kratosyan7/Appletify/main/appletify/theme.js"],
     "authors": [{ "name": "raysin", "url": "https://github.com/raysin1" }],
     "tags": ["apple-music", "dark"]
 }

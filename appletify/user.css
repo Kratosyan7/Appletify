@@ -1,3 +1,13 @@
+/* =============================================================================
+   Appletify — user.css
+   NOTE on "⚠️ DYNAMIC CLASS" rules: Spotify's hashed CSS-module class names
+   (e.g. .MxoETbR0GSKhCd1hp6Np) changed scheme in 1.2.9x (20 → 16 chars), so
+   every remaining hashed selector below is inert on current clients and needs
+   re-mapping to a stable class / testid / structural selector. Everything that
+   depends on localized aria-labels lives in theme.js (localeStylesMod).
+   Encore class prefix (.e-10810-*) changes with Spotify releases too — grep
+   the DOM for "e-NNNNN-" and update the prefix when buttons lose styling.
+   ============================================================================= */
 
 /* =============================================================================
    1. COLORS
@@ -12,7 +22,7 @@
 }
 
 /*Buttons color*/
-.e-10451-icon{
+.e-10810-icon{
     fill: rgba(255, 255, 255, 0.92);}
 
 
@@ -47,13 +57,13 @@ height:32px;
 
 /*Remove native button slight hover zoom*/
 @media (prefers-reduced-motion: no-preference) {
-    .e-10451-legacy-button:hover {
+    .e-10810-legacy-button:hover {
         transform: unset;
     }
 }
 
 /*Make it be a zoom in instead*/
-.e-10451-legacy-button:active {
+.e-10810-legacy-button:active {
     transform: unset;
     opacity:unset;
 }
@@ -133,17 +143,40 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 #Desktop_LeftSidebar_Id #global-nav-bar { flex-wrap: wrap; height: auto; row-gap: 2px; }
 #Desktop_LeftSidebar_Id .main-globalNav-historyButtonsWrapper { flex-wrap: wrap; height: auto; row-gap: 2px; }
 #Desktop_LeftSidebar_Id #global-nav-bar .custom-navlinks-scrollable_container { flex-shrink: 0; }
+/* Collapsed rail: Marketplace (custom app) button centered like the other icons */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .custom-navlinks-scrollable_container { flex: 0 0 100%; display: flex; justify-content: center; margin: 0; padding: 0 10px 0 0; box-sizing: border-box; }
 
 /* Collapsed sidebar (class toggled by theme.js): the 72px rail keeps nav
    arrows, custom-app buttons (Marketplace) and the profile avatar; only the
    noisy extras (extension status pill, What's New / friend activity) hide */
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .SLT_ConnectionIndicator,
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons { display: none; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight { min-width: 0; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight { min-width: 0; width: 100%; flex: 0 0 100%; justify-content: center; margin-top: 10px; }
+/* Profile avatar centered in the rail, in line with the search / Apple icons */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-topBar-topbarContentRight { justify-content: center; width: 100%; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer { flex-direction: column; align-items: center; gap: 6px; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection input,
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection input::placeholder { color: transparent; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection svg { fill: rgba(255, 255, 255, 0.7); color: rgba(255, 255, 255, 0.7); }
+/* Collapsed rail: the search input does not fit (it overflowed to x < 0), so
+   only its leading search button is shown, centered, as a plain icon button */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer { width: 100%; box-sizing: border-box; padding-left: 0; padding-right: 0; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputSection { width: 100% !important; min-width: 0; margin: 0 0 10px; height: auto; order: 1; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer { width: 100% !important; min-width: 0; height: auto; padding: 0; margin: 0; background: transparent !important; box-shadow: none !important; display: flex; justify-content: center; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputWrapper,
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--trailing"] { display: none; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] { position: static !important; transform: none !important; display: flex; justify-content: center; width: auto; height: auto; inset: auto; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] button { display: flex; width: 41px; height: 41px; align-items: center; justify-content: center; }
+/* Collapsed rail, Apple Music style: accent search icon on top, then an Apple
+   logo in place of the Home icon (the button still navigates Home), and no
+   "Open Your Library" button (drag the sidebar edge to expand it) */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: #ff375f; color: #ff375f; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button { order: 2; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg { fill: #ff375f; color: #ff375f; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg path {
+    d: path("M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701");
+}
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-yourLibraryX-collapseButton { display: none; }
 
 /* Left sidebar frosted glass overlay
 #Desktop_LeftSidebar_Id::before {
@@ -241,7 +274,7 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 
 /* Primary button colors */
 .e-91000-button-primary__inner,
-.e-9890-button-primary__inner,
+.e-10810-button-primary__inner,
 .ButtonInner-medium-iconOnly {
     background-color: #ff375f;
 }
@@ -252,8 +285,8 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
     color: white;
 }
 
-/* ⚠️ DYNAMIC CLASS — .mXNT9H2GU7lDW4cGx0q1 = search "top result" card bg */
-.mXNT9H2GU7lDW4cGx0q1 {
+/* Search "top result" card bg */
+[data-testid="top-result-card"] {
     background-color: #363636;
     border: 1px solid #3d3d3d;
     border-radius: 10px;
@@ -290,8 +323,8 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 .main-trackList-rowMarker > img { filter: hue-rotate(-147deg); saturate(200%); }
 
 /* No button scale on hover */
-.e-9890-button--hover,
-.e-9890-button:hover { transform: none; }
+.e-10810-button--hover,
+.e-10810-button:hover { transform: none; }
 
 /* [add to playlist] button styling */
 [data-testid="add-to-playlist-button"] {
@@ -342,42 +375,71 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
    7. NOW PLAYING BAR
    ============================================================================= */
 
-/* Floating pill shape */
+/* Top bar, Apple Music style. theme.js moves .Root__now-playing-bar into
+   .main-view-container (position: relative), so the bar is pinned to the top
+   of the main view and page content scrolls underneath the frosted glass. */
+:root { --apple-playbar-height: 80px; }
+
 .Root__now-playing-bar {
-    background: rgb(38 38 40 / 80%);
-    border-radius: 100px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
-    backdrop-filter: saturate(2.2) blur(16px);
-    width: 66%;
-    /* Never shrink below the controls' natural width — prevents icons/sliders
-       getting cut off at small windows or high zoom levels (#27, #29) */
-    min-width: min(700px, 96%);
-    left: 50%;
-    transform: translateX(-50%);
     position: absolute;
-    bottom: 40px;
-    padding: 0px;
+    top: 0; left: 0; right: 0; bottom: auto;
+    width: auto;
+    min-width: 0;
+    height: var(--apple-playbar-height);
+    margin: 0;
+    padding: 0;
+    transform: none;
+    border-radius: 0;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 8%);
+    background: rgb(30 30 32 / 78%);
+    backdrop-filter: saturate(1.8) blur(20px);
+    z-index: 20;
 }
 .Root__now-playing-bar > aside {
-    box-shadow: inset 0px 2px 1px rgb(255 255 255 / 9%), inset 0 -2px 0 rgb(255 255 255 / 9%);
-    border-radius: 100px;
+    box-shadow: none;
+    border-radius: 0;
+    height: 100%;
 }
 
-/* Reorder sections: center first, left second, right third.
-   Flex with an explicit center width instead of %-widths + negative margins:
+/* Window drag: Spotify overlays an invisible 60px drag strip (.body-drag-top)
+   across the top of the window, which swallows clicks on the playbar. Drop
+   it and make the bar itself the drag handle, keeping every control clickable. */
+.spotify__container--is-desktop:not(.fullscreen) .body-drag-top { display: none; }
+.Root__now-playing-bar { -webkit-app-region: drag; }
+.Root__now-playing-bar :is(button, input, a, [role="slider"], .playback-bar, .main-nowPlayingBar-volumeBar, .main-nowPlayingWidget-nowPlaying, .main-nowPlayingBar-extraControls, .player-controls) { -webkit-app-region: no-drag; }
+#Desktop_LeftSidebar_Id #global-nav-bar { -webkit-app-region: drag; }
+#Desktop_LeftSidebar_Id #global-nav-bar :is(button, a, input, form) { -webkit-app-region: no-drag; }
+
+/* Push page content below the bar */
+.main-view-container__scroll-node-child { padding-top: var(--apple-playbar-height); }
+
+/* Marketplace keeps its own tab bar — place it under the playbar */
+.main-topBar-container:has(.marketplace-tabBar.marketplace-tabBar-nav) { top: var(--apple-playbar-height); }
+
+/* Sections: controls left, now-playing widget centered, extras right.
    .player-controls has container-type: inline-size, so its intrinsic width is
-   always 0 and the old 30% width overflowed into neighbours at small windows
-   (#27, #29 — overlapping cover art, sliders pushed past the pill edge). */
-.main-nowPlayingBar-nowPlayingBar { display: flex; align-items: center; padding: 0 24px 0 16px; gap: 6px; }
-.main-nowPlayingBar-center { order: 1; width: 230px; flex: 0 0 auto; margin: 0; }
-.main-nowPlayingBar-left { order: 2; flex: 1 1 0; min-width: 0; width: auto; margin: -6px 0 0; }
-.main-nowPlayingBar-right { order: 3; flex: 0 0 auto; width: auto; }
+   always 0 — the controls block needs an explicit width (#27, #29). */
+.main-nowPlayingBar-nowPlayingBar {
+    display: flex;
+    align-items: center;
+    height: var(--apple-playbar-height);
+    padding: 0 20px 0 28px;
+    gap: 12px;
+}
+.main-nowPlayingBar-center { order: 1; width: 200px; max-width: none; flex: 0 0 auto; margin: 0; }
+.main-nowPlayingBar-left {
+    order: 2; flex: 1 1 0; min-width: 0; width: auto; margin: 0; padding: 0;
+    display: flex; justify-content: center;
+}
+.main-nowPlayingBar-right { order: 3; flex: 0 1 auto; width: auto; min-width: 0; justify-content: flex-end; }
 
 /* Extra controls spacing */
-.main-nowPlayingBar-extraControls { gap: 14px; margin-right: 15px; }
+.main-nowPlayingBar-extraControls { gap: 10px; margin-right: 0; }
 
 /* Volume bar order */
-.main-nowPlayingBar-right .volume-bar { order: 1; min-width: 80px; }
+.main-nowPlayingBar-right .volume-bar { order: 1; min-width: 110px; }
+.main-nowPlayingBar-volumeBar { flex: 0 0 auto; }
+.main-nowPlayingBar-volumeBar .volume-bar__slider-container { width: 90px; }
 .main-nowPlayingBar-right button:has(.LyricsPageIcon) { order: 2 !important; }
 .main-nowPlayingBar-right .GlueDropTarget { order: 3; }
 
@@ -391,25 +453,42 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 
 
 
-/* Now playing widget layout (track info + progress bar stacked) */
+/* Now playing widget: the rounded "LCD" box — cover art, centered
+   title/artist, progress bar along the bottom edge */
 .main-nowPlayingWidget-nowPlaying {
-    display: grid;  grid-template-columns: auto 1fr auto;  grid-template-rows: auto auto;
-    top: 3px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    top: 0;
+    width: min(100%, 380px);
     min-width: 0;
+    box-sizing: border-box;
+    padding: 6px 8px 0 6px;
+    background: rgb(255 255 255 / 7%);
+    border: 1px solid rgb(255 255 255 / 12%);
+    border-radius: 10px;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%), 0 4px 16px rgb(0 0 0 / 18%);
+    overflow: hidden;
 }
 
-.main-coverSlotCollapsed-container {grid-row: 1;grid-column: 1;}
+.main-coverSlotCollapsed-container { grid-row: 1; grid-column: 1; margin: 0; }
 
-.main-nowPlayingWidget-trackInfo {grid-row: 1; grid-column: 2; min-width: 0; overflow: hidden;}
+.main-nowPlayingWidget-trackInfo { grid-row: 1; grid-column: 2; min-width: 0; overflow: hidden; margin: 0 8px; }
+.main-trackInfo-container { justify-items: center; }
 
-/* Truncate long titles instead of overflowing the pill */
-.main-trackInfo-name, .main-trackInfo-artists { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Truncate long titles instead of overflowing the box */
+.main-trackInfo-name, .main-trackInfo-artists {
+    min-width: 0; max-width: 100%; width: auto;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    justify-self: center; justify-content: center; text-align: center;
+}
 
-.playback-bar { grid-row: 2; grid-column: 1 / -1;}
+/* Progress bar spans the full width of the box (cancels the box padding) */
+.playback-bar { grid-row: 2; grid-column: 1 / -1; width: auto; margin: 2px 0 0; padding: 0 2px 3px; }
 
-
-.main-nowPlayingWidget-trackInfo .main-trackInfo-overlay a{ font-size:16px;}
-.main-trackInfo-artists a{ font-size: 15px;color: rgb(255 255 255 / 66%);}
+.main-nowPlayingWidget-trackInfo .main-trackInfo-overlay a { font-size: 13px; font-weight: 600; }
+.main-trackInfo-artists a { font-size: 12px; color: rgb(255 255 255 / 66%); }
 
 /* Album art size in now playing bar */
 .main-nowPlayingWidget-nowPlaying .cover-art {
@@ -451,10 +530,9 @@ body:has(#SpicyLyricsPageSvg) .main-nowPlayingBar-nowPlayingBar [data-testid="ly
 }
 
 /* Artist text in now playing */
-.encore-text.encore-text-marginal.encore-internal-color-text-subdued.main-trackInfo-artists,
-.encore-text.encore-text-body-small.K9Nj3oI7bTNFh5AGp5GA {
-    font-size: 16px;
-    margin-left: 10px;
+.main-trackInfo-artists {
+    font-size: 12px;
+    margin-left: 0;
 }
 
 /* Progress bar colors */
@@ -475,35 +553,28 @@ body:has(#SpicyLyricsPage):not(:has([id*=dribbblish])):not(.sltm__ThemeMatch__te
     margin-left:unset;
 }
 
-/* Playback time fade in on hover */
+/* Playback time: small subdued timers at both ends of the progress bar
+   (elapsed left, total/remaining right), always visible */
+.playback-bar { display: flex; align-items: center; gap: 6px; }
+.playback-progressbar-container { flex: 1 1 auto; min-width: 0; }
 [data-testid="playback-position"],
-[data-testid="playback-duration"] { opacity: 0; transition: opacity 0.15s ease; }
-
-.playback-bar:hover [data-testid="playback-position"],
-.playback-bar:hover [data-testid="playback-duration"],
-.playback-progressbar:hover [data-testid="playback-position"],
-.playback-progressbar:hover [data-testid="playback-duration"] { opacity: 1; }
-
-[data-testid="playback-duration"] { position: absolute; right: -22px; bottom: 14px; }
-[data-testid="playback-position"] { position: absolute; left: -22px; bottom: 14px; }
-
-/* ⚠️ DYNAMIC CLASS — .gglUjikTBtMzCZFgSmpS = playback bar inner container */
-.gglUjikTBtMzCZFgSmpS {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 0;
+[data-testid="playback-duration"] {
+    position: static !important;
+    inset: auto !important;
+    flex: 0 0 auto;
+    width: auto !important; min-width: 26px; height: auto;
+    font-size: 10px; line-height: 1;
+    opacity: 1;
+    color: rgb(255 255 255 / 55%);
 }
-
-.playback-progressbar-container {
-    grid-column: 1 / span 3;
-    grid-row: 2;
-    justify-self: stretch;
-}
+[data-testid="playback-position"] { text-align: left; }
+[data-testid="playback-duration"] { text-align: right; }
+[data-testid="playback-position"] > *, [data-testid="playback-duration"] > * { position: static !important; }
 
 /* Hide the canvas / music-video preview that Spotify injects into the bar —
    unstyled it renders on top of the track info (#25, #29) */
-.main-nowPlayingBar-nowPlayingBar video { display: none !important; }
+.main-nowPlayingBar-nowPlayingBar video:not(#catjam-webm) { display: none !important; }
+#catjam-webm { height: 56px !important; width: 56px !important; align-self: center; }
 
 /* Hide the Lossless / quality badge row so it doesn't push the progress bar
    down (#29) */
@@ -530,6 +601,11 @@ body:has(#SpicyLyricsPage):not(:has([id*=dribbblish])):not(.sltm__ThemeMatch__te
    to 0 width and become unclickable (#25 "forward and back buttons not working") */
 .player-controls__buttons button{padding:0; min-width: 34px; min-height: 34px;}
 [data-testid="control-button-playpause"] { min-width: 38px; min-height: 38px; }
+/* Uniform button boxes and an even 6px gap between the five controls */
+.player-controls__buttons { display: flex; align-items: center; justify-content: center; gap: 6px; width: auto; }
+.player-controls__left, .player-controls__right { display: flex; align-items: center; gap: 6px; margin: 0; }
+.player-controls__buttons button:not([data-testid="control-button-playpause"]) { width: 34px !important; height: 34px !important; flex: 0 0 34px; margin: 0; transform: none; }
+.player-controls__buttons [data-testid="control-button-playpause"] { width: 38px !important; height: 38px !important; flex: 0 0 38px; margin: 0; }
 
 
 /*Size fix*/
@@ -542,7 +618,7 @@ body:has(#SpicyLyricsPage):not(:has([id*=dribbblish])):not(.sltm__ThemeMatch__te
 [data-testid="control-button-playpause"]:has(path[d^="M3 1"]) svg path {
     d: path("m184.57 775.41c10.417 0 20.834-1.546 31.25-4.639 10.417-3.092 22.624-8.707 36.621-16.845l475.59-276.37c19.206-11.394 34.668-24.089 46.387-38.086 11.719-13.998 17.578-31.088 17.578-51.27s-5.859-37.353-17.578-51.514c-11.719-14.16-27.181-26.774-46.387-37.841l-475.59-276.37c-13.997-8.138-26.204-13.753-36.621-16.846-10.416-3.0924-20.833-4.6387-31.25-4.6387-22.135 0-42.155 8.2194-60.058 24.658-17.904 16.439-26.856 39.632-26.856 69.58v585.94c0 29.948 8.9517 53.141 26.856 69.58 17.903 16.439 37.923 24.658 60.058 24.658");
     scale: 1.3%;
-    transform: translate(172px, 230px);
+    transform: translate(243px, 230px);
 }
 
 [data-testid="control-button-playpause"]:has(path[d^="M3 1"]):hover svg path { fill: #eeeeee !important; }
@@ -550,7 +626,7 @@ body:has(#SpicyLyricsPage):not(:has([id*=dribbblish])):not(.sltm__ThemeMatch__te
 [data-testid="control-button-playpause"]:has(path[d^="M2.7"]) svg path {
     d: path("M 2.4,24 L 5.8,24 C 7.4,24 8.2,23.0 8.2,21.1 L 8.2,2.9 C 8.2,1.0 7.4,0.1 5.8,0 L 2.4,0 C 0.8,0 0,1.0 0,2.9 L 0,21.2 C 0,23.1 0.8,24 2.4,24 M 13.9,24 L 17.2,24 C 18.9,24 19.7,23.0 19.7,21.1 L 19.7,2.9 C 19.7,1.0 18.9,0 17.2,0 L 13.9,0 C 12.2,0 11.4,1.0 11.4,2.9 L 11.4,21.1 C 11.4,23.0 12.2,24 13.9,24");
     scale: 40%;
-    transform: translate(4px, 3px);
+    transform: translate(13.3px, 8px);
 }
 
 [data-testid="control-button-playpause"]:has(path[d^="M2.7"]):hover svg path { fill: #eeeeee !important; }
@@ -568,7 +644,7 @@ body:has(#SpicyLyricsPage):not(:has([id*=dribbblish])):not(.sltm__ThemeMatch__te
 [data-testid="control-button-skip-back"] svg path {
     d: path("M18.14 20.68c.365 0 .672-.107 1.038-.323l8.508-4.997c.623-.365.938-.814.938-1.37 0-.564-.307-.988-.938-1.361l-8.508-4.997c-.366-.216-.68-.324-1.046-.324-.73 0-1.337.556-1.337 1.569v4.773c-.108-.399-.406-.73-.904-1.021L7.382 7.632c-.357-.216-.672-.324-1.037-.324-.73 0-1.345.556-1.345 1.569v10.235c0 1.013.614 1.569 1.345 1.569.365 0 .68-.108 1.037-.324l8.509-4.997c.49-.29.796-.631.904-1.038v4.79c0 1.013.615 1.569 1.345 1.569z");
     scale: 0.6;
-    transform: translate(6px, -4px) scaleX(-1);
+    transform: translate(8.5px, -5.3px) scaleX(-1);
     transform-origin: center;
 }
 
@@ -583,7 +659,7 @@ button[data-testid="control-button-skip-back"], button[data-testid="control-butt
 [data-testid="control-button-skip-forward"] svg path {
     d: path("M18.14 20.68c.365 0 .672-.107 1.038-.323l8.508-4.997c.623-.365.938-.814.938-1.37 0-.564-.307-.988-.938-1.361l-8.508-4.997c-.366-.216-.68-.324-1.046-.324-.73 0-1.337.556-1.337 1.569v4.773c-.108-.399-.406-.73-.904-1.021L7.382 7.632c-.357-.216-.672-.324-1.037-.324-.73 0-1.345.556-1.345 1.569v10.235c0 1.013.614 1.569 1.345 1.569.365 0 .68-.108 1.037-.324l8.509-4.997c.49-.29.796-.631.904-1.038v4.79c0 1.013.615 1.569 1.345 1.569z");
     scale: 0.6;
-    transform: translate(-5.3px, -4px);
+    transform: translate(-8.3px, -5.3px);
     transform-origin: center;
 }
 
@@ -656,8 +732,8 @@ button[data-testid="control-button-skip-forward"] svg {
 /* --- Volume icon overrides --- */
 
 .main-nowPlayingBar-volumeBar [id="volume-icon"] path{
-    scale: 27%;
-    transform: translate(0px, 6px);
+    scale: 20%;
+    transform: translate(8px, 16px);
     stroke: rgba(255, 255, 255, .92);
     stroke-width: 2;
 }
@@ -670,9 +746,7 @@ button[data-testid="control-button-skip-forward"] svg {
    clients only have two icon states: normal and muted */
 .main-nowPlayingBar-volumeBar > button:has(path[d^="M9.741"]) svg path {d: path('M 55.580078125,5.005859375 C 55.81640625,4.85546875 56.138671875,4.8984375 56.310546875,5.15625 C 60.220703125,10.720703125 62.626953125,17.48828125 62.626953125,25.22265625 C 62.626953125,32.95703125 60.220703125,39.724609375 56.310546875,45.2890625 C 56.138671875,45.546875 55.837890625,45.6328125 55.580078125,45.439453125 C 55.34375,45.2890625 55.30078125,44.9453125 55.47265625,44.666015625 C 58.99609375,39.1015625 61.57421875,32.7421875 61.57421875,25.22265625 C 61.57421875,17.681640625 59.46875,10.935546875 55.4296875,5.736328125 C 55.236328125,5.5 55.322265625,5.19921875 55.580078125,5.005859375 Z M 25.65234375,6.767578125 C 26.51171875,6.767578125 26.94140625,7.412109375 26.94140625,8.228515625 L 26.94140625,42.216796875 C 26.94140625,43.033203125 26.51171875,43.677734375 25.65234375,43.677734375 C 25.05078125,43.677734375 24.556640625,43.35546875 24.169921875,42.990234375 L 13.943359375,33.021484375 C 13.70703125,32.78515625 13.427734375,32.677734375 13.041015625,32.677734375 L 5.84375,32.677734375 C 4.060546875,32.677734375 2.578125,31.216796875 2.578125,29.43359375 L 2.578125,20.75390625 C 2.578125,18.970703125 4.060546875,17.48828125 5.84375,17.48828125 L 13.041015625,17.48828125 C 13.427734375,17.48828125 13.70703125,17.380859375 13.943359375,17.166015625 L 24.169921875,7.4765625 C 24.556640625,7.08984375 25.05078125,6.767578125 25.65234375,6.767578125 Z M 47.201171875,10.763671875 C 47.458984375,10.5703125 47.73828125,10.65625 47.931640625,10.892578125 C 50.896484375,14.6953125 52.486328125,19.63671875 52.486328125,25.22265625 C 52.486328125,30.830078125 50.896484375,35.75 47.931640625,39.552734375 C 47.759765625,39.7890625 47.458984375,39.875 47.201171875,39.681640625 C 46.943359375,39.509765625 46.943359375,39.208984375 47.115234375,38.9296875 C 49.5859375,35.0625 51.43359375,30.59375 51.43359375,25.22265625 C 51.43359375,19.830078125 49.88671875,15.125 47.072265625,11.47265625 C 46.87890625,11.236328125 46.943359375,10.935546875 47.201171875,10.763671875 Z M 38.865234375,16.45703125 C 39.1015625,16.28515625 39.423828125,16.328125 39.595703125,16.564453125 C 41.25,18.669921875 42.41015625,21.763671875 42.41015625,25.22265625 C 42.41015625,28.703125 41.25,31.775390625 39.595703125,33.880859375 C 39.423828125,34.1171875 39.123046875,34.181640625 38.865234375,33.98828125 C 38.62890625,33.794921875 38.5859375,33.494140625 38.779296875,33.193359375 C 40.240234375,31.1953125 41.357421875,28.423828125 41.357421875,25.22265625 C 41.357421875,21.978515625 40.21875,19.142578125 38.71484375,17.14453125 C 38.54296875,16.9296875 38.62890625,16.650390625 38.865234375,16.45703125 Z');}
 
-.main-nowPlayingBar-volumeBar > button [aria-label="Volume medium"] path {d: path('M 25.65234375,2.943359375 C 26.51171875,2.943359375 26.94140625,3.587890625 26.94140625,4.404296875 L 26.94140625,38.392578125 C 26.94140625,39.208984375 26.51171875,39.853515625 25.65234375,39.853515625 C 25.05078125,39.853515625 24.556640625,39.53125 24.169921875,39.166015625 L 13.943359375,29.197265625 C 13.70703125,28.9609375 13.427734375,28.853515625 13.041015625,28.853515625 L 5.84375,28.853515625 C 4.060546875,28.853515625 2.578125,27.392578125 2.578125,25.609375 L 2.578125,16.9296875 C 2.578125,15.146484375 4.060546875,13.6640625 5.84375,13.6640625 L 13.041015625,13.6640625 C 13.427734375,13.6640625 13.70703125,13.556640625 13.943359375,13.341796875 L 24.169921875,3.65234375 C 24.556640625,3.265625 25.05078125,2.943359375 25.65234375,2.943359375 Z M 47.201171875,6.939453125 C 47.458984375,6.74609375 47.73828125,6.83203125 47.931640625,7.068359375 C 50.896484375,10.87109375 52.486328125,15.8125 52.486328125,21.3984375 C 52.486328125,27.005859375 50.896484375,31.92578125 47.931640625,35.728515625 C 47.759765625,35.96484375 47.458984375,36.05078125 47.201171875,35.857421875 C 46.943359375,35.685546875 46.943359375,35.384765625 47.115234375,35.10546875 C 49.5859375,31.23828125 51.43359375,26.76953125 51.43359375,21.3984375 C 51.43359375,16.005859375 49.88671875,11.30078125 47.072265625,7.6484375 C 46.87890625,7.412109375 46.943359375,7.111328125 47.201171875,6.939453125 Z M 38.865234375,12.6328125 C 39.1015625,12.4609375 39.423828125,12.50390625 39.595703125,12.740234375 C 41.25,14.845703125 42.41015625,17.939453125 42.41015625,21.3984375 C 42.41015625,24.87890625 41.25,27.951171875 39.595703125,30.056640625 C 39.423828125,30.29296875 39.123046875,30.357421875 38.865234375,30.1640625 C 38.62890625,29.970703125 38.5859375,29.669921875 38.779296875,29.369140625 C 40.240234375,27.37109375 41.357421875,24.599609375 41.357421875,21.3984375 C 41.357421875,18.154296875 40.21875,15.318359375 38.71484375,13.3203125 C 38.54296875,13.10546875 38.62890625,12.826171875 38.865234375,12.6328125 Z');}
 
-.main-nowPlayingBar-volumeBar > button [aria-label="Volume low"] path {d: path('M 25.65234375,2.943359375 C 26.51171875,2.943359375 26.94140625,3.587890625 26.94140625,4.404296875 L 26.94140625,38.392578125 C 26.94140625,39.208984375 26.51171875,39.853515625 25.65234375,39.853515625 C 25.05078125,39.853515625 24.556640625,39.53125 24.169921875,39.166015625 L 13.943359375,29.197265625 C 13.70703125,28.9609375 13.427734375,28.853515625 13.041015625,28.853515625 L 5.84375,28.853515625 C 4.060546875,28.853515625 2.578125,27.392578125 2.578125,25.609375 L 2.578125,16.9296875 C 2.578125,15.146484375 4.060546875,13.6640625 5.84375,13.6640625 L 13.041015625,13.6640625 C 13.427734375,13.6640625 13.70703125,13.556640625 13.943359375,13.341796875 L 24.169921875,3.65234375 C 24.556640625,3.265625 25.05078125,2.943359375 25.65234375,2.943359375 Z M 38.865234375,12.6328125 C 39.1015625,12.4609375 39.423828125,12.50390625 39.595703125,12.740234375 C 41.25,14.845703125 42.41015625,17.939453125 42.41015625,21.3984375 C 42.41015625,24.87890625 41.25,27.951171875 39.595703125,30.056640625 C 39.423828125,30.29296875 39.123046875,30.357421875 38.865234375,30.1640625 C 38.62890625,29.970703125 38.5859375,29.669921875 38.779296875,29.369140625 C 40.240234375,27.37109375 41.357421875,24.599609375 41.357421875,21.3984375 C 41.357421875,18.154296875 40.21875,15.318359375 38.71484375,13.3203125 C 38.54296875,13.10546875 38.62890625,12.826171875 38.865234375,12.6328125 Z');}
 
 .main-nowPlayingBar-volumeBar > button:has(path[d^="M13.86"]) svg path { d: path('M 29.86328125,2.943359375 C 30.744140625,2.943359375 31.173828125,3.587890625 31.173828125,4.404296875 L 31.173828125,38.392578125 C 31.173828125,39.208984375 30.744140625,39.853515625 29.86328125,39.853515625 C 29.283203125,39.853515625 28.7890625,39.53125 28.380859375,39.166015625 L 18.17578125,29.197265625 C 17.91796875,28.9609375 17.66015625,28.853515625 17.2734375,28.853515625 L 10.0546875,28.853515625 C 8.271484375,28.853515625 6.7890625,27.392578125 6.7890625,25.609375 L 6.7890625,16.9296875 C 6.7890625,15.146484375 8.271484375,13.6640625 10.0546875,13.6640625 L 17.2734375,13.6640625 C 17.66015625,13.6640625 17.91796875,13.556640625 18.17578125,13.341796875 L 28.380859375,3.65234375 C 28.7890625,3.265625 29.283203125,2.943359375 29.86328125,2.943359375 Z');}
 
@@ -783,7 +857,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 }
 
 /* --- Search icon override (filter + expand button) --- */
-:is(.x-filterBox-expandButton, .e-91000-icon):has(path[d^="M10.533"]) path {
+:is(.x-filterBox-expandButton, .e-91000-icon, .e-10810-icon):has(path[d^="M10.533"]) path {
     d: path('M458.008,47.875C459.31,47.875 460.612,47.7122 461.914,47.3867C463.216,47.0612 464.518,46.5729 465.82,45.9219C467.122,45.2708 468.424,44.6198 469.727,43.9688C471.029,43.3177 472.005,42.6667 472.656,42.0156C473.958,40.7135 474.935,39.5742 475.586,38.5977C476.237,37.6211 476.888,36.4818 477.539,35.1797C477.539,33.8776 477.702,32.5755 478.027,31.2734C478.353,29.9714 478.516,28.6693 478.516,27.3672C478.516,25.4141 478.353,23.7865 478.027,22.4844C477.702,21.1823 477.539,19.8802 477.539,18.5781C476.888,17.276 476.074,16.1367 475.098,15.1602C474.121,14.1836 473.307,13.3698 472.656,12.7188C472.005,11.4167 471.029,10.4401 469.727,9.78906C468.424,9.13802 467.122,8.48698 465.82,7.83594C464.518,7.83594 463.216,7.51042 461.914,6.85938C460.612,6.20833 459.31,5.88281 458.008,5.88281C456.706,5.88281 455.404,6.04557 454.102,6.37109C452.799,6.69661 451.497,7.1849 450.195,7.83594C448.893,8.48698 447.754,9.13802 446.777,9.78906C445.801,10.4401 444.661,11.4167 443.359,12.7188C442.057,14.0208 441.081,14.9974 440.43,15.6484C439.779,16.2995 439.128,17.276 438.477,18.5781C438.477,19.8802 438.314,21.1823 437.988,22.4844C437.663,23.7865 437.5,25.4141 437.5,27.3672C437.5,28.6693 437.663,29.9714 437.988,31.2734C438.314,32.5755 438.477,33.8776 438.477,35.1797C439.128,36.4818 439.779,37.6211 440.43,38.5977C441.081,39.5742 442.057,40.7135 443.359,42.0156C444.01,42.6667 444.987,43.3177 446.289,43.9688C447.591,44.6198 448.893,45.2708 450.195,45.9219C451.497,46.5729 452.799,47.0612 454.102,47.3867C455.404,47.7122 456.706,47.875 458.008,47.875M458.008,53.7344C456.055,53.7344 454.264,53.7344 452.637,53.7344C451.009,53.7344 449.219,53.0833 447.266,51.7813C445.964,51.1302 444.661,50.3164 443.359,49.3398C442.057,48.3633 440.755,47.224 439.453,45.9219C438.151,44.6198 437.012,43.3177 436.035,42.0156C435.059,40.7135 434.245,39.0859 433.594,37.1328C432.943,35.8307 432.454,34.2031 432.129,32.25C431.803,30.2969 431.641,28.6693 431.641,27.3672C431.641,25.4141 431.803,23.6237 432.129,21.9961C432.454,20.3685 432.943,18.5781 433.594,16.625C434.245,15.3229 435.059,13.8581 436.035,12.2305C437.012,10.6029 438.151,9.13802 439.453,7.83594C440.755,7.1849 442.057,6.37109 443.359,5.39453C444.661,4.41797 445.964,3.60417 447.266,2.95313C449.219,2.30208 451.009,1.8138 452.637,1.48828C454.264,1.16276 456.055,1 458.008,1C459.961,1 461.751,1.16276 463.379,1.48828C465.007,1.8138 466.797,2.30208 468.75,2.95313C470.052,3.60417 471.354,4.41797 472.656,5.39453C473.958,6.37109 475.26,7.1849 476.563,7.83594C477.865,9.13802 479.004,10.6029 479.98,12.2305C480.957,13.8581 481.771,15.3229 482.422,16.625C483.073,18.5781 483.561,20.3685 483.887,21.9961C484.212,23.6237 484.375,25.4141 484.375,27.3672C484.375,28.6693 484.212,30.2969 483.887,32.25C483.561,34.2031 483.073,35.8307 482.422,37.1328C481.771,39.0859 480.957,40.7135 479.98,42.0156C479.004,43.3177 477.865,44.6198 476.563,45.9219C475.26,47.224 473.958,48.3633 472.656,49.3398C471.354,50.3164 470.052,51.1302 468.75,51.7813C466.797,53.0833 465.007,53.7344 463.379,53.7344C461.751,53.7344 459.961,53.7344 458.008,53.7344M492.188,65.4531C492.188,65.4531 492.025,65.4531 491.699,65.4531C491.374,65.4531 491.211,65.4531 491.211,65.4531C490.56,65.4531 490.234,65.4531 490.234,65.4531C490.234,65.4531 489.909,65.1276 489.258,64.4766L471.68,46.8984L477.539,41.0391L495.117,59.5938C495.117,59.5938 495.28,59.7565 495.605,60.082C495.931,60.4076 496.094,60.5703 496.094,60.5703C496.094,60.5703 496.094,60.7331 496.094,61.0586C496.094,61.3841 496.094,61.5469 496.094,61.5469C496.094,62.1979 496.094,62.6862 496.094,63.0117C496.094,63.3372 496.094,63.8255 496.094,64.4766C496.094,64.4766 495.931,64.6393 495.605,64.9648C495.28,65.2904 494.792,65.4531 494.141,65.4531C494.141,65.4531 493.978,65.4531 493.652,65.4531C493.327,65.4531 492.839,65.4531 492.188,65.4531');
     scale: 35%;
     transform: translate(-429px, 0px);
@@ -817,26 +891,25 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 .main-trackList-rowImagePlayButton { scale: 1.5 !important;    z-index: 1; }
 
 /* Play button color on non-playing rows */
-.main-trackList-trackListRow:not(.MxoETbR0GSKhCd1hp6Np) .main-trackList-rowImagePlayButton { color: #fa586a; }
+.main-trackList-trackListRow:not([aria-selected="true"]) .main-trackList-rowImagePlayButton { color: #fa586a; }
 
-/* ⚠️ DYNAMIC CLASS — .MxoETbR0GSKhCd1hp6Np = currently playing row */
-/* ⚠️ DYNAMIC CLASS — .dAFQydUa_3YLPaMsqWAv = active row variant */
-.dAFQydUa_3YLPaMsqWAv.MxoETbR0GSKhCd1hp6Np .main-trackList-rowImagePlayButton { color: white; }
+/* Selected row = [aria-selected="true"]; playing row = the row whose title
+   carries Spotify's bright-accent text class (both locale/hash independent) */
+.main-trackList-trackListRow:has(.main-trackList-rowMainContent .encore-internal-color-text-bright-accent)[aria-selected="true"] .main-trackList-rowImagePlayButton { color: white; }
 
 /* Selected row (red) */
-.main-trackList-trackListRow.MxoETbR0GSKhCd1hp6Np,
-.main-trackList-trackListRow.MxoETbR0GSKhCd1hp6Np:hover { background-color: #d60017; }
+.main-trackList-trackListRow[aria-selected="true"],
+.main-trackList-trackListRow[aria-selected="true"]:hover { background-color: #d60017; }
 
 /* Multi-selected row */
 .main-trackList-trackListRow.main-trackList-selected,
 .main-trackList-trackListRow.main-trackList-selected:hover { background-color: #a30012; }
 
 /* Active row — unset highlight color */
-.main-trackList-trackListRow.dAFQydUa_3YLPaMsqWAv .main-trackList-rowMarker,
-.main-trackList-trackListRow.dAFQydUa_3YLPaMsqWAv .eYJgrgW01l7dHKuMJidG { color: unset; }
+.main-trackList-trackListRow:has(.main-trackList-rowMainContent .encore-internal-color-text-bright-accent) .main-trackList-rowMarker { color: unset; }
 
-/* ⚠️ DYNAMIC CLASS — .MxoETbR0GSKhCd1hp6Np playing row: hide added-to-playlist indicator */
-.main-trackList-trackListRow.MxoETbR0GSKhCd1hp6Np .Up3ALJRog0ejdGp8Bbyo { display: none; }
+/* Selected row: hide the added-to-playlist indicator (dynamic class, may need re-mapping) */
+.main-trackList-trackListRow[aria-selected="true"] .Up3ALJRog0ejdGp8Bbyo { display: none; }
 
 /* Active/playing row tracklist color */
 .main-trackList-trackListRow.main-trackList-active .main-trackList-rowMarker { color: rgba(253, 253, 253, 0.392); }
@@ -852,9 +925,8 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
     margin-left: 10px;
 }
 
-/* Hide "Add to Liked Songs" button in row end section */
-.main-trackList-rowSectionEnd [aria-label="Add to Liked Songs"] { display: none; }
-.main-trackList-rowSectionEnd [aria-label="Add to playlist"] { display: none; }
+/* Hide "Add to Liked Songs" / "Add to playlist" buttons in the row end section
+   — localized aria-labels, rule generated in theme.js (localeStylesMod) */
 
 /* Tracklist index numbers */
 .main-trackList-rowSectionIndex > div > span {
@@ -897,21 +969,21 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 .x-explicit-icon { margin-top: 1px; scale: 1.2; }
 .x-explicit-label { background-color: rgba(255, 255, 255, 0.64); zoom: 0.7; }
 
-/* ⚠️ DYNAMIC CLASS — .zeEKLLKAQgCfbY6qzb9A = three-dots button (album page) */
-.zeEKLLKAQgCfbY6qzb9A {
+/* Three-dots button in track rows */
+.main-trackList-rowMoreButton {
     opacity: 1 !important;
     color: #fa586a !important;
     padding-right: 9px;
     scale: 1.2;
 }
 
-.main-trackList-trackListRow:hover:not(.main-trackList-disabled) .zeEKLLKAQgCfbY6qzb9A { color: unset; }
+.main-trackList-trackListRow:hover:not(.main-trackList-disabled) .main-trackList-rowMoreButton { color: unset; }
 
-/* ⚠️ DYNAMIC CLASS — .zeEKLLKAQgCfbY6qzb9A when on playing row */
-.main-trackList-trackListRowGrid.MxoETbR0GSKhCd1hp6Np .zeEKLLKAQgCfbY6qzb9A { color: white; }
+/* Three-dots button on the selected row */
+.main-trackList-trackListRowGrid[aria-selected="true"] .main-trackList-rowMoreButton { color: white; }
 
-/* ⚠️ DYNAMIC CLASS — .Q4mk1oUBywa1PuZZZ0Mr = track time column */
-.Q4mk1oUBywa1PuZZZ0Mr {
+/* Track time column */
+.main-trackList-duration {
     color: rgba(255, 255, 255, 0.64);
     font-size: 15px;
     padding-right: 8px;
@@ -965,12 +1037,12 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 }
 
 /*Remove native item hover color*/
-.e-10451-box--interactive:after{
+.e-10810-box--interactive:after{
     content:unset;
 }
 
 
-.e-10451-card__column:has(>[href^="/artist/"]){
+.e-10810-card__column:has(>[href^="/artist/"]){
     align-items: center;
 }
 
@@ -990,7 +1062,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
     backdrop-filter: blur(60px) !important;
 }
 
-.main-card-PlayButtonContainer .e-9890-button-primary:hover .e-9890-button-primary__inner { background-color: unset; }
+.main-card-PlayButtonContainer .e-10810-button-primary:hover .e-10810-button-primary__inner { background-color: unset; }
 
 /* Round artist card images everywhere */
 [aria-labelledby*="card-title-spotify:artist"] .main-cardImage-imageWrapper { border-radius: 100%!important; }
@@ -1091,12 +1163,11 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 .main-contextMenu-menuItemButton:has(>.main-contextMenu-menuItemIconWrapper) > div > svg {display:none;}
 
 
-/* ⚠️ DYNAMIC CLASS — .lQEXaOyKiOHRJAkTf1EF = icon wrapper in context menu */
-.main-contextMenu-menuItemButton > .lQEXaOyKiOHRJAkTf1EF > svg { display: none; }
+/* Icon wrapper in context menu */
+.main-contextMenu-menuItemButton > .main-contextMenu-menuItemIconWrapper > svg { display: none; }
 
 
-/* Hide external link option */
-.main-contextMenu-menuItemButton:has([aria-label="External link"]) { display: none; }
+/* Hide external link option — localized aria-label, generated in theme.js */
 
 /* ⚠️ DYNAMIC CLASS — .egE6UQjF_UUoCzvMxREj = some context menu item */
 .main-contextMenu-menuItemButton.egE6UQjF_UUoCzvMxREj { display: none; }
@@ -1113,7 +1184,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 /* Notistack (toast) nudge up */
 .notistack-CollapseWrapper { margin-top: -200px; }
 
-.e-10451-box--elevated {Background-color: rgb(61 61 61 / 92%);    border-radius: 20px;}
+.e-10810-box--elevated {Background-color: rgb(61 61 61 / 92%);    border-radius: 20px;}
 
 .encore-light-theme{--background-base:rgb(61 61 61 / 92%); }
 
@@ -1143,7 +1214,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 .GenericModal__overlay {background-color: rgba(0, 0, 0, .2);}
 
 /* Translucent elevated box (toasts, tooltips) */
-.e-91000-box--elevated {
+.e-91000-box--elevated, .e-10810-box--elevated {
     background-color: #525050cf;
     backdrop-filter: blur(28px) saturate(200%);
     border-radius: 13px;
@@ -1152,7 +1223,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
     border: 0.5px solid hsla(0, 0%, 100%, .1);
 }
 
-.e-91000-box--elevated span { color: white; }
+:is(.e-91000-box--elevated, .e-10810-box--elevated) span { color: white; }
 
 /* Track credits modal */
 .main-trackCreditsModal-container {
@@ -1247,9 +1318,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
    13. SEARCH PAGE
    ============================================================================= */
 
-main[aria-label="Spotify – Search"] > div > div:nth-child(1){
-    padding-top: 60px;
-}
+/* Search page top spacing — localized aria-label, generated in theme.js */
 
 /* Search focus ring */
 .main-globalNav-searchInputContainer .main-topBar-searchBar:focus {
@@ -1273,14 +1342,16 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 }
 
 [data-encore-id="formInputIcon"] { border-radius: 8px !important; }
-.e-9890-form-input-icon--trailing .e-9890-form-input { border-radius: 8px !important; }
+.e-10810-form-input-icon--trailing .e-10810-form-input { border-radius: 8px !important; }
 
 /* Search input placeholder */
 [placeholder="What do you want to play?"] { margin-left: 10px; zoom: 1.2; }
 
 /* Hide trailing icon in form input */
-.main-globalNav-searchContainer .e-9890-form-input-icon__icon.e-9890-form-input-icon__icon--trailing { display: none; }
+.main-globalNav-searchContainer .e-10810-form-input-icon__icon.e-10810-form-input-icon__icon--trailing { display: none; }
 /* Home button is intentionally visible again — the homepage is back (#8, #4) */
+/* Home page: no coloured header band (Spotify paints an inline background-color) */
+.main-home-homeHeader { background-color: transparent !important; }
 .main-globalNav-searchSection { position: relative; }
 
 /* Search icon color */
@@ -1378,7 +1449,7 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
     background: hsl(0deg 0% 100% / 10%);
 }
 
-.ohuGeCup1xpyPDQGSNBZ[aria-label="Recently played"] > li > div { --box-hover-background-color: rgba(255, 255, 255, .1) !important; }
+/* "Recently played" hover — localized aria-label, generated in theme.js */
 
 /* Queue more options button */
 [id="queue-panel"] .Button-buttonTertiary-small-iconOnly-useBrowserDefaultFocusStyle-condensed {
@@ -1387,8 +1458,7 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
     color: #fa586a;
 }
 
-/* ⚠️ DYNAMIC CLASS — .MxiF3v51hJ2zMb3pXjtJ.QKghX7qNjypCKU_XBBcc = more options in queue */
-.MxiF3v51hJ2zMb3pXjtJ .QKghX7qNjypCKU_XBBcc[aria-label*="More options for"] { opacity: 1; zoom: 1.2; color: #fa586a; }
+/* Queue "more options" button — localized aria-label, generated in theme.js */
 
 /* ⚠️ DYNAMIC CLASS — .UrfDp0_mKGL9hkfh9g_R = queue row hover/active background */
 .UrfDp0_mKGL9hkfh9g_R::before { content: unset; }
@@ -1439,9 +1509,6 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 /* ⚠️ DYNAMIC CLASS — .E912cqRfb05FrRPFKDZ_ = some hidden queue element */
 .E912cqRfb05FrRPFKDZ_ { display: none; }
 
-/* Playlist padding bottom (accommodate floating bar) */
-/* ⚠️ DYNAMIC CLASS — .Lom0j0CR3sg_fjQE3n1n = scroll node wrapper */
-.Lom0j0CR3sg_fjQE3n1n { padding-bottom: 75px; }
 
 
 /* =============================================================================
@@ -1453,7 +1520,7 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
     padding: 10px 35px 90px 35px;
 }
 
-[data-testid="album-page"] > div > div.YO0Nd3lMQrVPmjcdqV8p > div.contentSpacing { padding-top: 20px; }
+[data-testid="album-page"] > div > div > div.contentSpacing { padding-top: 20px; }
 
 /* Header height and image size */
 :is([data-testid="album-page"], [data-testid="playlist-page"]) div.main-entityHeader-container { min-height: 450px !important; }
@@ -1472,16 +1539,16 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="playlist-page"] .profile-editImage-editImageButtonContainer{display:none;}
 
 
-[data-testid="album-page"] .main-entityHeader-container.main-entityHeader-nonWrapped > div.iWTIFTzhRZT0rCD0_gOK.contentSpacing > button > div > img { box-shadow: none; }
+[data-testid="album-page"] .main-entityHeader-container.main-entityHeader-nonWrapped > div.contentSpacing > button > div > img { box-shadow: none; }
 
-/* ⚠️ DYNAMIC CLASS — .iWTIFTzhRZT0rCD0_gOK = album page content spacing container */
-.iWTIFTzhRZT0rCD0_gOK.contentSpacing { margin-left: 0; }
+/* Album page content spacing container */
+.main-entityHeader-container > .contentSpacing { margin-left: 0; }
 
 /* Header text area */
 :is([data-testid="playlist-page"], [data-testid="album-page"]) .main-entityHeader-headerText { margin-left: 25px; height: 237px; }
 
-/* ⚠️ DYNAMIC CLASS — .iWTIFTzhRZT0rCD0_gOK — album header text height */
-[data-testid="album-page"] .iWTIFTzhRZT0rCD0_gOK.contentSpacing .main-entityHeader-headerText { height: 240px; }
+/* Album header text height */
+[data-testid="album-page"] .main-entityHeader-container > .contentSpacing .main-entityHeader-headerText { height: 240px; }
 
 /* Title size */
 :is([data-testid="playlist-page"], [data-testid="album-page"]) :is(.main-entityHeader-titleInner, .main-entityHeader-title) > h1 { 
@@ -1500,7 +1567,7 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="album-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper [title="Various Artists"] ~ [data-encore-id="text"] { font-size: 28px; font-weight: 400; color: #fa586a; }
 
 /* ⚠️ DYNAMIC CLASS — data-separator elements */
-[data-testid="album-page"] .main-entityHeader-headerText .e-9890-text[data-separator="true"] { display: none; }
+[data-testid="album-page"] .main-entityHeader-headerText .e-10810-text[data-separator="true"] { display: none; }
 
 /* Metadata styling */
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-entityHeader-metaData { margin-top: 0; }
@@ -1568,10 +1635,15 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 
 
 /*Reorder action bar buttons*/
-:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > [aria-label^="Enable shuffle for"]{order:1;}
-:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > :is(.main-playButton-PlayButton, .main-actionBar-ActionBarPlayButtonContainer){order:2;margin-right: 15px; }
+/* Order: Play, Shuffle, more-options, search/sort. Shuffle is identified by its
+   stock icon path (it has no stable class in Spotify ≥1.2.9x). */
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > :is(.main-playButton-PlayButton, .main-actionBar-ActionBarPlayButtonContainer){order:1;margin-right: 15px; }
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]){order:2;}
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > button[aria-haspopup="menu"]{order:3;}
-:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > .playlist-playlist-searchBoxContainer{order:4;}
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > :is(.playlist-playlist-searchBoxContainer, :has(.x-filterBox-expandButton)){order:4;}
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > *{order:5;}
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow { gap: 14px; }
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow .playlist-playlist-searchBoxContainerFlexCenter { gap: 10px; }
 
 
 [data-testid="playlist-page"] .playlist-playlist-searchBoxContainer {zoom:125%;}
@@ -1617,26 +1689,24 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="playlist-page"] > .mpdgC9UTkN5_fMm1pFiz { left: 490px; right: 60px; top: 402px; position: absolute; }
 
 
-[data-testid="playlist-page"] [aria-label^="Disable shuffle for"], [aria-label^="Disable shuffle for"]::after { content: unset; }
+.main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"])::after { content: unset; }
 
 
-:is([data-testid="album-page"], [data-testid="playlist-page"]) .x_I4_QDM5MZhGKhtI6fb.hx2nVeuQRL7Q9YEU5imA svg > path:nth-child(2) { display: none; }
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"]) svg > path:nth-child(2) { display: none; }
 
-:is([data-testid="album-page"], [data-testid="playlist-page"]) .x_I4_QDM5MZhGKhtI6fb.hx2nVeuQRL7Q9YEU5imA svg > path,
-:is([data-testid="album-page"], [data-testid="playlist-page"]) .hx2nVeuQRL7Q9YEU5imA svg > path {
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"]) svg > path {
     d: path("M5.478515625,10.419921875 C5.478515625,9.58203125 6.080078125,8.98046875 6.91796875,8.98046875 L11.64453125,8.98046875 C14.888671875,8.98046875 16.80078125,9.947265625 19.142578125,12.71875 L23.9765625,18.4765625 L28.83203125,12.697265625 C31.173828125,9.904296875 33.0859375,8.958984375 36.330078125,8.958984375 L39.208984375,8.958984375 L39.208984375,3.91015625 C39.208984375,3.115234375 39.74609375,2.599609375 40.5625,2.599609375 C40.94921875,2.599609375 41.25,2.70703125 41.59375,2.986328125 L49.328125,8.830078125 C50.251953125,9.5390625 50.208984375,10.849609375 49.328125,11.515625 L41.59375,17.337890625 C41.25,17.6171875 40.94921875,17.724609375 40.5625,17.724609375 C39.74609375,17.724609375 39.208984375,17.208984375 39.208984375,16.4140625 L39.208984375,11.81640625 L36.158203125,11.81640625 C34.03125,11.81640625 32.634765625,12.6328125 30.701171875,14.931640625 L25.845703125,20.7109375 L30.701171875,26.490234375 C32.634765625,28.810546875 34.03125,29.60546875 36.158203125,29.60546875 L39.208984375,29.60546875 L39.208984375,24.986328125 C39.208984375,24.19140625 39.74609375,23.67578125 40.5625,23.67578125 C40.94921875,23.67578125 41.25,23.783203125 41.59375,24.0625 L49.328125,29.90625 C50.251953125,30.63671875 50.208984375,31.947265625 49.328125,32.591796875 L41.59375,38.4140625 C41.25,38.693359375 40.94921875,38.80078125 40.5625,38.80078125 C39.74609375,38.80078125 39.208984375,38.28515625 39.208984375,37.490234375 L39.208984375,32.484375 L36.330078125,32.484375 C33.0859375,32.484375 31.173828125,31.517578125 28.83203125,28.724609375 L23.9765625,22.9453125 L19.142578125,28.703125 C16.80078125,31.49609375 14.888671875,32.44140625 11.64453125,32.44140625 L6.91796875,32.44140625 C6.080078125,32.44140625 5.478515625,31.83984375 5.478515625,31.001953125 C5.478515625,30.228515625 6.123046875,29.5625 6.91796875,29.5625 L11.81640625,29.5625 C13.921875,29.5625 15.33984375,28.767578125 17.2734375,26.46875 L22.107421875,20.7109375 L17.2734375,14.953125 C15.33984375,12.654296875 13.921875,11.859375 11.81640625,11.859375 L6.91796875,11.859375 C6.123046875,11.859375 5.478515625,11.193359375 5.478515625,10.419921875 Z");
     scale: 0.4;
     transform: translate(0px, 10px);
 }
 
-:is([data-testid="album-page"], [data-testid="playlist-page"]) .hx2nVeuQRL7Q9YEU5imA > span { align-items: center; }
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"]) > span { align-items: center; }
 
 /* Tracklist area */
 [data-testid="album-page"] > div:nth-child(4) { transform: translateY(-55px) translateX(10px); }
 
-/* ⚠️ DYNAMIC CLASS — .Xo8dgIGCCWjHXWBoKhaV = tracklist wrapper */
-[data-testid="album-page"] .Xo8dgIGCCWjHXWBoKhaV { zoom: 1.1; }
-.Xo8dgIGCCWjHXWBoKhaV .main-trackList-rowSectionEnd [aria-label="Add to Liked Songs"] { display: none; }
+/* Tracklist wrapper */
+[data-testid="album-page"] .main-trackList-trackListContainer { zoom: 1.1; }
 
 /* Tracklist text styling */
 [data-testid="album-page"] .main-trackList-rowMainContent div {
@@ -1706,21 +1776,13 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="album-page"] .main-trackList-trackListHeader,
 [data-testid="album-page"] .yLmA5f7x65en2MdKbIhX,
 .x-downloadButton-DownloadButton,
-[data-testid="album-page"] [aria-label="Save to Your Library"],
 [data-testid="album-page"] .main-avatar-avatar,
-[data-testid="album-page"] .Button-sc-1dqy6lx-0.Button-small-small-buttonTertiary-iconOnly-condensed-useBrowserDefaultFocusStyle.main-trackList-curationButton[aria-label="Add to Liked Songs"],
 [data-testid="album-page"] .main-entityHeader-headerText > div > span:nth-last-child(1),
 [data-testid="album-page"] .encore-text.encore-text-body-small.main-entityHeader-pretitle,
 [data-testid="album-page"] .DmrVJc9vWCbjU_DuRvfe > div > div > p:nth-child(2),
-[data-testid="album-page"] [aria-label="Merch"],
 [data-testid="album-page"] [data-encore-id="popoverTrigger"],
 [data-testid="album-page"] .main-entityHeader-pretitle,
 [data-testid="album-page"] .main-entityHeader-backgroundColor,
-.main-actionBar-ActionBar [aria-label="Save to Your Library"],
-.main-actionBar-ActionBarRow [aria-label="Remove from Your Library"],
-.main-actionBar-ActionBarRow [aria-label="Add to Your Library"],
-.main-actionBar-ActionBarRow [aria-label^="Explore"],
-[data-testid="album-page"] .main-rootlist-wrapper [aria-label="Add to playlist"],
 [data-testid="album-page"] .main-entityHeader-imageContainer.main-entityHeader-imageContainerNew.main-entityHeader-imageContainerClickable { pointer-events: none; }
 
 [data-testid="album-page"] .main-entityHeader-imageContainer.main-entityHeader-imageContainerNew.main-entityHeader-imageContainerClickable { pointer-events: none; display: unset; }
@@ -1729,29 +1791,22 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="album-page"] .main-entityHeader-headerText .main-entityHeader-divider {
     display:none;
 }
-/*Hide download button*/
-.main-actionBar-ActionBarRow > div:has(> div > [aria-label="Download"]){
-    display:none;
-}
+/* Download button — localized aria-label, generated in theme.js
+   (.x-downloadButton-DownloadButton is hidden above as a stable fallback) */
 
 
-/* Consolidate: hide these */
+/* Consolidate: hide these (library / merch / explore / like buttons are
+   matched on localized aria-labels and generated in theme.js) */
 [data-testid="album-page"] .main-entityHeader-pretitle,
 [data-testid="album-page"] .main-trackList-rowPlayCount,
 [data-testid="album-page"] .main-trackList-trackListHeader,
 [data-testid="album-page"] .yLmA5f7x65en2MdKbIhX,
-[data-testid="album-page"] [aria-label="Save to Your Library"],
 [data-testid="album-page"] .main-avatar-avatar,
-[data-testid="album-page"] .Button-sc-1dqy6lx-0.Button-small-small-buttonTertiary-iconOnly-condensed-useBrowserDefaultFocusStyle.main-trackList-curationButton[aria-label="Add to Liked Songs"],
 [data-testid="album-page"] .main-entityHeader-headerText > div > span:nth-last-child(1),
 [data-testid="album-page"] .encore-text.encore-text-body-small.main-entityHeader-pretitle,
 [data-testid="album-page"] .DmrVJc9vWCbjU_DuRvfe > div > div > p:nth-child(2),
-[data-testid="album-page"] [aria-label="Merch"],
 [data-testid="album-page"] [data-encore-id="popoverTrigger"],
-[data-testid="album-page"] .main-entityHeader-backgroundColor,
-.main-actionBar-ActionBarRow [aria-label="Remove from Your Library"],
-.main-actionBar-ActionBarRow [aria-label="Add to Your Library"],
-.main-actionBar-ActionBarRow [aria-label^="Explore"] { display: none; }
+[data-testid="album-page"] .main-entityHeader-backgroundColor { display: none; }
 
 
 
@@ -1772,8 +1827,6 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 /* Artist subtitle link hide */
 [data-testid="album-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper figure { display: none; }
 
-/* Hide add to Liked Songs button in action bar  */
-.main-actionBar-ActionBar [aria-label="Save to Your Library"] { display: none; }
 
 /* Remove album cover interactive interactable */
 [data-testid="album-page"] .main-entityHeader-imageContainer { pointer-events: none; }
@@ -1797,11 +1850,11 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 
 
 /* Title */
-[data-testid="playlist-page"] .main-entityHeader-title .e-9890-text.encore-text-headline-large.encore-internal-color-text-base { font-size: 2.3rem !important; }
+[data-testid="playlist-page"] .main-entityHeader-title .e-10810-text.encore-text-headline-large.encore-internal-color-text-base { font-size: 2.3rem !important; }
 
 /* Container */
 [data-testid="playlist-page"] .main-entityHeader-container { max-width: 95%; margin-bottom: 29px; }
-[data-testid="playlist-page"] .main-entityHeader-container.JYKKZFIXuf9lIHVeszuS { height: 450px; }
+[data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage { height: 450px; }
 [data-testid="playlist-page"] .main-entityHeader-titleButton { height: 40%; }
 
 
@@ -1825,8 +1878,8 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="playlist-page"] .main-trackList-trackListHeader { margin-bottom: 5px; position: static; }
 [data-testid="playlist-page"] .main-trackList-trackListHeaderRow { border-bottom: unset; }
 
-/* ⚠️ DYNAMIC CLASS — .ARSbx0SA65V5vol27FS4 = tracklist header bar */
-.ARSbx0SA65V5vol27FS4.main-trackList-trackListHeader { background: unset; border-bottom: unset; -webkit-box-shadow: unset; box-shadow: unset; }
+/* Tracklist header bar */
+.main-trackList-trackListHeader { background: unset; border-bottom: unset; -webkit-box-shadow: unset; box-shadow: unset; }
 
 /* Rename "# Title" header to "Songs" */
 [data-testid="playlist-page"] div.contentSpacing .main-trackList-trackListHeader .main-trackList-rowSectionStart > div:nth-child(1) > button > span::before { content: "Songs"; color: rgba(253, 253, 253, 0.64); }
@@ -1853,8 +1906,14 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="playlist-page"] .main-trackList-rowImage { width: 48px; height: 48px; }
 
 /* Track section start offset */
-[data-testid="playlist-page"] .contentSpacing > .Xo8dgIGCCWjHXWBoKhaV .main-trackList-rowSectionStart { margin-left: -39px; }
-[data-testid="playlist-page"] .main-trackList-rowSectionStart { left: -36px; position: relative; }
+[data-testid="playlist-page"] .contentSpacing > .main-trackList-trackListContainer .main-trackList-rowSectionStart { margin-left: 0; }
+/* Number column, then cover + title (no negative offsets, they overlapped) */
+[data-testid="playlist-page"] .main-trackList-rowSectionStart { left: 0; position: relative; }
+[data-testid="playlist-page"] .main-trackList-trackListRow { --tracklist-index-column-width: 28px; }
+/* Number / playing indicator / hover play button centered in the index column */
+[data-testid="playlist-page"] .main-trackList-rowMarker { display: flex; justify-content: center; align-items: center; padding: 0; }
+[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-number { margin: 0; padding: 0; text-align: center; width: 100%; left: 0 !important; right: 0 !important; }
+[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 50%; top: 50%; translate: -50% -50%; }
 
 /* Playing icon */
 [data-testid="playlist-page"] .main-trackList-playingIcon { display: block; z-index: 99; margin-left: 5px; }
@@ -1876,8 +1935,8 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
     grid-area: subtitle;
 }
 
-/*Hide muaic video item in song items*/
-.main-trackList-rowMainContent [title="Music video"] {
+/* Hide music video badge in song rows (stable class, locale-independent) */
+.main-trackList-rowMainContent .x-music-video {
     display:none;
 }
 
@@ -1893,7 +1952,7 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="playlist-page"] .main-entityHeader-backgroundColor { display: none; }
 
 /* Play button hover */
-[data-testid="playlist-page"] .e-9890-button-primary:hover .e-9890-button-primary__inner { background-color: var(--background-highlight); }
+[data-testid="playlist-page"] .e-10810-button-primary:hover .e-10810-button-primary__inner { background-color: var(--background-highlight); }
 
 /* Inline curation (add music) section */
 .playlist-playlist-playlistInlineCurationSection { margin-left: 20px; margin-right: 20px; }
@@ -1911,17 +1970,14 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-testid="playlist-page"] [data-testid="recommended-track"],
 [data-testid="playlist-page"] .playlist-playlist-findMoreButton,
 [data-testid="playlist-page"] .main-entityHeader-pretitle,
-[data-testid="playlist-page"] [data-encore-id="popoverTrigger"],
-[data-testid="playlist-page"] .main-actionBar-ActionBarRow > [aria-label^="Invite collaborators to"] { display: none; }
+[data-testid="playlist-page"] [data-encore-id="popoverTrigger"] { display: none; }
+/* "Invite collaborators" button — localized aria-label, generated in theme.js */
 
 
 /* ⚠️ DYNAMIC CLASS — .eJbkaBhDfq9NfV5_QS8V = track count/duration info (shared with album) */
 .eJbkaBhDfq9NfV5_QS8V { display: none; }
 
-/* Artist page "All songs" page */
-[aria-label*="All songs for "] { margin-top: 50px; margin-left: 60px; margin-right: 90px; }
-[aria-label*="All songs for "] .main-rootlist-wrapper > div:nth-child(2) > div:nth-child(1) > div::after { border-top: none; }
-[aria-label*="All songs for "] .main-rootlist-wrapper > div:nth-child(2) > div:nth-child(1) > div { margin-top: -10px; }
+/* Artist "All songs for …" page — localized aria-label, generated in theme.js */
 
 
 /* =============================================================================
@@ -2002,7 +2058,7 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
     z-index: -1;
     pointer-events: none;
 }
-[data-test-uri^="spotify:artist"] .main-entityHeader-container.gmKBgPCnX785KDicbdJu::after {
+[data-test-uri^="spotify:artist"] .main-entityHeader-container.main-entityHeader-withBackgroundImage::after {
     height: 100%;
     background: linear-gradient(transparent 0%, hsl(0deg 0% 100% / 3%));
 }
@@ -2019,18 +2075,7 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton span span svg { scale: 1.2; }
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton span span svg path { fill: white; }
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton > button > span { background-color: #ff375f;     box-shadow: inset 0 1px 1px rgb(255 255 255 / 36%), inset 0 -1px 1px rgb(255 255 255 / 34%);}
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow [aria-label*="More options for"] { zoom: 0.9; margin-left: auto; }
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow [aria-label*="More options for"]::before {
-    content: '';
-    position: absolute;z-index: -1;
-    top: 50%; left: 50%;
-    background: rgba(40, 40, 40, 0.5);
-    backdrop-filter: blur(4px);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    height: 45px; width: 45px;
-}
-:is([data-testid="album-page"], [data-test-uri^="spotify:artist"]) [aria-label*="More options for"] span { color: #ff375f; }
+/* "More options" button on artist/album pages — localized aria-label, generated in theme.js */
 
 
 
@@ -2051,10 +2096,10 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .main-card-imageContainer
 {width:260px;}
 
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .e-10451-card__main
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .e-10810-card__main
 {width:260px;}
 
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .e-10451-card__button{
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .e-10810-card__button{
     display:none;
 }
 
@@ -2062,7 +2107,7 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.e-10451-card__main{padding: 2px 0px 2px;}
+.e-10810-card__main{padding: 2px 0px 2px;}
 
 [data-test-uri^="spotify:artist"] :is(.main-entityHeader-overlay, .main-entityHeader-backgroundColor) { background: unset; background-color: unset !important; }
 
@@ -2076,11 +2121,11 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
     transform: translate(-50%, -50%);
 }
 
-/* ⚠️ DYNAMIC CLASS — .JYKKZFIXuf9lIHVeszuS = entity header container with image */
-.main-entityHeader-container.JYKKZFIXuf9lIHVeszuS { height: 45vh; min-height: unset; }
+/* Entity header container with background image */
+.main-entityHeader-container.main-entityHeader-withBackgroundImage { height: 45vh; min-height: unset; }
 
-[data-test-uri^="spotify:artist"] .main-entityHeader-container.JYKKZFIXuf9lIHVeszuS .eFZahdafW8vQ7xY1kfBg > .main-entityHeader-imageContainer { position: absolute; left: 36%; top: 17%; }
-[data-test-uri^="spotify:artist"] .main-entityHeader-container.JYKKZFIXuf9lIHVeszuS > .main-entityHeader-backgroundColor { opacity: 0.4; }
+[data-test-uri^="spotify:artist"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .eFZahdafW8vQ7xY1kfBg > .main-entityHeader-imageContainer { position: absolute; left: 36%; top: 17%; }
+[data-test-uri^="spotify:artist"] .main-entityHeader-container.main-entityHeader-withBackgroundImage > .main-entityHeader-backgroundColor { opacity: 0.4; }
 
 
 /* Content area */
@@ -2116,14 +2161,8 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
 /* Artist column alignment */
 [data-test-uri^="spotify:artist"] [aria-colindex="2"] { margin-left: -32px; scale: 103%; }
 
-/* "Fans also like" section */
-[data-test-uri^="spotify:artist"] .h19n3ltPfQaq7keXnVGg[aria-label="Fans also like"] > .main-shelf-shelfGrid { column-gap: 20px; --min-column-width: 160px !important; }
-[data-test-uri^="spotify:artist"] [aria-label="Fans also like"] [data-encore-id="cardSubtitle"] { display: none; }
-[data-test-uri^="spotify:artist"] [aria-label="Fans also like"] { margin-bottom: 20px; order: 3; }
-[data-test-uri^="spotify:artist"] [aria-label="Fans also like"] .main-shelf-header { zoom: 1.4; margin-bottom: 5px; }
+/* "Fans also like" section — localized aria-label, generated in theme.js */
 
-[aria-label="Fans also like"] .LJnmem5Wu3gOh6dVwPCX a { color: transparent; font-size: 0; }
-[aria-label="Fans also like"] .LJnmem5Wu3gOh6dVwPCX a::before { color: white; content: "Similar artists"; font-size: 24px; }
 
 /* Artist "fans also like" round images */
 [data-test-uri^="spotify:artist:"] .main-gridContainer-gridContainer:has(.main-avatar-avatar.THD8_ePsjnvqfZokXdKS) { display: none; }
@@ -2142,14 +2181,6 @@ main[aria-label="Spotify – Search"] > div > div:nth-child(1){
     height: 100%;
 }
 
-[data-test-uri^="spotify:artist"] [aria-label="Fans also like"]::before {
-    content: "";
-    position: absolute;
-    background: rgb(43, 43, 43);
-    left: -60px;
-    width: 115%;
-    height: 143%;
-}
 
 /* Artist card round images */
 [data-test-uri^="spotify:artist"] .Column-md:has([id*="card-title-spotify:artist"]) { align-items: center; margin-top: 7px; zoom: 105%; }
@@ -2172,24 +2203,13 @@ scrollbar-width: none;}
 
 
 /*Shelf item sizes*/
-/*Discography*/[data-test-uri^="spotify:artist"] [aria-label="Discography"] > div:nth-child(3) {
-    --min-column-width: 18vw !important;
-    padding-left: 90px;
-    margin-left: -100px;
-}
-
-
-
-[aria-label="Appears On"] > .main-gridContainer-gridContainer { --min-column-width: 230px !important; }
-/* Artist playlists grid */
-[data-test-uri^="spotify:artist"] [aria-label="Artist Playlists"] div:nth-child(2){
-    --min-column-width: 18vw !important;}
 
 
 
 
-[data-test-uri^="spotify:artist"] div.contentSpacing > [aria-label="Discography"] > .main-gridContainer-gridContainer > div:nth-child(7),
-[data-test-uri^="spotify:artist"] div.contentSpacing > [aria-label="Discography"] > .main-gridContainer-gridContainer > div:nth-child(8) { display: none; }
+
+
+
 
 
 /*About this artist section*/
@@ -2225,19 +2245,19 @@ section > section > div.artist-artistDiscography-cardGrid > div { --min-column-w
     border-radius: 100px;
     box-shadow: inset 0 1.5px 1px rgb(255 255 255 / 8%), inset 0 -1px 1px rgb(155 155 155 / 19%);
 }
-[data-test-uri^="spotify:artist"] .e-10451-legacy-chip__inner{
+[data-test-uri^="spotify:artist"] .e-10810-legacy-chip__inner{
     padding: 8px;
     padding-inline: 18px;
     background-color:unset;
     font-size: 15px;
 }
 
-[data-test-uri^="spotify:artist"] .e-10451-legacy-chip__inner--selected{
+[data-test-uri^="spotify:artist"] .e-10810-legacy-chip__inner--selected{
     color: rgba(255, 255, 255, .92);
     background-color: #747474;
     box-shadow: inset 0 1px 1px rgb(255 255 255 / 10%), inset 0 -1px 1px rgb(255 255 255 / 10%);
 }
-[aria-checked="true"] .e-10451-legacy-chip:hover>.e-10451-legacy-chip__inner{background-color:unset;}
+[aria-checked="true"] .e-10810-legacy-chip:hover>.e-10810-legacy-chip__inner{background-color:unset;}
 [data-test-uri^="spotify:artist"] [data-encore-id="chip"] {margin-bottom: 0px;}
 
 
@@ -2290,7 +2310,7 @@ section > section > div.artist-artistDiscography-cardGrid > div { --min-column-w
 [data-test-uri^="spotify:artist"] div:has(> ._at4B8TNnOvLAPLPKRVC) { order: 2; }
 
 /* Hide on-tour section via content check */
-[data-test-uri^="spotify:artist"] > div > div.YO0Nd3lMQrVPmjcdqV8p > div.contentSpacing > div:has(.artist-artistOnTour-onTourShelfGrid) { display: none; }
+[data-test-uri^="spotify:artist"] > div > div > div.contentSpacing > div:has(.artist-artistOnTour-onTourShelfGrid) { display: none; }
 
 /* More by artist background block */
 /* ⚠️ DYNAMIC CLASS — .lLVLck3qrPA1TLtWobAd = "More by" shelf */
@@ -2337,11 +2357,8 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
 /* ⚠️ DYNAMIC CLASS — .R6cLU2sJXoOpLyzScWNW = artist page extra element */
 [data-test-uri^="spotify:artist"] .R6cLU2sJXoOpLyzScWNW { display: none; }
 
-/* Things to HIDE on artist page */
-[data-test-uri^="spotify:artist"] [aria-label="Discovered on"],
-[data-test-uri^="spotify:artist"] [aria-label^="Featuring"],
-[data-test-uri^="spotify:artist"] [aria-label*="Featuring"],
-[data-test-uri^="spotify:artist"] [aria-label*="Discovered"],
+/* Things to HIDE on artist page ("Discovered on" / "Featuring" shelves are
+   matched on localized aria-labels and generated in theme.js) */
 .artist-popularTrackList-seeMore,
 [data-test-uri^="spotify:artist"] .main-entityHeader-pretitle { display: none; }
 
@@ -2434,7 +2451,7 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
 
 .main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY button span span svg { fill: white; scale: 1.3; }
 .main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY button > span { background-color: #00000080; backdrop-filter: blur(30px); }
-.main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY .e-9890-button-primary:hover .e-9890-button-primary__inner { background-color: unset; }
+.main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY .e-10810-button-primary:hover .e-10810-button-primary__inner { background-color: unset; }
 
 /* Library "play" button in list items */
 #Desktop_LeftSidebar_Id [role="grid"] .ix_8kg3iUb9VS5SmTnBY button > span { background-color: unset; backdrop-filter: unset; }
@@ -2609,7 +2626,7 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
     backdrop-filter: blur(30px);
 }
 
-.main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY .e-9890-button-primary:hover .e-9890-button-primary__inner {
+.main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY .e-10810-button-primary:hover .e-10810-button-primary__inner {
     background-color: unset;
 }
 

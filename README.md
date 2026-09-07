@@ -90,6 +90,10 @@ spicetify apply
   bars` in the mod settings works around it.
 - **MicaForEveryone has no "Backdrop Style" option** — newer MicaForEveryone
   versions call it `Backdrop type` in the process rule.
-- **Some shelf titles/sections look unstyled in a non-English Spotify** — the
-  player controls and layout are language-independent now; a few cosmetic
-  tweaks (renamed shelf headers etc.) still only apply in English.
+- **Some shelf titles/sections look unstyled in a non-English Spotify** — all
+  language-dependent selectors are generated at runtime from Spotify's own
+  dictionary (`theme.js`), so this should not happen anymore. If it does,
+  make sure `inject_theme_js` is `1` in your Spicetify config (`spicetify
+  config inject_theme_js 1 && spicetify apply`) — the theme relies on it.
+- **Playbar is not at the top / the sidebar still shows the search box in the
+  collapsed state** — `theme.js` did not run. Same fix as above.
