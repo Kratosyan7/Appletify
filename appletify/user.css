@@ -3167,6 +3167,10 @@ html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child
    the theme hid it entirely)
    ============================================================================= */
 .Root__right-sidebar:has([data-testid="NPV_Panel_OpenDiv"]) { display: block; }
+/* …but never the 32px collapsed "peek" strip Spotify leaves on the right */
+.Root__right-sidebar:has(> .Root__right-sidebar-peek.Root__right-sidebar-collapsed) { display: none !important; }
+/* the panel's own hide / expand buttons stay reachable */
+.main-nowPlayingView-panel button[aria-label*="Now Playing view"], .Root__right-sidebar button[aria-label*="Now Playing view"] { width: 32px !important; min-width: 32px; height: 32px !important; opacity: 1 !important; }
 .main-nowPlayingView-panel { background: rgb(28 28 30 / 92%) !important; border-left: 1px solid rgb(255 255 255 / 8%); padding: 12px 12px 24px !important; margin: 0 !important; width: auto !important; }
 .main-nowPlayingView-panel .main-nowPlayingView-nowPlayingWidget { padding: 0; }
 /* header row (context title + close/expand buttons) */
