@@ -168,6 +168,10 @@ function attrTemplate(attr, template) {
   // Rules --------------------------------------------------------------------
   const css = `
 /* Appletify — generated from Spicetify.Locale (${Spicetify?.Locale?.getLocale?.() ?? "unknown"}) */
+:root {
+  --appletify-i18n-play: "${cssStr(t("playback-control.play", "Play"))}";
+  --appletify-i18n-shuffle: "${cssStr(t("web-player.smart-shuffle.shuffle", "Shuffle"))}";
+}
 
 /* Track rows: hide the like / add-to-playlist buttons at the row end */
 .main-trackList-rowSectionEnd ${likedSongs},
@@ -220,7 +224,7 @@ ${allSongsFor} .main-rootlist-wrapper > div:nth-child(2) > div:nth-child(1) > di
 /* Artist page: "Fans also like" shelf */
 [data-test-uri^="spotify:artist"] ${fansAlsoLike} > .main-shelf-shelfGrid { column-gap: 20px; --min-column-width: 160px !important; }
 [data-test-uri^="spotify:artist"] ${fansAlsoLike} [data-encore-id="cardSubtitle"] { display: none; }
-[data-test-uri^="spotify:artist"] ${fansAlsoLike} { margin-bottom: 20px; order: 3; }
+[data-test-uri^="spotify:artist"] ${fansAlsoLike} { margin-top: 48px; margin-bottom: 20px; order: 3; }
 [data-test-uri^="spotify:artist"] ${fansAlsoLike} .main-shelf-header { zoom: 1.4; margin-bottom: 5px; }
 
 /* Artist page shelves (Discography / Appears On / Artist Playlists / Fans also like / Discovered on / Featuring) */
