@@ -49,11 +49,17 @@
 Open the profile menu (avatar in the sidebar) → **Appletify**. Toggles apply
 immediately and are remembered:
 
-- Apple logo instead of the Home icon in the collapsed sidebar
+- Accent colour (Apple Music red, pink, orange, green, blue, purple, Spotify green)
+- Dark theme (off = light Apple Music look)
+- Player bar at the top (off = floating pill at the bottom, the classic look)
+- Apple logo instead of the Home icon in the sidebar
 - Play counts on album pages
+- 48px covers in playlists and the queue (off = 40px)
 - Queue: short "Played" heading instead of "Recently played"
 - Queue: show where the music is playing from ("Next from")
 - Queue: hide the "Start a Jam" bar
+
+Marketplace is reachable from the same profile menu.
 
 ## Recommended extensions
 

@@ -95,7 +95,7 @@
 [data-test-uri^="spotify:artist"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 8px; }
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton span span svg { scale: 1.2; }
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton span span svg path { fill: white; }
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton > button > span { background-color: #ff375f;     box-shadow: inset 0 1px 1px rgb(255 255 255 / 36%), inset 0 -1px 1px rgb(255 255 255 / 34%);}
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton > button > span { background-color: var(--appletify-accent, #ff375f);     box-shadow: inset 0 1px 1px rgb(255 255 255 / 36%), inset 0 -1px 1px rgb(255 255 255 / 34%);}
 /* "More options" button on artist/album pages — localized aria-label, generated in theme.js */
 
 

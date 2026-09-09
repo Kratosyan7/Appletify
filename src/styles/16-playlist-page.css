@@ -125,7 +125,7 @@
 .playlist-playlist-playlistInlineCurationWrapper { width: 370px; }
 .playlist-playlist-playlistDescription.playlist-playlist-playlistDescription { display: none; }
 .playlist-inlineSearchBox-filterInput:focus { outline: 5px solid #a03f4a !important; }
-.playlist-inlineSearchBox-searchIconContainer > svg { fill: #ff375f; }
+.playlist-inlineSearchBox-searchIconContainer > svg { fill: var(--appletify-accent, #ff375f); }
 
 .playlist-playlist-playlistInlineCurationSection > .playlist-playlist-playlistInlineCurationWrapper > h2 { color: transparent; font-size: 0; }
 .playlist-playlist-playlistInlineCurationSection > .playlist-playlist-playlistInlineCurationWrapper > h2::before { content: "Add Music"; color: white; font-weight: 300 !important; font-size: 24px; }

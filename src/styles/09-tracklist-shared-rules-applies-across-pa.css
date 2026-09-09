@@ -19,7 +19,7 @@
 .main-trackList-rowImagePlayButton { scale: 1.5 !important;    z-index: 1; }
 
 /* Play button color on non-playing rows */
-.main-trackList-trackListRow:not([aria-selected="true"]) .main-trackList-rowImagePlayButton { color: #fa586a; }
+.main-trackList-trackListRow:not([aria-selected="true"]) .main-trackList-rowImagePlayButton { color: var(--appletify-accent, #ff375f); }
 
 /* Selected row = [aria-selected="true"]; playing row = the row whose title
    carries Spotify's bright-accent text class (both locale/hash independent) */
@@ -49,7 +49,7 @@
 /* Three dots button (always visible, red) */
 .main-trackList-rowMoreButton {
     opacity: 1;
-    color: #fa586a;
+    color: var(--appletify-accent, #ff375f);
     margin-left: 10px;
 }
 
@@ -75,7 +75,7 @@
     content: ",";
     font-size: 2rem;
     font-weight: 400;
-    color: #ff375f;
+    color: var(--appletify-accent, #ff375f);
     margin-left: -1px;
 }
 
@@ -100,7 +100,7 @@
 /* Three-dots button in track rows */
 .main-trackList-rowMoreButton {
     opacity: 1 !important;
-    color: #fa586a !important;
+    color: var(--appletify-accent, #ff375f) !important;
     padding-right: 9px;
     scale: 1.2;
 }
@@ -148,6 +148,8 @@
     display: none;
 }
 
-
-
-
+/* --- Setting "bigCovers" OFF: 40px thumbnails in lists and the queue --- */
+html.appletify-no-bigCovers [data-testid="playlist-page"] .main-trackList-rowImage { width: 40px !important; height: 40px !important; }
+html.appletify-no-bigCovers #Desktop_PanelContainer_Id li [class*="header-side"], html.appletify-no-bigCovers #Desktop_PanelContainer_Id li .x-entityImage-imageContainer,
+html.appletify-no-bigCovers #Desktop_PanelContainer_Id li .x-entityImage-imageContainer img { width: 40px !important; height: 40px !important; }
+html.appletify-no-bigCovers #queue-panel li { height: 54px; }

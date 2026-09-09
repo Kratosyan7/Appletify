@@ -101,7 +101,7 @@ button[data-testid="control-button-skip-forward"] svg {
 .main-nowPlayingBar-nowPlayingBar .player-controls button:is(.main-actionBar-shuffleButton, .encore-internal-color-text-bright-accent):has(path[d^="M13.151"]) span svg {
     width: 22px;
     height: 22px;
-    fill: #ff375f;
+    fill: var(--appletify-accent, #ff375f);
 }
 
 .main-actionBar-shuffleButton:after, [data-testid="control-button-repeat"]:before{
@@ -126,7 +126,7 @@ button[data-testid="control-button-skip-forward"] svg {
 /*Repeat disabled*/
 [data-testid="control-button-repeat"][aria-checked="false"] span svg {fill: rgba(255, 255, 255, 0.64);}
 /*Repeat enabled and repeat one*/
-:is([data-testid="control-button-repeat"][aria-checked="true"], [data-testid="control-button-repeat"][aria-checked="mixed"]) span svg {fill:#ff375f!important;}
+:is([data-testid="control-button-repeat"][aria-checked="true"], [data-testid="control-button-repeat"][aria-checked="mixed"]) span svg {fill:var(--appletify-accent, #ff375f)!important;}
 
 
 

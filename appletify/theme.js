@@ -86,9 +86,9 @@ function attrTemplate(attr, template) {
   libraryContainer.insertBefore(searchSection, libraryContainer.firstChild);
   nowPlayingWidget.appendChild(newElement);
 
-  // The now-playing bar becomes the main view's top bar (see user.css §7).
-  // It is inserted as the first child so it sits above the scroll node in
-  // DOM order; positioning is handled in CSS.
+  // The now-playing bar lives inside the main view (see user.css §7): pinned
+  // to the top by default, or a floating pill at the bottom when the
+  // "topPlaybar" setting is off. Positioning is handled in CSS.
   mainViewContainer.insertBefore(nowPlayingBar, mainViewContainer.firstChild);
   document.body.classList.add("apple-playbar-top");
 })();
@@ -106,12 +106,20 @@ const AppletifySettings = (() => {
     { key: "playedHeading", label: "Queue: short \u201cPlayed\u201d heading instead of \u201cRecently played\u201d" },
     { key: "nextFrom",      label: "Queue: show where the music is playing from (\u201cNext from\u201d)" },
     { key: "hideJam",       label: "Queue: hide the \u201cStart a Jam\u201d bar" },
+    { key: "topPlaybar",    label: "Player bar at the top (off = floating pill at the bottom)" },
+    { key: "bigCovers",     label: "48px covers in playlists and the queue (off = 40px)" },
+    { key: "darkTheme",     label: "Dark theme (off = light Apple Music look)" },
   ];
+  const ACCENTS = [["Apple Music red", "#ff375f"], ["Pink", "#ff2d92"], ["Orange", "#ff9f0a"], ["Green", "#30d158"], ["Blue", "#0a84ff"], ["Purple", "#bf5af2"], ["Spotify green", "#1ed760"]];
   const load = () => { try { return { ...JSON.parse(localStorage.getItem(KEY) || "{}") }; } catch (_) { return {}; } };
   const save = (s) => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (_) {} };
   const isOn = (s, key) => s[key] !== false; // every option defaults to ON
   const apply = (s = load()) => {
     for (const { key } of OPTIONS) document.documentElement.classList.toggle("appletify-no-" + key, !isOn(s, key));
+    const accent = s.accent || ACCENTS[0][1];
+    document.documentElement.style.setProperty("--appletify-accent", accent);
+    document.documentElement.style.setProperty("--spice-button", accent);
+    document.documentElement.style.setProperty("--spice-button-active", accent);
   };
   const open = () => {
     const s = load();
@@ -127,6 +135,15 @@ const AppletifySettings = (() => {
       row.append(cb, document.createTextNode(label));
       box.appendChild(row);
     }
+    // accent colour
+    const row = document.createElement("label");
+    row.style.cssText = "display:flex;align-items:center;gap:12px;font-size:15px;margin-top:4px;";
+    const sel = document.createElement("select");
+    sel.style.cssText = "background:#2c2c2e;color:#fff;border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:6px 10px;font-size:14px;";
+    for (const [name, hex] of ACCENTS) { const o = document.createElement("option"); o.value = hex; o.textContent = name; if ((s.accent || ACCENTS[0][1]) === hex) o.selected = true; sel.appendChild(o); }
+    sel.addEventListener("change", () => { s.accent = sel.value; save(s); apply(s); });
+    row.append(document.createTextNode("Accent colour"), sel);
+    box.appendChild(row);
     const note = document.createElement("p");
     note.style.cssText = "margin:8px 0 0;font-size:12px;opacity:.6;";
     note.textContent = "Changes apply immediately.";

@@ -3,8 +3,8 @@
    ============================================================================= */
 
    :root {
-    --spice-button: #ff375f;
-    --spice-button-active: #ff375f;
+    --spice-button: var(--appletify-accent, #ff375f);
+    --spice-button-active: var(--appletify-accent, #ff375f);
     --spice-sidebar: rgb(20, 20, 20);
     --panel-gap: 3px !important;
     --spice-text: rgba(255, 255, 255, 0.92);
@@ -26,8 +26,8 @@
 }
 
 .encore-dark-theme .encore-bright-accent-set {
-    --background-highlight: #ff375f;
-    --background-press: #ff375f;
+    --background-highlight: var(--appletify-accent, #ff375f);
+    --background-press: var(--appletify-accent, #ff375f);
 }
 
 

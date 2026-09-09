@@ -45,13 +45,13 @@
 :is([data-testid="album-page"], [data-testid="playlist-page"]) [data-testid="creator-link"], [data-testid="playlist-page"] button.main-entityHeader-creatorWrapper { 
     font-size: 2rem;
     font-weight: 600;
-    color: #ff375f;}
+    color: var(--appletify-accent, #ff375f);}
 
 
 
 
 /* "Various Artists" handling */
-[data-testid="album-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper [title="Various Artists"] ~ [data-encore-id="text"] { font-size: 28px; font-weight: 400; color: #fa586a; }
+[data-testid="album-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper [title="Various Artists"] ~ [data-encore-id="text"] { font-size: 28px; font-weight: 400; color: var(--appletify-accent, #ff375f); }
 
 /* ⚠️ DYNAMIC CLASS — data-separator elements */
 [data-testid="album-page"] .main-entityHeader-headerText .e-10810-text[data-separator="true"] { display: none; }
@@ -110,14 +110,14 @@
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBar .main-playButton-PlayButton > button > span::after {
     content: var(--appletify-i18n-play, "Play");
     font-size: 18px;
-    color: #ff375f;
+    color: var(--appletify-accent, #ff375f);
     font-weight: 700;
     margin-bottom: 3px;
 }
 
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-playButton-PlayButton > button > span > span > svg{
     scale: 85%;
-    fill: #ff375f;
+    fill: var(--appletify-accent, #ff375f);
 }
 
 
@@ -160,7 +160,7 @@
 /*Action bar three dots*/
 :is([data-testid="album-page"], [data-testid="playlist-page"])
 .main-actionBar-ActionBarRow > button[aria-haspopup="menu"] svg {
-    fill: #ff375f;stroke-width: 1.5px; stroke: #ff375f;}
+    fill: var(--appletify-accent, #ff375f);stroke-width: 1.5px; stroke: var(--appletify-accent, #ff375f);}
 :is([data-testid="album-page"], [data-testid="playlist-page"])
 .main-actionBar-ActionBarRow > button[aria-haspopup="menu"] {
     background: #2f2f2f;

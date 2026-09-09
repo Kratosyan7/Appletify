@@ -89,7 +89,7 @@
 [id="queue-panel"] .Button-buttonTertiary-small-iconOnly-useBrowserDefaultFocusStyle-condensed {
     opacity: 1;
     zoom: 1.2;
-    color: #fa586a;
+    color: var(--appletify-accent, #ff375f);
 }
 
 /* Queue "more options" button — localized aria-label, generated in theme.js */

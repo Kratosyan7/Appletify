@@ -17,8 +17,8 @@
    ============================================================================= */
 
    :root {
-    --spice-button: #ff375f;
-    --spice-button-active: #ff375f;
+    --spice-button: var(--appletify-accent, #ff375f);
+    --spice-button-active: var(--appletify-accent, #ff375f);
     --spice-sidebar: rgb(20, 20, 20);
     --panel-gap: 3px !important;
     --spice-text: rgba(255, 255, 255, 0.92);
@@ -40,8 +40,8 @@
 }
 
 .encore-dark-theme .encore-bright-accent-set {
-    --background-highlight: #ff375f;
-    --background-press: #ff375f;
+    --background-highlight: var(--appletify-accent, #ff375f);
+    --background-press: var(--appletify-accent, #ff375f);
 }
 
 
@@ -154,8 +154,8 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 /* Marketplace button removed from the rail — it lives in the profile menu (theme.js) */
 #Desktop_LeftSidebar_Id .custom-navlinks-scrollable_container { display: none !important; }
 /* Marketplace icon in the accent colour, like search and the Apple logo */
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .custom-navlinks-scrollable_container svg { fill: #ff375f !important; color: #ff375f !important; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .custom-navlinks-scrollable_container :is(a, button) { color: #ff375f !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .custom-navlinks-scrollable_container svg { fill: var(--appletify-accent, #ff375f) !important; color: var(--appletify-accent, #ff375f) !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .custom-navlinks-scrollable_container :is(a, button) { color: var(--appletify-accent, #ff375f) !important; }
 /* Collapsed rail: Marketplace (custom app) button centered like the other icons */
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .custom-navlinks-scrollable_container { flex: 0 0 auto; width: 100%; height: auto; display: flex; justify-content: center; margin: 0; padding: 0; box-sizing: border-box; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .custom-navlinks-scrollable_container .spicetify-sc-contentArea { height: auto; }
@@ -184,9 +184,9 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 /* Collapsed rail, Apple Music style: accent search icon on top, then an Apple
    logo in place of the Home icon (the button still navigates Home), and no
    "Open Your Library" button (drag the sidebar edge to expand it) */
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: #ff375f; color: #ff375f; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: var(--appletify-accent, #ff375f); color: var(--appletify-accent, #ff375f); }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button { order: 2; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg { fill: #ff375f; color: #ff375f; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg { fill: var(--appletify-accent, #ff375f); color: var(--appletify-accent, #ff375f); }
 /* (setting "appleLogo": html.appletify-no-appleLogo keeps the stock Home icon) */
 html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg path {
     d: path("M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701");
@@ -331,7 +331,7 @@ html, body, #main, .Root { overflow-x: clip !important; }
 .e-91000-button-primary__inner,
 .e-10810-button-primary__inner,
 .ButtonInner-medium-iconOnly {
-    background-color: #ff375f;
+    background-color: var(--appletify-accent, #ff375f);
 }
 
 /* Large play button */
@@ -356,12 +356,12 @@ html, body, #main, .Root { overflow-x: clip !important; }
 /* Artist/track link hover */
 .main-trackInfo-artists a:active,
 .main-trackInfo-artists a:focus,
-.main-trackInfo-artists a:hover { color: #ff375f; }
+.main-trackInfo-artists a:hover { color: var(--appletify-accent, #ff375f); }
 
 /* Active generic button */
 .main-genericButton-button.main-genericButton-buttonActive,
 .main-genericButton-button.main-genericButton-buttonActive:focus,
-.main-genericButton-button.main-genericButton-buttonActive:hover { color: #fa586a; }
+.main-genericButton-button.main-genericButton-buttonActive:hover { color: var(--appletify-accent, #ff375f); }
 
 /* Hide active dot indicators */
 .main-genericButton-button.main-genericButton-buttonActiveDot::after { display: none; }
@@ -370,7 +370,7 @@ html, body, #main, .Root { overflow-x: clip !important; }
 
 
 /* Nav link active */
-.Root__globalNav .main-globalNav-navLinkActive { color: #fa586a; }
+.Root__globalNav .main-globalNav-navLinkActive { color: var(--appletify-accent, #ff375f); }
 .Root__globalNav .main-globalNav-navLink { background-color: unset; }
 .main-globalNav-navLink:hover { background-color: unset; }
 
@@ -384,7 +384,7 @@ html, body, #main, .Root { overflow-x: clip !important; }
 /* [add to playlist] button styling */
 [data-testid="add-to-playlist-button"] {
     font-weight: 200;
-    color: #fa586a;
+    color: var(--appletify-accent, #ff375f);
     border: none !important;
 }
 
@@ -639,6 +639,19 @@ body:has(#SpicyLyricsPage):not(:has([id*=dribbblish])):not(.sltm__ThemeMatch__te
 .main-nowPlayingWidget-trackInfo .main-trackInfo-xsmallBadges { display: none; }
 .main-trackInfo-overlay .main-trackInfo-artists button { display: none; }
 
+/* --- Setting "topPlaybar" OFF: floating pill at the bottom (classic look) --- */
+html.appletify-no-topPlaybar .Root__now-playing-bar {
+    top: auto; bottom: 28px; left: 50%; right: auto;
+    width: 66%; min-width: min(760px, 96%); height: 84px;
+    transform: translateX(-50%);
+    border-radius: 100px; background: rgb(38 38 40 / 85%);
+    box-shadow: 0 10px 40px rgb(0 0 0 / 25%), inset 0 1px 0 rgb(255 255 255 / 8%);
+}
+html.appletify-no-topPlaybar .main-view-container__scroll-node-child { padding-top: 0; padding-bottom: 120px; }
+html.appletify-no-topPlaybar .main-topBar-container:has(.marketplace-tabBar.marketplace-tabBar-nav) { top: 0; }
+html.appletify-no-topPlaybar .main-nowPlayingBar-nowPlayingBar { height: 84px; padding: 0 28px; }
+html.appletify-no-topPlaybar .main-nowPlayingBar-left { transform: none; }
+
 /* =============================================================================
    8. APPLE-STYLE ICONS (SVG path overrides)
    ============================================================================= */
@@ -742,7 +755,7 @@ button[data-testid="control-button-skip-forward"] svg {
 .main-nowPlayingBar-nowPlayingBar .player-controls button:is(.main-actionBar-shuffleButton, .encore-internal-color-text-bright-accent):has(path[d^="M13.151"]) span svg {
     width: 22px;
     height: 22px;
-    fill: #ff375f;
+    fill: var(--appletify-accent, #ff375f);
 }
 
 .main-actionBar-shuffleButton:after, [data-testid="control-button-repeat"]:before{
@@ -767,7 +780,7 @@ button[data-testid="control-button-skip-forward"] svg {
 /*Repeat disabled*/
 [data-testid="control-button-repeat"][aria-checked="false"] span svg {fill: rgba(255, 255, 255, 0.64);}
 /*Repeat enabled and repeat one*/
-:is([data-testid="control-button-repeat"][aria-checked="true"], [data-testid="control-button-repeat"][aria-checked="mixed"]) span svg {fill:#ff375f!important;}
+:is([data-testid="control-button-repeat"][aria-checked="true"], [data-testid="control-button-repeat"][aria-checked="mixed"]) span svg {fill:var(--appletify-accent, #ff375f)!important;}
 
 
 
@@ -946,7 +959,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 .main-trackList-rowImagePlayButton { scale: 1.5 !important;    z-index: 1; }
 
 /* Play button color on non-playing rows */
-.main-trackList-trackListRow:not([aria-selected="true"]) .main-trackList-rowImagePlayButton { color: #fa586a; }
+.main-trackList-trackListRow:not([aria-selected="true"]) .main-trackList-rowImagePlayButton { color: var(--appletify-accent, #ff375f); }
 
 /* Selected row = [aria-selected="true"]; playing row = the row whose title
    carries Spotify's bright-accent text class (both locale/hash independent) */
@@ -976,7 +989,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 /* Three dots button (always visible, red) */
 .main-trackList-rowMoreButton {
     opacity: 1;
-    color: #fa586a;
+    color: var(--appletify-accent, #ff375f);
     margin-left: 10px;
 }
 
@@ -1002,7 +1015,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
     content: ",";
     font-size: 2rem;
     font-weight: 400;
-    color: #ff375f;
+    color: var(--appletify-accent, #ff375f);
     margin-left: -1px;
 }
 
@@ -1027,7 +1040,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 /* Three-dots button in track rows */
 .main-trackList-rowMoreButton {
     opacity: 1 !important;
-    color: #fa586a !important;
+    color: var(--appletify-accent, #ff375f) !important;
     padding-right: 9px;
     scale: 1.2;
 }
@@ -1074,6 +1087,12 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 [data-testid="album-page"] .main-entityHeader-metaDataText:last-of-type {
     display: none;
 }
+
+/* --- Setting "bigCovers" OFF: 40px thumbnails in lists and the queue --- */
+html.appletify-no-bigCovers [data-testid="playlist-page"] .main-trackList-rowImage { width: 40px !important; height: 40px !important; }
+html.appletify-no-bigCovers #Desktop_PanelContainer_Id li [class*="header-side"], html.appletify-no-bigCovers #Desktop_PanelContainer_Id li .x-entityImage-imageContainer,
+html.appletify-no-bigCovers #Desktop_PanelContainer_Id li .x-entityImage-imageContainer img { width: 40px !important; height: 40px !important; }
+html.appletify-no-bigCovers #queue-panel li { height: 54px; }
 
 /* =============================================================================
    10. CARDS & PLAY BUTTONS (grid cards everywhere)
@@ -1184,7 +1203,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
     border-radius: 10px;
 }
 .main-contextMenu-menuItemButton:hover::before {
-    background: #ff375f;
+    background: var(--appletify-accent, #ff375f);
     opacity: 1;
 }
 
@@ -1246,7 +1265,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 }
 .main-contextMenu-menuItemButton::after { content: none !important; }
 .main-contextMenu-menuItemButton:hover, .main-contextMenu-menuItemButton:focus-visible,
-.main-contextMenu-menuItemButton:hover *, .main-contextMenu-menuItemButton:focus-visible * { background-color: #ff375f !important; color: #fff !important; }
+.main-contextMenu-menuItemButton:hover *, .main-contextMenu-menuItemButton:focus-visible * { background-color: var(--appletify-accent, #ff375f) !important; color: #fff !important; }
 .main-contextMenu-menuItemButton:hover svg, .main-contextMenu-menuItemButton:focus-visible svg { fill: #fff !important; }
 .main-contextMenu-dividerBefore { margin-top: 5px !important; padding-top: 5px !important; border-top: 1px solid rgb(255 255 255 / 12%) !important; }
 
@@ -1435,13 +1454,28 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 .main-globalNav-searchSection { position: relative; }
 
 /* Search icon color */
-.main-globalNav-searchInputContainer .x-searchInput-searchInputSearchIcon { color: #fa586a !important; }
+.main-globalNav-searchInputContainer .x-searchInput-searchInputSearchIcon { color: var(--appletify-accent, #ff375f) !important; }
 
 /* Browse tiles: rounded like Apple Music category cards */
 main section[class*="shelf"] a[href^="/genre/"], main section[class*="shelf"] a[href^="/genre/"] > *,
 main section[class*="shelf"] a[href^="/genre/"] img { border-radius: 10px !important; overflow: hidden; }
 main section[class*="shelf"] a[href^="/genre/"] { transition: transform .15s ease; }
 main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); }
+
+/* --- Search results (Spotify ≥1.2.9x list layout): Apple-style rows -------
+   Top result = tinted list row with a large cover; the rest are 80px rows. */
+main [aria-label="Search results"] > div > [class*="legacy-box--tinted"] { border-radius: 14px; background: rgb(255 255 255 / 6%) !important; }
+main [aria-label="Search results"] > div > [class*="legacy-box--tinted"] [class*="header-side"] img,
+main [aria-label="Search results"] > div > [class*="legacy-box--tinted"] [class*="header-side"] [class*="imageContainer"] { border-radius: 10px !important; }
+main [aria-label="Search results"] > div > [class*="legacy-box--naked"] { border-radius: 10px; }
+main [aria-label="Search results"] > div > [class*="legacy-box--naked"] [class*="header-side"] img,
+main [aria-label="Search results"] > div > [class*="legacy-box--naked"] [class*="header-side"] [class*="imageContainer"] { border-radius: 6px !important; }
+main [aria-label="Search results"] [data-encore-id="listRowTitle"] { font-size: 15px; font-weight: 600; }
+main [aria-label="Search results"] [data-encore-id="listRowSubtitle"] { font-size: 13px; color: rgb(255 255 255 / 55%); }
+main [aria-label="Search results"] > div + div > [class*="legacy-box--naked"]::after { content: ""; display: block; position: absolute; left: 88px; right: 16px; top: -1px; height: 1px; background: rgb(255 255 255 / 8%); }
+main [aria-label="Search results"] > div > [class*="legacy-box"] { position: relative; --box-hover-background-color: rgb(255 255 255 / 8%) !important; }
+/* filter chips (All / Songs / Artists …) */
+main .search-searchCategory-categoryGrid [role="checkbox"], main .search-searchCategory-categoryGrid button { border-radius: 999px; }
 
 /* =============================================================================
    14. QUEUE PANEL
@@ -1534,7 +1568,7 @@ main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); 
 [id="queue-panel"] .Button-buttonTertiary-small-iconOnly-useBrowserDefaultFocusStyle-condensed {
     opacity: 1;
     zoom: 1.2;
-    color: #fa586a;
+    color: var(--appletify-accent, #ff375f);
 }
 
 /* Queue "more options" button — localized aria-label, generated in theme.js */
@@ -1635,13 +1669,13 @@ main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); 
 :is([data-testid="album-page"], [data-testid="playlist-page"]) [data-testid="creator-link"], [data-testid="playlist-page"] button.main-entityHeader-creatorWrapper { 
     font-size: 2rem;
     font-weight: 600;
-    color: #ff375f;}
+    color: var(--appletify-accent, #ff375f);}
 
 
 
 
 /* "Various Artists" handling */
-[data-testid="album-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper [title="Various Artists"] ~ [data-encore-id="text"] { font-size: 28px; font-weight: 400; color: #fa586a; }
+[data-testid="album-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper [title="Various Artists"] ~ [data-encore-id="text"] { font-size: 28px; font-weight: 400; color: var(--appletify-accent, #ff375f); }
 
 /* ⚠️ DYNAMIC CLASS — data-separator elements */
 [data-testid="album-page"] .main-entityHeader-headerText .e-10810-text[data-separator="true"] { display: none; }
@@ -1700,14 +1734,14 @@ main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); 
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBar .main-playButton-PlayButton > button > span::after {
     content: var(--appletify-i18n-play, "Play");
     font-size: 18px;
-    color: #ff375f;
+    color: var(--appletify-accent, #ff375f);
     font-weight: 700;
     margin-bottom: 3px;
 }
 
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-playButton-PlayButton > button > span > span > svg{
     scale: 85%;
-    fill: #ff375f;
+    fill: var(--appletify-accent, #ff375f);
 }
 
 
@@ -1750,7 +1784,7 @@ main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); 
 /*Action bar three dots*/
 :is([data-testid="album-page"], [data-testid="playlist-page"])
 .main-actionBar-ActionBarRow > button[aria-haspopup="menu"] svg {
-    fill: #ff375f;stroke-width: 1.5px; stroke: #ff375f;}
+    fill: var(--appletify-accent, #ff375f);stroke-width: 1.5px; stroke: var(--appletify-accent, #ff375f);}
 :is([data-testid="album-page"], [data-testid="playlist-page"])
 .main-actionBar-ActionBarRow > button[aria-haspopup="menu"] {
     background: #2f2f2f;
@@ -2032,7 +2066,7 @@ main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); 
 .playlist-playlist-playlistInlineCurationWrapper { width: 370px; }
 .playlist-playlist-playlistDescription.playlist-playlist-playlistDescription { display: none; }
 .playlist-inlineSearchBox-filterInput:focus { outline: 5px solid #a03f4a !important; }
-.playlist-inlineSearchBox-searchIconContainer > svg { fill: #ff375f; }
+.playlist-inlineSearchBox-searchIconContainer > svg { fill: var(--appletify-accent, #ff375f); }
 
 .playlist-playlist-playlistInlineCurationSection > .playlist-playlist-playlistInlineCurationWrapper > h2 { color: transparent; font-size: 0; }
 .playlist-playlist-playlistInlineCurationSection > .playlist-playlist-playlistInlineCurationWrapper > h2::before { content: "Add Music"; color: white; font-weight: 300 !important; font-size: 24px; }
@@ -2149,7 +2183,7 @@ main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); 
 [data-test-uri^="spotify:artist"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 8px; }
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton span span svg { scale: 1.2; }
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton span span svg path { fill: white; }
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton > button > span { background-color: #ff375f;     box-shadow: inset 0 1px 1px rgb(255 255 255 / 36%), inset 0 -1px 1px rgb(255 255 255 / 34%);}
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarRow > .main-playButton-PlayButton > button > span { background-color: var(--appletify-accent, #ff375f);     box-shadow: inset 0 1px 1px rgb(255 255 255 / 36%), inset 0 -1px 1px rgb(255 255 255 / 34%);}
 /* "More options" button on artist/album pages — localized aria-label, generated in theme.js */
 
 
@@ -2560,7 +2594,7 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
 
 /* Library search section */
 .main-yourLibraryX-libraryContainer.YourLibraryX .main-globalNav-searchContainer { zoom: 85%; padding: 20px 10px 0; }
-.main-yourLibraryX-libraryContainer.YourLibraryX > div.main-globalNav-searchSection > div > div > span > div > form > div { color: #ff375f; }
+.main-yourLibraryX-libraryContainer.YourLibraryX > div.main-globalNav-searchSection > div > div > span > div > form > div { color: var(--appletify-accent, #ff375f); }
 
 /* ⚠️ DYNAMIC CLASS — .kOrgVj4dtioqHnXeX9Ui = library search icon */
 .main-yourLibraryX-libraryContainer.YourLibraryX .kOrgVj4dtioqHnXeX9Ui { zoom: 0.9; }
@@ -2722,7 +2756,7 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
 }
 
 .main-yourLibraryX-libraryContainer.YourLibraryX > div.main-globalNav-searchSection > div > div > span > div > form > div {
-    color: #ff375f;
+    color: var(--appletify-accent, #ff375f);
 }
 
 /* ⚠️ DYNAMIC CLASS — .kOrgVj4dtioqHnXeX9Ui = library search icon */
@@ -2796,13 +2830,13 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
    header with + ; filter chips; cover grid. */
 #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-actionButtons-spacer.main-actionButtons { display: none !important; }
 #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer { display: flex; align-items: center; gap: 6px; padding: 8px 10px 6px; }
-html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer > button svg { fill: #ff375f; color: #ff375f; }
+html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer > button svg { fill: var(--appletify-accent, #ff375f); color: var(--appletify-accent, #ff375f); }
 html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer > button svg path {
     d: path("M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701");
 }
 #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputSection { flex: 1 1 auto; min-width: 0; }
 #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputContainer { width: 100% !important; height: 36px; background: rgb(255 255 255 / 8%) !important; border-radius: 10px !important; box-shadow: none !important; }
-#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: #ff375f; color: #ff375f; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: var(--appletify-accent, #ff375f); color: var(--appletify-accent, #ff375f); }
 #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchSection input { height: 36px; font-size: 14px !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
 #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchSection input:focus { outline: 2px solid rgb(255 55 95 / 60%) !important; outline-offset: -1px; border-radius: 10px; }
 #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-header { padding: 6px 16px 0; }
@@ -2987,12 +3021,12 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
     border-radius: 30px;
     background-color: #2f2f2f;
     box-shadow: inset 0 1px 1px rgb(255 255 255 / 10%), inset 0 -1px 1px rgb(255 255 255 / 10%);
-    color: #ff375f;
+    color: var(--appletify-accent, #ff375f);
 }
-[data-testid="album-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) svg { width: 18px; height: 18px; fill: #ff375f; }
+[data-testid="album-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) svg { width: 18px; height: 18px; fill: var(--appletify-accent, #ff375f); }
 [data-testid="album-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"])::after {
     content: var(--appletify-i18n-shuffle, "Shuffle");
-    font-size: 18px; font-weight: 700; color: #ff375f; margin-bottom: 3px;
+    font-size: 18px; font-weight: 700; color: var(--appletify-accent, #ff375f); margin-bottom: 3px;
 }
 [data-testid="album-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) > span { align-items: center; }
 
@@ -3025,10 +3059,10 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) {
     display: flex; align-items: center; justify-content: center; gap: 6px;
     width: auto; min-width: 130px; height: 40px; padding: 0 18px; border-radius: 30px;
-    background-color: #2f2f2f; box-shadow: inset 0 1px 1px rgb(255 255 255 / 10%), inset 0 -1px 1px rgb(255 255 255 / 10%); color: #ff375f;
+    background-color: #2f2f2f; box-shadow: inset 0 1px 1px rgb(255 255 255 / 10%), inset 0 -1px 1px rgb(255 255 255 / 10%); color: var(--appletify-accent, #ff375f);
 }
-[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) svg { width: 18px; height: 18px; fill: #ff375f; }
-[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"])::after { content: var(--appletify-i18n-shuffle, "Shuffle"); font-size: 18px; font-weight: 700; color: #ff375f; margin-bottom: 3px; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) svg { width: 18px; height: 18px; fill: var(--appletify-accent, #ff375f); }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"])::after { content: var(--appletify-i18n-shuffle, "Shuffle"); font-size: 18px; font-weight: 700; color: var(--appletify-accent, #ff375f); margin-bottom: 3px; }
 
 /* =============================================================================
    24. QUEUE PANEL — Apple Music "Up Next"
@@ -3067,7 +3101,7 @@ html:not(.appletify-no-hideJam) #queue-panel > div > div:has([data-encore-id="bu
 #queue-panel > div > div:last-child > div:first-child { display: block !important; padding: 0 8px 10px; }
 html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child { display: none !important; }
 #queue-panel > div > div:last-child > div:first-child h2 { font-size: 13px; font-weight: 500; color: rgb(255 255 255 / 55%); line-height: 1.3; }
-#queue-panel > div > div:last-child > div:first-child h2 a { color: #ff375f; font-weight: 600; text-decoration: none; }
+#queue-panel > div > div:last-child > div:first-child h2 a { color: var(--appletify-accent, #ff375f); font-weight: 600; text-decoration: none; }
 #queue-panel > div > div:last-child > div:first-child h2 a:hover { text-decoration: underline; }
 /* Rows */
 #queue-panel * { --box-hover-background-color: rgb(255 255 255 / 8%) !important; --box-active-background-color: rgb(255 255 255 / 12%) !important; }
@@ -3126,3 +3160,103 @@ html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child
     :is([data-testid="album-page"], [data-testid="playlist-page"]) div.main-entityHeader-container { min-height: 260px !important; height: auto !important; }
     :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-entityHeader-title, :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-entityHeader-title h1 { font-size: 24px !important; }
 }
+
+/* =============================================================================
+   27. NOW PLAYING VIEW — Apple Music "Now Playing" panel
+   (right sidebar with [data-testid="NPV_Panel_OpenDiv"]; earlier versions of
+   the theme hid it entirely)
+   ============================================================================= */
+.Root__right-sidebar:has([data-testid="NPV_Panel_OpenDiv"]) { display: block; }
+.main-nowPlayingView-panel { background: rgb(28 28 30 / 92%) !important; border-left: 1px solid rgb(255 255 255 / 8%); padding: 12px 12px 24px !important; margin: 0 !important; width: auto !important; }
+.main-nowPlayingView-panel .main-nowPlayingView-nowPlayingWidget { padding: 0; }
+/* header row (context title + close/expand buttons) */
+.main-nowPlayingView-panel .main-nowPlayingView-contextTitle, .main-nowPlayingView-panel [class*="contextTitle"] { font-size: 13px; color: rgb(255 255 255 / 55%); }
+/* cover: big, rounded, no canvas / video enhancement */
+.main-nowPlayingView-coverArtContainer { border-radius: 14px !important; overflow: hidden; box-shadow: 0 16px 40px rgb(0 0 0 / 45%); }
+.main-nowPlayingView-coverArtContainer img { border-radius: 14px !important; }
+.main-nowPlayingView-canvasVisualEnhancement, .main-nowPlayingView-actionButtonContainer, .main-nowPlayingView-contextItemVisualEnhancement,
+[data-testid="track-visual-enhancement"], .main-nowPlayingView-coverArtVisualEnhancement { display: none !important; }
+.main-nowPlayingView-coverArtContainer { width: 100% !important; aspect-ratio: 1; }
+/* track info */
+.main-nowPlayingView-contextItemInfo { margin-top: 16px; }
+.main-nowPlayingView-trackInfo .main-trackInfo-name, .main-nowPlayingView-trackInfo .main-trackInfo-name a { font-size: 17px !important; font-weight: 700; }
+.main-nowPlayingView-trackInfo .main-trackInfo-artists, .main-nowPlayingView-trackInfo .main-trackInfo-artists a { font-size: 14px !important; color: rgb(255 255 255 / 60%) !important; }
+/* sections */
+.main-nowPlayingView-section { margin-top: 20px; padding: 14px; border-radius: 12px; background: rgb(255 255 255 / 5%); }
+.main-nowPlayingView-sectionHeader h2, .main-nowPlayingView-sectionHeaderText { font-size: 15px !important; font-weight: 700; }
+.main-nowPlayingView-section:has([aria-label*="Related music vide"]), .main-nowPlayingView-section:has(.search-searchCategory-carousel) { display: none; }
+.main-nowPlayingView-section [data-encore-id="listRowTitle"] { font-size: 14px; }
+.main-nowPlayingView-section [data-encore-id="listRowSubtitle"] { font-size: 12px; color: rgb(255 255 255 / 55%); }
+.main-nowPlayingView-section img { border-radius: 6px; }
+
+/* =============================================================================
+   28. PODCASTS — show & episode pages (scoped via the episode list testid)
+   ============================================================================= */
+main:has([data-testid="show-all-episode-list"]) .main-entityHeader-container { min-height: 340px; padding-top: 16px; }
+main:has([data-testid="show-all-episode-list"]) .main-entityHeader-imageContainer { width: 260px; height: 260px; }
+main:has([data-testid="show-all-episode-list"]) .main-entityHeader-imageContainer img { border-radius: 14px; }
+main:has([data-testid="show-all-episode-list"]) .main-entityHeader-title, main:has([data-testid="show-all-episode-list"]) .main-entityHeader-title h1 { font-size: 30px !important; font-weight: 700; line-height: 1.15; }
+main:has([data-testid="show-all-episode-list"]) .main-entityHeader-headerText { justify-content: flex-start; padding-top: 24px; }
+/* Follow / action pills */
+main:has([data-testid="show-all-episode-list"]) .main-actionBar-ActionBarRow [data-encore-id="buttonSecondary"] { border-radius: 30px; background: #2f2f2f; border: 0; color: var(--appletify-accent, #ff375f); font-weight: 700; padding: 0 18px; height: 40px; box-shadow: inset 0 1px 1px rgb(255 255 255 / 10%), inset 0 -1px 1px rgb(255 255 255 / 10%); }
+/* episode rows: card-like, compact */
+[data-testid="show-all-episode-list"] > div, [data-testid^="episode-"] { border-radius: 12px; }
+[data-testid="show-all-episode-list"] [data-testid^="episode-"] { padding: 14px 16px; }
+[data-testid="show-all-episode-list"] [data-testid^="episode-"]:hover { background: rgb(255 255 255 / 5%); }
+[data-testid="show-all-episode-list"] [data-testid^="episode-"] img { border-radius: 8px; }
+[data-testid="show-all-episode-list"] [data-testid^="episode-"] h2, [data-testid="show-all-episode-list"] [data-testid^="episode-"] h3 { font-size: 16px; font-weight: 700; }
+
+/* =============================================================================
+   29. LIGHT THEME — setting "darkTheme" OFF → html.appletify-no-darkTheme
+   Apple Music light palette on top of the dark defaults. Overrides the most
+   visible surfaces and text colours; accent stays --appletify-accent.
+   ============================================================================= */
+html.appletify-no-darkTheme {
+    --spice-text: #1d1d1f; --spice-subtext: #6e6e73;
+    --spice-main: #ffffff; --spice-sidebar: #f5f5f7; --spice-card: #ffffff;
+    --background-base: #ffffff; --background-elevated-base: #f5f5f7;
+    --text-base: #1d1d1f; --text-subdued: #6e6e73;
+}
+html.appletify-no-darkTheme .encore-dark-theme, html.appletify-no-darkTheme .encore-dark-theme .encore-base-set { --background-base: #ffffff; --text-base: #1d1d1f; --text-subdued: #6e6e73; --text-bright-accent: #1d1d1f; --background-highlight: rgba(0, 0, 0, .06); --background-press: rgba(0, 0, 0, .1); --essential-base: #1d1d1f; }
+/* surfaces */
+html.appletify-no-darkTheme, html.appletify-no-darkTheme body, html.appletify-no-darkTheme .Root__top-container { background: #ffffff !important; }
+html.appletify-no-darkTheme .Root__main-view, html.appletify-no-darkTheme .main-view-container { background-color: #ffffff !important; }
+html.appletify-no-darkTheme #Desktop_LeftSidebar_Id { background: rgb(242 242 247 / 92%) !important; }
+html.appletify-no-darkTheme .main-navBar-mainNav { border-right-color: rgb(0 0 0 / 8%); }
+html.appletify-no-darkTheme .Root__now-playing-bar { background: rgb(246 246 247 / 88%); box-shadow: 0 1px 0 rgb(0 0 0 / 10%); }
+html.appletify-no-darkTheme .main-nowPlayingWidget-nowPlaying { background: rgb(0 0 0 / 4%); border-color: rgb(0 0 0 / 10%); box-shadow: inset 0 1px 0 rgb(255 255 255 / 60%); }
+html.appletify-no-darkTheme #Desktop_PanelContainer_Id, html.appletify-no-darkTheme .main-nowPlayingView-panel { background: rgb(245 245 247 / 94%) !important; border-left-color: rgb(0 0 0 / 8%); }
+html.appletify-no-darkTheme .main-nowPlayingView-section { background: rgb(0 0 0 / 4%); }
+html.appletify-no-darkTheme .main-contextMenu-menu { background-color: rgb(246 246 247 / 90%) !important; box-shadow: 0 0 0 0.5px rgb(0 0 0 / 20%), 0 12px 32px rgb(0 0 0 / 18%) !important; }
+html.appletify-no-darkTheme .GenericModal { background-color: rgb(246 246 247 / 96%) !important; box-shadow: 0 0 0 0.5px rgb(0 0 0 / 20%), 0 24px 60px rgb(0 0 0 / 25%) !important; }
+html.appletify-no-darkTheme .main-actionBar-ActionBar .main-playButton-PlayButton > button > span,
+html.appletify-no-darkTheme .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]),
+html.appletify-no-darkTheme [data-testid="playlist-page"] :is(.x-sortBox-sortDropdown, .x-filterBox-filterInputContainer) { background-color: #e9e9ec !important; box-shadow: inset 0 1px 1px rgb(255 255 255 / 80%), 0 0 0 0.5px rgb(0 0 0 / 8%); }
+html.appletify-no-darkTheme .main-trackList-trackListRow[aria-selected="true"], html.appletify-no-darkTheme .main-trackList-trackListRow[aria-selected="true"]:hover { background-color: var(--appletify-accent, #ff375f); }
+html.appletify-no-darkTheme .main-trackList-trackListRow::after { background: rgb(0 0 0 / 8%); }
+html.appletify-no-darkTheme [data-testid="album-page"] .main-trackList-trackListContainer { border-top-color: rgb(0 0 0 / 10%); }
+html.appletify-no-darkTheme #queue-panel li [data-encore-id="listRow"]::after { background: rgb(0 0 0 / 8%); }
+html.appletify-no-darkTheme .main-home-homeHeader { background-color: transparent !important; }
+/* text */
+html.appletify-no-darkTheme :is(h1, h2, h3, .main-entityHeader-title, .main-entityHeader-title h1, .main-shelf-title, .main-trackInfo-name, .main-trackInfo-name a,
+  .main-trackList-rowMainContentTitle, .main-trackList-rowTitle, .main-trackList-number, .main-trackList-duration, .main-yourLibraryX-collapseButton *,
+  [data-encore-id="listRowTitle"], [data-encore-id="cardTitle"], .encore-internal-color-text-base, .main-genericButton-button, .e-10810-button-primary__inner,
+  .main-contextMenu-menuItemButton, .main-nowPlayingView-sectionHeaderText, #queue-tab, #history-tab, .main-trackInfo-overlay a) { color: #1d1d1f !important; }
+html.appletify-no-darkTheme :is(.main-trackInfo-artists, .main-trackInfo-artists a, [data-encore-id="listRowSubtitle"], [data-encore-id="listRowSubtitle"] a, [data-encore-id="cardSubtitle"],
+  .main-trackList-rowMainContentSubTitle, .main-trackList-rowMainContentSubTitle a, .main-entityHeader-metaDataTextSubdued, .encore-internal-color-text-subdued,
+  [data-testid="playback-position"], [data-testid="playback-duration"], .main-trackList-rowSectionVariable[aria-colindex="3"] *, #history-tab, .main-trackList-rowSectionVariable a) { color: #6e6e73 !important; }
+html.appletify-no-darkTheme #queue-tab[aria-selected="true"], html.appletify-no-darkTheme #history-tab[aria-selected="true"] { color: #1d1d1f !important; }
+html.appletify-no-darkTheme .main-trackList-trackListRow[aria-selected="true"] * { color: #fff !important; }
+html.appletify-no-darkTheme .main-contextMenu-menuItemButton:hover, html.appletify-no-darkTheme .main-contextMenu-menuItemButton:hover * { color: #fff !important; }
+/* icons */
+html.appletify-no-darkTheme .e-10810-icon, html.appletify-no-darkTheme .main-nowPlayingBar-extraControls svg, html.appletify-no-darkTheme .player-controls svg path,
+html.appletify-no-darkTheme [data-testid="control-button-repeat"][aria-checked="false"] span svg, html.appletify-no-darkTheme .main-globalNav-historyButtons svg path { fill: #1d1d1f; color: #1d1d1f; }
+html.appletify-no-darkTheme .main-globalNav-historyButtons button { color: #6e6e73; }
+html.appletify-no-darkTheme .main-nowPlayingBar-volumeBar [id="volume-icon"] path { stroke: #1d1d1f; }
+html.appletify-no-darkTheme .x-progressBar-fillColor { background-color: rgba(0, 0, 0, .55) !important; }
+html.appletify-no-darkTheme .x-progressBar-progressBarBg { background-color: rgba(0, 0, 0, .12); }
+html.appletify-no-darkTheme .main-nowPlayingBar-extraControls .main-genericButton-button { color: #1d1d1f; }
+html.appletify-no-darkTheme .apple-sidebar-collapsed .main-globalNav-searchSection input { color: #1d1d1f !important; }
+html.appletify-no-darkTheme.apple-search-open #Desktop_LeftSidebar_Id .main-globalNav-searchInputContainer { background: rgb(246 246 247 / 96%) !important; border-color: rgb(0 0 0 / 12%); }
+html.appletify-no-darkTheme .notistack-Snackbar .e-10810-legacy-box--elevated { background-color: #1d1d1f !important; }
+html.appletify-no-darkTheme .notistack-Snackbar .e-10810-legacy-box--elevated, html.appletify-no-darkTheme .notistack-Snackbar .e-10810-legacy-box--elevated * { color: #fff !important; }

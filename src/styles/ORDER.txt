@@ -23,3 +23,6 @@
 24-queue-panel-apple-music-up-next
 25-home-page
 26-responsive
+27-now-playing-view
+28-podcasts
+29-light-theme

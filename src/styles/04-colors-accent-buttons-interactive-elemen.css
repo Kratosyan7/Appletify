@@ -6,7 +6,7 @@
 .e-91000-button-primary__inner,
 .e-10810-button-primary__inner,
 .ButtonInner-medium-iconOnly {
-    background-color: #ff375f;
+    background-color: var(--appletify-accent, #ff375f);
 }
 
 /* Large play button */
@@ -31,12 +31,12 @@
 /* Artist/track link hover */
 .main-trackInfo-artists a:active,
 .main-trackInfo-artists a:focus,
-.main-trackInfo-artists a:hover { color: #ff375f; }
+.main-trackInfo-artists a:hover { color: var(--appletify-accent, #ff375f); }
 
 /* Active generic button */
 .main-genericButton-button.main-genericButton-buttonActive,
 .main-genericButton-button.main-genericButton-buttonActive:focus,
-.main-genericButton-button.main-genericButton-buttonActive:hover { color: #fa586a; }
+.main-genericButton-button.main-genericButton-buttonActive:hover { color: var(--appletify-accent, #ff375f); }
 
 /* Hide active dot indicators */
 .main-genericButton-button.main-genericButton-buttonActiveDot::after { display: none; }
@@ -45,7 +45,7 @@
 
 
 /* Nav link active */
-.Root__globalNav .main-globalNav-navLinkActive { color: #fa586a; }
+.Root__globalNav .main-globalNav-navLinkActive { color: var(--appletify-accent, #ff375f); }
 .Root__globalNav .main-globalNav-navLink { background-color: unset; }
 .main-globalNav-navLink:hover { background-color: unset; }
 
@@ -59,7 +59,7 @@
 /* [add to playlist] button styling */
 [data-testid="add-to-playlist-button"] {
     font-weight: 200;
-    color: #fa586a;
+    color: var(--appletify-accent, #ff375f);
     border: none !important;
 }
 
