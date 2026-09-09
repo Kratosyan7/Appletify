@@ -4,10 +4,10 @@
 /* =============================================================================
    Appletify — user.css
    NOTE on "⚠️ DYNAMIC CLASS" rules: Spotify's hashed CSS-module class names
-   (e.g. .MxoETbR0GSKhCd1hp6Np) changed scheme in 1.2.9x (20 → 16 chars), so
-   every remaining hashed selector below is inert on current clients and needs
-   re-mapping to a stable class / testid / structural selector. Everything that
-   depends on localized aria-labels lives in theme.js (localeStylesMod).
+   (e.g. .MxoETbR0GSKhCd1hp6Np) change between releases. The ones still in
+   these modules were verified against Spotify 1.2.98; classes that had
+   disappeared were replaced by stable selectors (testid / semantic classes /
+   :has()). After a Spotify update, re-check them against Apps/xpui/*.css.
    Encore class prefix (.e-10810-*) changes with Spotify releases too — grep
    the DOM for "e-NNNNN-" and update the prefix when buttons lose styling.
    ============================================================================= */
