@@ -3,7 +3,7 @@
    (right sidebar with [data-testid="NPV_Panel_OpenDiv"]; earlier versions of
    the theme hid it entirely)
    ============================================================================= */
-.Root__right-sidebar:has([data-testid="NPV_Panel_OpenDiv"]) { display: block; }
+/* the sidebar keeps Spotify's own display (flex) — overriding it collapsed the panel wrappers */
 /* …but never the 32px collapsed "peek" strip Spotify leaves on the right */
 .Root__right-sidebar:has(> .Root__right-sidebar-peek.Root__right-sidebar-collapsed) { display: none !important; }
 /* the panel's own hide / expand buttons stay reachable */

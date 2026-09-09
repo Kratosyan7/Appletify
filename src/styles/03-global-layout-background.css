@@ -100,11 +100,7 @@ html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id.apple-sidebar-collapse
     -webkit-app-region: no-drag;
 }
 
-/* Hide right sidebar when now playing view is open
-   (NPV is identified by testid — aria-label is localized, #2/#6) */
-.Root__right-sidebar:has([data-testid="NPV_Panel_OpenDiv"]) {
-    display: none;
-}
+/* (Now Playing View is styled in module 27 and no longer hidden) */
 
 /* Nav bar border */
 .main-navBar-mainNav {

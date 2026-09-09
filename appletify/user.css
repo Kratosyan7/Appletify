@@ -208,11 +208,7 @@ html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id.apple-sidebar-collapse
     -webkit-app-region: no-drag;
 }
 
-/* Hide right sidebar when now playing view is open
-   (NPV is identified by testid — aria-label is localized, #2/#6) */
-.Root__right-sidebar:has([data-testid="NPV_Panel_OpenDiv"]) {
-    display: none;
-}
+/* (Now Playing View is styled in module 27 and no longer hidden) */
 
 /* Nav bar border */
 .main-navBar-mainNav {
@@ -3166,7 +3162,7 @@ html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child
    (right sidebar with [data-testid="NPV_Panel_OpenDiv"]; earlier versions of
    the theme hid it entirely)
    ============================================================================= */
-.Root__right-sidebar:has([data-testid="NPV_Panel_OpenDiv"]) { display: block; }
+/* the sidebar keeps Spotify's own display (flex) — overriding it collapsed the panel wrappers */
 /* …but never the 32px collapsed "peek" strip Spotify leaves on the right */
 .Root__right-sidebar:has(> .Root__right-sidebar-peek.Root__right-sidebar-collapsed) { display: none !important; }
 /* the panel's own hide / expand buttons stay reachable */
