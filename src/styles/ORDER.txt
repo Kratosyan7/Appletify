@@ -21,3 +21,5 @@
 22-liked-songs-custom-thumbnail
 23-album-page-apple-music-layout
 24-queue-panel-apple-music-up-next
+25-home-page
+26-responsive

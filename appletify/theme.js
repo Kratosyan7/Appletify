@@ -171,6 +171,10 @@ const AppletifySettings = (() => {
   };
   new ResizeObserver(update).observe(sb);
   update();
+  // ResizeObserver occasionally misses the width change driven by Spotify's
+  // layout resizer, so keep the state in sync with a cheap periodic check
+  setInterval(update, 1000);
+  window.addEventListener("resize", update);
 
   // Collapsed rail: the search input is hidden; clicking its leading search
   // icon pops the whole field out next to the rail (see user.css

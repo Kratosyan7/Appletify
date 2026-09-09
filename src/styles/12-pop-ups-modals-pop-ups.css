@@ -137,3 +137,7 @@
 .notistack-Snackbar .e-10810-legacy-box--elevated *,
 .notistack-Snackbar [data-encore-id="text"] { color: #141414 !important; }
 .notistack-Snackbar .e-10810-legacy-box--elevated { background-color: rgba(255, 255, 255, 0.96) !important; border-radius: 12px; }
+
+/* --- macOS-style dialogs ------------------------------------------------- */
+.GenericModal { border-radius: 14px !important; background-color: rgb(44 44 46 / 92%) !important; backdrop-filter: blur(40px) saturate(180%); box-shadow: 0 0 0 0.5px rgb(0 0 0 / 50%), inset 0 0 0 0.5px rgb(255 255 255 / 12%), 0 24px 60px rgb(0 0 0 / 45%) !important; }
+.GenericModal__overlay { background-color: rgba(0, 0, 0, .35) !important; backdrop-filter: blur(2px); }

@@ -102,4 +102,24 @@
 /* ⚠️ DYNAMIC CLASS — .IEulmRakQT_FgH43ov2a = some hidden context menu element */
 .IEulmRakQT_FgH43ov2a { display: none; }
 
-
+/* --- macOS-style menu: frosted glass, rounded items, accent highlight ----- */
+.main-contextMenu-menu {
+    padding: 5px !important;
+    background-color: rgb(44 44 46 / 80%) !important;
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 12px !important;
+    box-shadow: 0 0 0 0.5px rgb(0 0 0 / 50%), inset 0 0 0 0.5px rgb(255 255 255 / 15%), 0 12px 32px rgb(0 0 0 / 35%) !important;
+}
+.main-contextMenu-menuItemButton {
+    border-radius: 7px !important;
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 13px !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+.main-contextMenu-menuItemButton::after { content: none !important; }
+.main-contextMenu-menuItemButton:hover, .main-contextMenu-menuItemButton:focus-visible,
+.main-contextMenu-menuItemButton:hover *, .main-contextMenu-menuItemButton:focus-visible * { background-color: #ff375f !important; color: #fff !important; }
+.main-contextMenu-menuItemButton:hover svg, .main-contextMenu-menuItemButton:focus-visible svg { fill: #fff !important; }
+.main-contextMenu-dividerBefore { margin-top: 5px !important; padding-top: 5px !important; border-top: 1px solid rgb(255 255 255 / 12%) !important; }

@@ -1228,6 +1228,28 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 /* ⚠️ DYNAMIC CLASS — .IEulmRakQT_FgH43ov2a = some hidden context menu element */
 .IEulmRakQT_FgH43ov2a { display: none; }
 
+/* --- macOS-style menu: frosted glass, rounded items, accent highlight ----- */
+.main-contextMenu-menu {
+    padding: 5px !important;
+    background-color: rgb(44 44 46 / 80%) !important;
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border-radius: 12px !important;
+    box-shadow: 0 0 0 0.5px rgb(0 0 0 / 50%), inset 0 0 0 0.5px rgb(255 255 255 / 15%), 0 12px 32px rgb(0 0 0 / 35%) !important;
+}
+.main-contextMenu-menuItemButton {
+    border-radius: 7px !important;
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 13px !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+.main-contextMenu-menuItemButton::after { content: none !important; }
+.main-contextMenu-menuItemButton:hover, .main-contextMenu-menuItemButton:focus-visible,
+.main-contextMenu-menuItemButton:hover *, .main-contextMenu-menuItemButton:focus-visible * { background-color: #ff375f !important; color: #fff !important; }
+.main-contextMenu-menuItemButton:hover svg, .main-contextMenu-menuItemButton:focus-visible svg { fill: #fff !important; }
+.main-contextMenu-dividerBefore { margin-top: 5px !important; padding-top: 5px !important; border-top: 1px solid rgb(255 255 255 / 12%) !important; }
+
 /* =============================================================================
    12. POP-UPS & MODALS (POP UPS)
    ============================================================================= */
@@ -1368,6 +1390,10 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 .notistack-Snackbar [data-encore-id="text"] { color: #141414 !important; }
 .notistack-Snackbar .e-10810-legacy-box--elevated { background-color: rgba(255, 255, 255, 0.96) !important; border-radius: 12px; }
 
+/* --- macOS-style dialogs ------------------------------------------------- */
+.GenericModal { border-radius: 14px !important; background-color: rgb(44 44 46 / 92%) !important; backdrop-filter: blur(40px) saturate(180%); box-shadow: 0 0 0 0.5px rgb(0 0 0 / 50%), inset 0 0 0 0.5px rgb(255 255 255 / 12%), 0 24px 60px rgb(0 0 0 / 45%) !important; }
+.GenericModal__overlay { background-color: rgba(0, 0, 0, .35) !important; backdrop-filter: blur(2px); }
+
 /* =============================================================================
    13. SEARCH PAGE
    ============================================================================= */
@@ -1410,6 +1436,12 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 
 /* Search icon color */
 .main-globalNav-searchInputContainer .x-searchInput-searchInputSearchIcon { color: #fa586a !important; }
+
+/* Browse tiles: rounded like Apple Music category cards */
+main section[class*="shelf"] a[href^="/genre/"], main section[class*="shelf"] a[href^="/genre/"] > *,
+main section[class*="shelf"] a[href^="/genre/"] img { border-radius: 10px !important; overflow: hidden; }
+main section[class*="shelf"] a[href^="/genre/"] { transition: transform .15s ease; }
+main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); }
 
 /* =============================================================================
    14. QUEUE PANEL
@@ -2757,6 +2789,27 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
     margin-top: 34px;
 }
 
+
+
+/* --- Expanded sidebar (Spotify ≥1.2.9x structure) -------------------------
+   Top row: arrows … avatar; then Apple logo + search field; "Your Library"
+   header with + ; filter chips; cover grid. */
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-actionButtons-spacer.main-actionButtons { display: none !important; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer { display: flex; align-items: center; gap: 6px; padding: 8px 10px 6px; }
+html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer > button svg { fill: #ff375f; color: #ff375f; }
+html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer > button svg path {
+    d: path("M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701");
+}
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputSection { flex: 1 1 auto; min-width: 0; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputContainer { width: 100% !important; height: 36px; background: rgb(255 255 255 / 8%) !important; border-radius: 10px !important; box-shadow: none !important; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: #ff375f; color: #ff375f; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchSection input { height: 36px; font-size: 14px !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchSection input:focus { outline: 2px solid rgb(255 55 95 / 60%) !important; outline-offset: -1px; border-radius: 10px; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-header { padding: 6px 16px 0; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-collapseButton * { font-size: 15px; font-weight: 700; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-filterArea { padding: 6px 0 2px; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-filterArea [role="checkbox"], #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-filterArea button { font-size: 12px; }
+
 /* =============================================================================
    19. MARKETPLACE
    ============================================================================= */
@@ -2955,6 +3008,28 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="album-page"] .main-trackList-rowSectionVariable[aria-colindex="3"] * { font-size: 14px; font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, 0.55); text-align: right; }
 [data-testid="album-page"] .main-trackList-rowSectionVariable[aria-colindex="3"] { padding-right: 24px; }
 
+
+/* --- Playlist page: same header treatment as albums ----------------------- */
+[data-testid="playlist-page"] div.main-entityHeader-container { min-height: 360px !important; height: 360px !important; }
+[data-testid="playlist-page"] .main-entityHeader-imageContainer { width: 300px; height: 300px; }
+[data-testid="playlist-page"] .main-entityHeader-headerText { height: auto !important; justify-content: flex-start; padding-top: 28px; margin-bottom: 0; }
+[data-testid="playlist-page"] .main-entityHeader-title, [data-testid="playlist-page"] .main-entityHeader-title h1 { font-size: 30px !important; font-weight: 700; line-height: 1.15; }
+[data-testid="playlist-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper,
+[data-testid="playlist-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper a { font-size: 26px !important; font-weight: 500; }
+[data-testid="playlist-page"] .main-entityHeader-metaData > div.main-entityHeader-metaDataText:not(.main-entityHeader-creatorWrapper),
+[data-testid="playlist-page"] .main-entityHeader-metaData > div.main-entityHeader-metaDataText:not(.main-entityHeader-creatorWrapper) * { font-size: 13px !important; font-weight: 600; color: rgba(255, 255, 255, 0.55); }
+[data-testid="playlist-page"] .main-entityHeader-metaData > div.main-entityHeader-metaDataText:not(.main-entityHeader-creatorWrapper) { margin-top: 6px; }
+/* action bar: Play / Shuffle / search under the meta, flush with the cover bottom */
+[data-testid="playlist-page"] .main-actionBar-ActionBarContainer,
+[data-testid="playlist-page"] > .main-actionBar-ActionBarContainer { position: absolute; left: 382px !important; right: auto !important; top: 362px !important; margin-top: 0 !important; width: auto !important; min-width: 360px; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    width: auto; min-width: 130px; height: 40px; padding: 0 18px; border-radius: 30px;
+    background-color: #2f2f2f; box-shadow: inset 0 1px 1px rgb(255 255 255 / 10%), inset 0 -1px 1px rgb(255 255 255 / 10%); color: #ff375f;
+}
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) svg { width: 18px; height: 18px; fill: #ff375f; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"])::after { content: var(--appletify-i18n-shuffle, "Shuffle"); font-size: 18px; font-weight: 700; color: #ff375f; margin-bottom: 3px; }
+
 /* =============================================================================
    24. QUEUE PANEL — Apple Music "Up Next"
    (Spotify ≥1.2.9x: aside#Desktop_PanelContainer_Id > … > #queue-panel with
@@ -3015,3 +3090,39 @@ html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child
 #Desktop_PanelContainer_Id [data-encore-id="listRowSubtitle"] { display: flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; overflow: hidden; white-space: nowrap; }
 #Desktop_PanelContainer_Id [data-encore-id="listRowSubtitle"] > span { display: inline-flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #Desktop_PanelContainer_Id [data-encore-id="listRowSubtitle"] > span > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+/* =============================================================================
+   25. HOME PAGE — Apple Music rhythm
+   ============================================================================= */
+[data-testid="home-page"] section { margin-bottom: 8px; }
+[data-testid="home-page"] section h2, [data-testid="home-page"] section h1 { font-size: 22px !important; font-weight: 700 !important; letter-spacing: -0.01em; }
+[data-testid="home-page"] section a[href*="/section/"], [data-testid="home-page"] section a[href*="/genre/"] { font-size: 13px; color: rgb(255 255 255 / 55%); }
+/* cards */
+[data-testid="home-page"] .main-cardImage-imageWrapper, [data-testid="home-page"] .main-cardImage-image { border-radius: 8px !important; }
+[data-testid="home-page"] [data-encore-id="cardTitle"], [data-testid="home-page"] .main-card-cardMetadata a, [data-testid="home-page"] [class*="card__main"] a { font-size: 14px; font-weight: 600; }
+[data-testid="home-page"] [data-encore-id="cardSubtitle"] { font-size: 13px; color: rgb(255 255 255 / 55%); }
+/* shortcuts grid (top tiles) */
+[data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper, [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper img { border-radius: 8px; }
+[data-testid="home-page"] .view-homeShortcutsGrid-draggable { border-radius: 10px; }
+
+/* =============================================================================
+   26. RESPONSIVE — narrow windows
+   ============================================================================= */
+@media (max-width: 1180px) {
+    .main-nowPlayingBar-nowPlayingBar { grid-template-columns: minmax(0, 1fr) minmax(180px, 300px) minmax(0, 1fr); }
+    [data-testid="playback-position"], [data-testid="playback-duration"] { display: none; }
+    .main-nowPlayingBar-volumeBar .volume-bar__slider-container { width: 70px; }
+}
+@media (max-width: 980px) {
+    .main-nowPlayingBar-nowPlayingBar { grid-template-columns: auto minmax(160px, 1fr) auto; padding: 0 12px 0 16px; gap: 8px; }
+    .main-nowPlayingBar-center { width: 176px; }
+    .player-controls__buttons { gap: 2px; }
+    .main-nowPlayingBar-left { transform: none; }
+    .main-nowPlayingBar-volumeBar .volume-bar__slider-container { display: none; }
+    .main-nowPlayingBar-extraControls { gap: 4px; }
+    #catjam-webm { display: none !important; }
+    /* album / playlist headers */
+    :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-entityHeader-imageContainer { width: 200px; height: 200px; }
+    :is([data-testid="album-page"], [data-testid="playlist-page"]) div.main-entityHeader-container { min-height: 260px !important; height: auto !important; }
+    :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-entityHeader-title, :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-entityHeader-title h1 { font-size: 24px !important; }
+}

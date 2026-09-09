@@ -41,6 +41,8 @@
 /* Search icon color */
 .main-globalNav-searchInputContainer .x-searchInput-searchInputSearchIcon { color: #fa586a !important; }
 
-
-
-
+/* Browse tiles: rounded like Apple Music category cards */
+main section[class*="shelf"] a[href^="/genre/"], main section[class*="shelf"] a[href^="/genre/"] > *,
+main section[class*="shelf"] a[href^="/genre/"] img { border-radius: 10px !important; overflow: hidden; }
+main section[class*="shelf"] a[href^="/genre/"] { transition: transform .15s ease; }
+main section[class*="shelf"] a[href^="/genre/"]:hover { transform: scale(1.02); }

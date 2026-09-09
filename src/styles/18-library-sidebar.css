@@ -296,3 +296,22 @@
 }
 
 
+
+/* --- Expanded sidebar (Spotify ≥1.2.9x structure) -------------------------
+   Top row: arrows … avatar; then Apple logo + search field; "Your Library"
+   header with + ; filter chips; cover grid. */
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-actionButtons-spacer.main-actionButtons { display: none !important; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer { display: flex; align-items: center; gap: 6px; padding: 8px 10px 6px; }
+html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer > button svg { fill: #ff375f; color: #ff375f; }
+html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchContainer > button svg path {
+    d: path("M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701");
+}
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputSection { flex: 1 1 auto; min-width: 0; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputContainer { width: 100% !important; height: 36px; background: rgb(255 255 255 / 8%) !important; border-radius: 10px !important; box-shadow: none !important; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: #ff375f; color: #ff375f; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchSection input { height: 36px; font-size: 14px !important; background: transparent !important; border: 0 !important; box-shadow: none !important; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-globalNav-searchSection input:focus { outline: 2px solid rgb(255 55 95 / 60%) !important; outline-offset: -1px; border-radius: 10px; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-header { padding: 6px 16px 0; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-collapseButton * { font-size: 15px; font-weight: 700; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-filterArea { padding: 6px 0 2px; }
+#Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-filterArea [role="checkbox"], #Desktop_LeftSidebar_Id:not(.apple-sidebar-collapsed) .main-yourLibraryX-filterArea button { font-size: 12px; }
