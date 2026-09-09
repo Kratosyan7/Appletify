@@ -1,0 +1,161 @@
+/* =============================================================================
+   3. GLOBAL LAYOUT & BACKGROUND
+   ============================================================================= */
+
+html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
+    background: rgba(38, 38, 38, 0);
+}
+
+.Root__top-container {
+    gap: 0;
+    padding: 0;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+}
+
+.Root__main-view {
+    border-radius: 0;
+    border-top-left-radius: 0;
+}
+
+/* Left sidebar background.
+   Translucent dark tint instead of full transparency: with Mica/vibrancy the
+   blur still shows through, and without it (plain macOS, Windows without the
+   Mica mod) the sidebar no longer renders as a white sheet (#10, #14, #15, #23) */
+#Desktop_LeftSidebar_Id {
+    background: rgb(28 28 30 / 85%);
+    transition: width 0.25s ease;
+    max-width: 310px;
+}
+
+/* Global nav row: allow wrapping and never squeeze out custom-app buttons
+   (Marketplace lives in .custom-navlinks-scrollable_container) */
+#Desktop_LeftSidebar_Id #global-nav-bar { flex-wrap: wrap; height: auto; row-gap: 2px; }
+#Desktop_LeftSidebar_Id .main-globalNav-historyButtonsWrapper { flex-wrap: wrap; height: auto; row-gap: 2px; }
+#Desktop_LeftSidebar_Id #global-nav-bar .custom-navlinks-scrollable_container { flex-shrink: 0; }
+/* Collapsed rail: Marketplace (custom app) button centered like the other icons */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .custom-navlinks-scrollable_container { flex: 0 0 100%; display: flex; justify-content: center; margin: 0; padding: 0 10px 0 0; box-sizing: border-box; }
+
+/* Collapsed sidebar (class toggled by theme.js): the 72px rail keeps nav
+   arrows, custom-app buttons (Marketplace) and the profile avatar; only the
+   noisy extras (extension status pill, What's New / friend activity) hide */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .SLT_ConnectionIndicator,
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons { display: none; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight { min-width: 0; width: 100%; flex: 0 0 100%; justify-content: center; margin-top: 10px; }
+/* Profile avatar centered in the rail, in line with the search / Apple icons */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-topBar-topbarContentRight { justify-content: center; width: 100%; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer { flex-direction: column; align-items: center; gap: 6px; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection input,
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection input::placeholder { color: transparent; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection svg { fill: rgba(255, 255, 255, 0.7); color: rgba(255, 255, 255, 0.7); }
+/* Collapsed rail: the search input does not fit (it overflowed to x < 0), so
+   only its leading search button is shown, centered, as a plain icon button */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer { width: 100%; box-sizing: border-box; padding-left: 0; padding-right: 0; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputSection { width: 100% !important; min-width: 0; margin: 0 0 10px; height: auto; order: 1; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer { width: 100% !important; min-width: 0; height: auto; padding: 0; margin: 0; background: transparent !important; box-shadow: none !important; display: flex; justify-content: center; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputWrapper,
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--trailing"] { display: none; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] { position: static !important; transform: none !important; display: flex; justify-content: center; width: auto; height: auto; inset: auto; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] button { display: flex; width: 41px; height: 41px; align-items: center; justify-content: center; }
+/* Collapsed rail, Apple Music style: accent search icon on top, then an Apple
+   logo in place of the Home icon (the button still navigates Home), and no
+   "Open Your Library" button (drag the sidebar edge to expand it) */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: #ff375f; color: #ff375f; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button { order: 2; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg { fill: #ff375f; color: #ff375f; }
+/* (setting "appleLogo": html.appletify-no-appleLogo keeps the stock Home icon) */
+html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg path {
+    d: path("M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701");
+}
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-yourLibraryX-collapseButton { display: none; }
+
+/* Left sidebar frosted glass overlay
+#Desktop_LeftSidebar_Id::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    box-shadow: inset 0 0 0 100vmax rgb(28 28 28 / 70%);
+    z-index: -1;
+}*/
+
+/* Right sidebar */
+.Root__right-sidebar {
+    -webkit-app-region: no-drag;
+}
+
+/* Hide right sidebar when now playing view is open
+   (NPV is identified by testid — aria-label is localized, #2/#6) */
+.Root__right-sidebar:has([data-testid="NPV_Panel_OpenDiv"]) {
+    display: none;
+}
+
+/* Nav bar border */
+.main-navBar-mainNav {
+    border-right: 2px solid hsl(0deg 0% 100% / 8%);
+}
+
+/* ⚠️ DYNAMIC CLASS — right sidebar left border */
+.oXO9_yYs6JyOwkBn8E4a {
+    border-left: 2px solid hsl(0deg 0% 100% / 8%);
+}
+
+.main-yourLibraryX-entryPoints,
+.main-yourLibraryX-libraryContainer {
+    background-color: transparent !important;
+}
+
+/* Layout resize bar hidden */
+.LayoutResizer__resize-bar { opacity: 0 !important; }
+
+/* Global nav bar zoom */
+[id="global-nav-bar"] {
+    zoom: 0.88;
+    margin-top: 4px;
+}
+
+/* Top bar hidden (but shown in marketplace) */
+.main-topBar-container { display: none; }
+
+.main-topBar-container:has(.marketplace-tabBar.marketplace-tabBar-nav) {
+    display: block;
+    height: 80px;
+}
+
+.main-topBar-background {
+    height: 150%;
+    background: linear-gradient(
+        to bottom,
+        rgb(10, 10, 10) 0%,
+        rgba(10, 10, 10, 0.8) 30%,
+        rgba(10, 10, 10, 0.4) 60%,
+        transparent 100%
+    );
+}
+
+/* Connect bar hidden */
+.main-connectBar-connectBar { display: none; }
+
+/* PiP toggle hidden */
+[data-testid="pip-toggle-button"] { display: none; }
+
+/* Notifications + friend activity */
+/* ⚠️ DYNAMIC CLASS — .YaU17q8G6eTc2eoKRwnL = action buttons row */
+.YaU17q8G6eTc2eoKRwnL.main-actionButtons { display: none; }
+
+/* ⚠️ DYNAMIC CLASS — .LedDBMWCxYhMD20KtPJo = action buttons row (alt) */
+.LedDBMWCxYhMD20KtPJo.main-actionButtons { display: none; }
+
+
+
+/* Spicetify update button */
+.main-globalNav-historyButtons [aria-label="Update Spicetify"] { margin-left: 5px; }
+.main-globalNav-historyButtons [aria-label="Update Spicetify"] > svg {
+    scale: 1.4;
+    transform: translateY(-2px);
+}
+
+/* Settings zoom */
+.x-settings-container { zoom: 1.2; }
+
+

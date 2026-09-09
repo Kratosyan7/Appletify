@@ -1,0 +1,46 @@
+/* =============================================================================
+   13. SEARCH PAGE
+   ============================================================================= */
+
+/* Search page top spacing — localized aria-label, generated in theme.js */
+
+/* Search focus ring */
+.main-globalNav-searchInputContainer .main-topBar-searchBar:focus {
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    outline: 7px solid rgba(250, 88, 106, .6);
+}
+
+
+/*Hide browse button*/
+.main-globalNav-browseButtonWrapper{
+    display:none;
+}
+
+/* Search bar styling */
+.main-topBar-searchBar {
+    border-radius: 50px !important;
+    font-size: 20px;
+    background-color: rgb(0 0 0 / 20%) !important;
+    border: 1px solid hsla(0, 0%, 100%, .1);
+}
+
+[data-encore-id="formInputIcon"] { border-radius: 8px !important; }
+.e-10810-form-input-icon--trailing .e-10810-form-input { border-radius: 8px !important; }
+
+/* Search input placeholder */
+[placeholder="What do you want to play?"] { margin-left: 10px; zoom: 1.2; }
+
+/* Hide trailing icon in form input */
+.main-globalNav-searchContainer .e-10810-form-input-icon__icon.e-10810-form-input-icon__icon--trailing { display: none; }
+/* Home button is intentionally visible again — the homepage is back (#8, #4) */
+/* Home page: no coloured header band (Spotify paints an inline background-color) */
+.main-home-homeHeader { background-color: transparent !important; }
+.main-globalNav-searchSection { position: relative; }
+
+/* Search icon color */
+.main-globalNav-searchInputContainer .x-searchInput-searchInputSearchIcon { color: #fa586a !important; }
+
+
+
+

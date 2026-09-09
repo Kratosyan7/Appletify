@@ -44,6 +44,24 @@
 
 <br>
 
+## Settings
+
+Open the profile menu (avatar in the sidebar) → **Appletify**. Toggles apply
+immediately and are remembered:
+
+- Apple logo instead of the Home icon in the collapsed sidebar
+- Play counts on album pages
+- Queue: short "Played" heading instead of "Recently played"
+- Queue: show where the music is playing from ("Next from")
+- Queue: hide the "Start a Jam" bar
+
+## Recommended extensions
+
+- [Spicy Lyrics](https://github.com/Spikerko/spicy-lyrics) — Apple-Music-style
+  lyrics; the theme hides Spotify's own lyrics button when it is installed.
+- [Glide](https://github.com/janakchoudharydev/spicetify-glide) — Apple-Music-style
+  seamless transitions and crossfade between tracks.
+
 ## Installation
 
 **Marketplace (recommended)**
@@ -74,6 +92,21 @@ spicetify apply
 
 (You can also delete the `appletify` folder from `%appdata%\spicetify\Themes` /
 `~/.config/spicetify/Themes` afterwards.)
+
+## Development
+
+`appletify/user.css` is generated. The sources are the modules in
+`src/styles/` (one file per section, order in `src/styles/ORDER.txt`):
+
+```
+node build.js          # rebuild appletify/user.css
+node build.js --check  # verify the built file is up to date
+spicetify apply
+```
+
+Everything that depends on localized aria-labels is generated at runtime in
+`appletify/theme.js` from Spotify's own dictionary (`Spicetify.Locale`), so
+avoid hard-coding English UI strings in the CSS.
 
 ## Troubleshooting
 

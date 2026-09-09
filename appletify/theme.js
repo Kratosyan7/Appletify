@@ -2,6 +2,7 @@
    Appletify — theme.js
    1. moveNavElementsMod   — moves the global nav into the sidebar and the
                              now-playing bar into the main view (top bar)
+   1b. AppletifySettings   — toggles (profile menu → "Appletify"), html.appletify-no-*
    2. sidebarStateMod      — toggles .apple-sidebar-collapsed on the sidebar
    3. localeStylesMod      — injects CSS rules whose selectors depend on
                              localized aria-labels (read from Spicetify.Locale)
@@ -93,6 +94,61 @@ function attrTemplate(attr, template) {
 })();
 
 /* ---------------------------------------------------------------------------
+   1b. Settings — toggles stored in localStorage, applied as html classes
+   (html.appletify-no-<key> switches a feature OFF; CSS defaults stay ON).
+   Opened from the profile menu ("Appletify").
+   --------------------------------------------------------------------------- */
+const AppletifySettings = (() => {
+  const KEY = "appletify:settings";
+  const OPTIONS = [
+    { key: "appleLogo",     label: "Apple logo instead of the Home icon (collapsed sidebar)" },
+    { key: "playCounts",    label: "Show play counts on album pages" },
+    { key: "playedHeading", label: "Queue: short \u201cPlayed\u201d heading instead of \u201cRecently played\u201d" },
+    { key: "nextFrom",      label: "Queue: show where the music is playing from (\u201cNext from\u201d)" },
+    { key: "hideJam",       label: "Queue: hide the \u201cStart a Jam\u201d bar" },
+  ];
+  const load = () => { try { return { ...JSON.parse(localStorage.getItem(KEY) || "{}") }; } catch (_) { return {}; } };
+  const save = (s) => { try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (_) {} };
+  const isOn = (s, key) => s[key] !== false; // every option defaults to ON
+  const apply = (s = load()) => {
+    for (const { key } of OPTIONS) document.documentElement.classList.toggle("appletify-no-" + key, !isOn(s, key));
+  };
+  const open = () => {
+    const s = load();
+    const box = document.createElement("div");
+    box.style.cssText = "display:flex;flex-direction:column;gap:14px;padding:4px 0 8px;";
+    for (const { key, label } of OPTIONS) {
+      const row = document.createElement("label");
+      row.style.cssText = "display:flex;align-items:center;gap:12px;cursor:pointer;font-size:15px;line-height:1.3;";
+      const cb = document.createElement("input");
+      cb.type = "checkbox"; cb.checked = isOn(s, key);
+      cb.style.cssText = "width:18px;height:18px;accent-color:#ff375f;flex:0 0 auto;";
+      cb.addEventListener("change", () => { s[key] = cb.checked; save(s); apply(s); });
+      row.append(cb, document.createTextNode(label));
+      box.appendChild(row);
+    }
+    const note = document.createElement("p");
+    note.style.cssText = "margin:8px 0 0;font-size:12px;opacity:.6;";
+    note.textContent = "Changes apply immediately.";
+    box.appendChild(note);
+    Spicetify.PopupModal.display({ title: "Appletify", content: box });
+  };
+  return { apply, open, OPTIONS };
+})();
+
+(function settingsMod() {
+  AppletifySettings.apply();
+  // Register the profile-menu entry only once the nav (and thus the menu
+  // host) is rendered — registering earlier is silently dropped.
+  const ready = Spicetify?.Menu?.Item && Spicetify?.PopupModal && document.querySelector(".main-globalNav-contentRight button");
+  if (!ready) { setTimeout(settingsMod, 500); return; }
+  setTimeout(() => {
+    try { new Spicetify.Menu.Item("Appletify", false, AppletifySettings.open).register(); }
+    catch (e) { console.warn("[Appletify] menu item failed", e); }
+  }, 1500);
+})();
+
+/* ---------------------------------------------------------------------------
    2. Sidebar collapsed state
    --------------------------------------------------------------------------- */
 (function sidebarStateMod() {
@@ -171,6 +227,8 @@ function attrTemplate(attr, template) {
 :root {
   --appletify-i18n-play: "${cssStr(t("playback-control.play", "Play"))}";
   --appletify-i18n-shuffle: "${cssStr(t("web-player.smart-shuffle.shuffle", "Shuffle"))}";
+  --appletify-i18n-nextup: "${cssStr(t("queue.next-up", "Next up"))}";
+  --appletify-i18n-recent: "${cssStr(t("view.recently-played", "Recently played"))}";
 }
 
 /* Track rows: hide the like / add-to-playlist buttons at the row end */

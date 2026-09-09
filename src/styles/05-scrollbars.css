@@ -1,0 +1,34 @@
+/* =============================================================================
+   5. SCROLLBARS
+   ============================================================================= */
+
+.os-scrollbar-handle,
+::-webkit-scrollbar {
+    width: 80% !important;
+    height: 20% !important;
+    margin-right: 8px;
+    border-radius: 15px !important;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+}
+
+.os-scrollbar-handle {
+    width: 30% !important;
+    border-radius: 15px !important;
+}
+
+.Root__nav-bar .os-scrollbar-handle {
+    width: 40% !important;
+    border-radius: 15px !important;
+    opacity: 0.85;
+}
+
+#search-modal-listbox::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+

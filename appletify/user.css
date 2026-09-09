@@ -1,3 +1,6 @@
+/* GENERATED FILE — do not edit. Sources live in src/styles/*.css;
+   rebuild with: node build.js */
+
 /* =============================================================================
    Appletify — user.css
    NOTE on "⚠️ DYNAMIC CLASS" rules: Spotify's hashed CSS-module class names
@@ -74,8 +77,6 @@ height:32px;
     display:;
 }*/
 
-
-
 /* =============================================================================
    2. FONTs
    ============================================================================= */
@@ -104,9 +105,6 @@ body, button, input, select, textarea {
 .encore-text-body-medium-bold { font-weight: 500; }
 .encore-text-body-small-bold { font-weight: 500; }
 .encore-text-title-medium, .encore-text-title-small { font-weight: 600; }
-
-
-
 
 /* =============================================================================
    3. GLOBAL LAYOUT & BACKGROUND
@@ -173,7 +171,8 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchInputContainer [class*="form-input-icon__icon--leading"] svg { fill: #ff375f; color: #ff375f; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button { order: 2; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg { fill: #ff375f; color: #ff375f; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg path {
+/* (setting "appleLogo": html.appletify-no-appleLogo keeps the stock Home icon) */
+html:not(.appletify-no-appleLogo) #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer > button svg path {
     d: path("M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701");
 }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-yourLibraryX-collapseButton { display: none; }
@@ -267,7 +266,6 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 /* Settings zoom */
 .x-settings-container { zoom: 1.2; }
 
-
 /* =============================================================================
    4. COLORS (accent, buttons, interactive elements)
    ============================================================================= */
@@ -333,10 +331,6 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
     border: none !important;
 }
 
-
-
-
-
 /* =============================================================================
    5. SCROLLBARS
    ============================================================================= */
@@ -369,7 +363,6 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
     width: 0;
     height: 0;
 }
-
 
 /* =============================================================================
    7. NOW PLAYING BAR
@@ -580,8 +573,6 @@ body:has(#SpicyLyricsPage):not(:has([id*=dribbblish])):not(.sltm__ThemeMatch__te
    down (#29) */
 .main-nowPlayingWidget-trackInfo .main-trackInfo-xsmallBadges { display: none; }
 .main-trackInfo-overlay .main-trackInfo-artists button { display: none; }
-
-
 
 /* =============================================================================
    8. APPLE-STYLE ICONS (SVG path overrides)
@@ -869,7 +860,6 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
     transform: translate(-429px, 0px);
 }
 
-
 /* =============================================================================
    9. TRACKLIST (shared rules — applies across pages)
    ============================================================================= */
@@ -1020,9 +1010,6 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
     display: none;
 }
 
-
-
-
 /* =============================================================================
    10. CARDS & PLAY BUTTONS (grid cards everywhere)
    ============================================================================= */
@@ -1071,7 +1058,6 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 /* Card header text */
 .main-cardHeader-text { font-weight: 600; zoom: 1.21; }
 .main-card-card .main-cardHeader-link { margin-top: 30px; }
-
 
 /* =============================================================================
    11. CONTEXT MENU
@@ -1176,7 +1162,6 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 
 /* ⚠️ DYNAMIC CLASS — .IEulmRakQT_FgH43ov2a = some hidden context menu element */
 .IEulmRakQT_FgH43ov2a { display: none; }
-
 
 /* =============================================================================
    12. POP-UPS & MODALS (POP UPS)
@@ -1311,10 +1296,6 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 
 [data-testid="search-modal-input"] { color: white !important; }
 
-
-
-
-
 /* =============================================================================
    13. SEARCH PAGE
    ============================================================================= */
@@ -1358,15 +1339,11 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 /* Search icon color */
 .main-globalNav-searchInputContainer .x-searchInput-searchInputSearchIcon { color: #fa586a !important; }
 
-
-
-
 /* =============================================================================
    14. QUEUE PANEL
    ============================================================================= */
 
-/* Hide first item (queue header section) */
-[id="queue-panel"] > div > div > div:nth-child(1) { display: none; }
+/* (queue section headers are handled in §24: "Now playing" section hidden, "Next from:" shown) */
 
 /* Queue hover background */
 [id="queue-panel"] * { --box-hover-background-color: rgba(255, 255, 255, .1) !important; }
@@ -1411,11 +1388,8 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 }
 
 /* Rename queue tabs */
-#queue-tab { font-size: 0; }
-#queue-tab::after { content: "Playing next"; font-size: 14px; }
 
-#history-tab { text-align: center; font-weight: 500; width: 108px; justify-content: center; font-size: 0; }
-#history-tab::after { content: "History"; font-size: 14px; }
+/* (queue tab headings are styled in §24) */
 
 /* "Up Next" title override */
 /* ⚠️ DYNAMIC CLASS — .zWuImjrUI1hWtDOHcRZA = "Up next" title element */
@@ -1509,8 +1483,6 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 
 /* ⚠️ DYNAMIC CLASS — .E912cqRfb05FrRPFKDZ_ = some hidden queue element */
 .E912cqRfb05FrRPFKDZ_ { display: none; }
-
-
 
 /* =============================================================================
    15. ALBUM PAGE
@@ -1829,7 +1801,6 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 /* Remove album cover interactive interactable */
 [data-testid="album-page"] .main-entityHeader-imageContainer { pointer-events: none; }
 
-
 /* =============================================================================
    16. PLAYLIST PAGE
    ============================================================================= */
@@ -1976,7 +1947,6 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 .eJbkaBhDfq9NfV5_QS8V { display: none; }
 
 /* Artist "All songs for …" page — localized aria-label, generated in theme.js */
-
 
 /* =============================================================================
    17. ARTIST PAGE
@@ -2401,7 +2371,6 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
 /* ⚠️ DYNAMIC CLASS — .cubl27eU3uN3hmAiqdmQ = another header container */
 .cubl27eU3uN3hmAiqdmQ .main-entityHeader-title > h1 { font-size: 2.5rem !important; }
 
-
 /* =============================================================================
    18. LIBRARY SIDEBAR
    ============================================================================= */
@@ -2699,7 +2668,6 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
     margin-top: 34px;
 }
 
-
 /* =============================================================================
    19. MARKETPLACE
    ============================================================================= */
@@ -2804,10 +2772,6 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
     display: none;
 }
 
-
-
-
-
 /* =============================================================================
    21. SPICY LYRICS
    ============================================================================= */
@@ -2819,7 +2783,6 @@ body.SpicySidebarLyrics__Active #SpicyLyricsPage:not(.Fullscreen) {
 body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #SpicyLyrics_FullscreenButton {
     display: none;
 }
-
 
 /* =============================================================================
    22. LIKED SONGS CUSTOM THUMBNAIL
@@ -2895,8 +2858,60 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 [data-testid="album-page"] .main-trackList-trackListContainer { border-top: 1px solid rgb(255 255 255 / 12%); padding-top: 6px; }
 [data-testid="album-page"] .main-trackList-trackListRow { height: 56px; }
 
-/* Play counts: grey, right-aligned, just before the duration */
+/* Play counts: grey, right-aligned, just before the duration
+   (setting "playCounts": html.appletify-no-playCounts hides the column) */
+html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSectionVariable[aria-colindex="3"] { display: none !important; }
 [data-testid="album-page"] .main-trackList-rowSectionVariable[aria-colindex="3"] { display: flex; justify-content: flex-end; }
 [data-testid="album-page"] .main-trackList-rowSectionVariable[aria-colindex="3"],
 [data-testid="album-page"] .main-trackList-rowSectionVariable[aria-colindex="3"] * { font-size: 14px; font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, 0.55); text-align: right; }
 [data-testid="album-page"] .main-trackList-rowSectionVariable[aria-colindex="3"] { padding-right: 24px; }
+
+/* =============================================================================
+   24. QUEUE PANEL — Apple Music "Up Next"
+   (Spotify ≥1.2.9x: aside#Desktop_PanelContainer_Id > … > #queue-panel with
+   tab strip #queue-tab / #history-tab, a "Now playing" list, a clear-queue
+   bar and the "Next up" list)
+   ============================================================================= */
+#Desktop_PanelContainer_Id { background: rgb(28 28 30 / 92%) !important; border-left: 1px solid rgb(255 255 255 / 8%); }
+#Desktop_PanelContainer_Id .main-nowPlayingView-headerContainer { padding: 22px 20px 6px; height: auto; }
+#Desktop_PanelContainer_Id .main-nowPlayingView-headerWrapper { padding: 0; margin: 0; width: 100%; }
+#Desktop_PanelContainer_Id .main-nowPlayingView-headerWrapper > div { width: 100% !important; max-width: none; }
+#Desktop_PanelContainer_Id [class*="tab-list__container"], #Desktop_PanelContainer_Id [class*="tab-list"] { background: none !important; padding: 0; width: 100%; box-shadow: none; }
+#Desktop_PanelContainer_Id [class*="tab-list"] { display: flex; align-items: baseline; justify-content: space-between; overflow: visible !important; flex-wrap: wrap; gap: 4px 12px; }
+#Desktop_PanelContainer_Id [class*="overflow-button"] { display: none !important; }
+/* Both tabs become headings: "Next up" (localized) and "Played"; the active
+   one is white, the other dimmed. The stock tab strip chrome is removed. */
+#Desktop_PanelContainer_Id [class*="tab-list"] { border: 0 !important; outline: none !important; box-shadow: none !important; border-radius: 0; justify-content: flex-start; gap: 4px 18px; }
+#queue-tab, #history-tab { font-size: 0 !important; padding: 0 !important; height: auto !important; min-height: 0; line-height: 1.2; background: none !important; box-shadow: none !important; color: rgb(255 255 255 / 40%) !important; white-space: nowrap; }
+#queue-tab::before, #history-tab::before { display: none !important; }
+#queue-tab::after, #history-tab::after { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+#queue-tab::after { content: var(--appletify-i18n-nextup, "Next up"); }
+#history-tab::after { content: "Played"; }
+/* setting "playedHeading" off: the localized "Recently played" label instead */
+html.appletify-no-playedHeading #history-tab::after { content: var(--appletify-i18n-recent, "Recently played"); font-size: 18px; }
+#queue-tab[aria-selected="true"], #history-tab[aria-selected="true"] { color: #fff !important; }
+#queue-tab:hover, #history-tab:hover { color: rgb(255 255 255 / 75%) !important; }
+#queue-tab[aria-selected="true"]:hover, #history-tab[aria-selected="true"]:hover { color: #fff !important; }
+
+#Desktop_PanelContainer_Id .main-nowPlayingView-mainContainer { padding: 0 12px; }
+#queue-panel { padding: 0; }
+/* "Now playing" section: the track is already in the playbar */
+#queue-panel > div > div:first-child { display: none; }
+/* "Start a Jam" promo bar between the sections: not part of the Apple layout */
+html:not(.appletify-no-hideJam) #queue-panel > div > div:has([data-encore-id="buttonPrimary"]) { display: none; }
+/* "Next from: <playlist>" — the playback source, shown as a subtitle under the heading */
+#queue-panel > div > div:last-child > div:first-child { display: block !important; padding: 0 8px 10px; }
+html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child { display: none !important; }
+#queue-panel > div > div:last-child > div:first-child h2 { font-size: 13px; font-weight: 500; color: rgb(255 255 255 / 55%); line-height: 1.3; }
+#queue-panel > div > div:last-child > div:first-child h2 a { color: #ff375f; font-weight: 600; text-decoration: none; }
+#queue-panel > div > div:last-child > div:first-child h2 a:hover { text-decoration: underline; }
+/* Rows */
+#queue-panel * { --box-hover-background-color: rgb(255 255 255 / 8%) !important; --box-active-background-color: rgb(255 255 255 / 12%) !important; }
+#queue-panel li { height: 62px; }
+#queue-panel li [data-encore-id="listRow"] { border-radius: 8px; }
+#queue-panel li .x-entityImage-imageContainer, #queue-panel li .x-entityImage-imageContainer img, #queue-panel li [class*="header-side"] span { border-radius: 6px !important; }
+#queue-panel [data-encore-id="listRowTitle"] { font-size: 15px; font-weight: 600; color: rgba(255, 255, 255, .92); }
+#queue-panel [data-encore-id="listRowSubtitle"], #queue-panel [data-encore-id="listRowSubtitle"] a { font-size: 13px; color: rgb(255 255 255 / 55%); }
+#queue-panel li [data-encore-id="listRow"] { position: relative; }
+#queue-panel li [data-encore-id="listRow"]::after { content: ""; position: absolute; left: 68px; right: 8px; bottom: 0; height: 1px; background: rgb(255 255 255 / 8%); pointer-events: none; }
+#queue-panel li:hover [data-encore-id="listRow"]::after { opacity: 0; }

@@ -1,0 +1,105 @@
+/* =============================================================================
+   11. CONTEXT MENU
+   ============================================================================= */
+
+/* Translucent frosted glass context menu */
+.main-contextMenu-menu {
+    border-radius: 16px;
+    overflow: visible;
+    background-color: rgba(40, 40, 40, 0.7);
+    box-shadow: 0 0 0 .5px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.12) inset, 0 12px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.3);
+    padding: 0px;
+}
+.main-contextMenu-menu::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    backdrop-filter: blur(60px) saturate(2.2);
+    border-radius: 26px;
+    z-index: -1;
+}
+
+/*Context menu separators*/
+.main-contextMenu-menuItemButton:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 17px;
+    height: 1px;
+    background: white;
+    bottom: -1px;
+    opacity: 11%;
+}
+/* Keep items that follow a divider (e.g. "Share"); only the divider line goes */
+.main-contextMenu-dividerBefore{ border-top: none; margin-top: 0; }
+
+
+/*Text size*/
+.main-contextMenu-menuItemLabel,
+.main-contextMenu-menuItemButton:has(> .main-contextMenu-menuItemIconWrapper) > div:nth-child(1) >span{
+    font-size:15px;
+    font-family:'SF Pro';
+}
+
+
+/* Context menu item row height */
+.main-contextMenu-menuItemButton {
+    padding-inline: 20px;
+}
+
+
+/*Context menu hover color*/
+.main-contextMenu-menuItemButton:before {
+    content: "";
+    position: absolute;
+    inset: 5px 6px 5px 6px;
+    z-index: 0;
+    opacity: 0;
+    border-radius: 10px;
+}
+.main-contextMenu-menuItemButton:hover::before {
+    background: #ff375f;
+    opacity: 1;
+}
+
+.main-contextMenu-menuItemButton > *{z-index:3;}
+
+.main-contextMenu-menuItemButton:not([aria-checked=true]):focus, .main-contextMenu-menuItemButton:hover{
+    background-color:unset;
+}
+
+
+
+/* Context menu tooltip */
+.main-contextMenu-tippy {
+    --generic-tooltip-background-color: #282828c7;
+    backdrop-filter: blur(90px);
+}
+
+/*Hide download button*/
+.main-contextMenu-menuItemButton:has(path[d^="M4.995"]){display:none;}
+
+/* Hide context menu tooltip wrapper */
+.main-contextMenu-tippyWrapper { display: none !important; }
+
+/* Reorder icons inside context menu items */
+.main-contextMenu-menuItemButton > svg { order:2; }
+
+/*Hide icon if it has a dropdown menu*/
+.main-contextMenu-menuItemButton:has(>.main-contextMenu-menuItemIconWrapper) > div > svg {display:none;}
+
+
+/* Icon wrapper in context menu */
+.main-contextMenu-menuItemButton > .main-contextMenu-menuItemIconWrapper > svg { display: none; }
+
+
+/* Hide external link option — localized aria-label, generated in theme.js */
+
+/* ⚠️ DYNAMIC CLASS — .egE6UQjF_UUoCzvMxREj = some context menu item */
+.main-contextMenu-menuItemButton.egE6UQjF_UUoCzvMxREj { display: none; }
+
+
+/* ⚠️ DYNAMIC CLASS — .IEulmRakQT_FgH43ov2a = some hidden context menu element */
+.IEulmRakQT_FgH43ov2a { display: none; }
+
+
