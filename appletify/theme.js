@@ -143,8 +143,13 @@ const AppletifySettings = (() => {
   const ready = Spicetify?.Menu?.Item && Spicetify?.PopupModal && document.querySelector(".main-globalNav-contentRight button");
   if (!ready) { setTimeout(settingsMod, 500); return; }
   setTimeout(() => {
-    try { new Spicetify.Menu.Item("Appletify", false, AppletifySettings.open).register(); }
-    catch (e) { console.warn("[Appletify] menu item failed", e); }
+    try {
+      new Spicetify.Menu.Item("Appletify", false, AppletifySettings.open).register();
+      // Marketplace is removed from the sidebar rail; reach it from here instead
+      if (document.querySelector(".custom-navlinks-scrollable_container") || Spicetify.Platform?.History) {
+        new Spicetify.Menu.Item("Marketplace", false, () => Spicetify.Platform.History.push("/marketplace")).register();
+      }
+    } catch (e) { console.warn("[Appletify] menu item failed", e); }
   }, 1500);
 })();
 
@@ -157,21 +162,51 @@ const AppletifySettings = (() => {
     setTimeout(sidebarStateMod, 300);
     return;
   }
-  const update = () =>
-    sb.classList.toggle("apple-sidebar-collapsed", sb.getBoundingClientRect().width < 120);
+  const update = () => {
+    const w = sb.getBoundingClientRect().width;
+    sb.classList.toggle("apple-sidebar-collapsed", w < 120);
+    // real sidebar width for CSS (Spotify's --left-sidebar-width is the saved
+    // library width, not what is on screen)
+    document.documentElement.style.setProperty("--apple-sidebar-width", `${Math.round(w)}px`);
+  };
   new ResizeObserver(update).observe(sb);
   update();
 
-  // Collapsed rail: the search input is hidden, so its leading search icon
-  // would only focus an invisible field — make it open the Search page instead.
+  // Collapsed rail: the search input is hidden; clicking its leading search
+  // icon pops the whole field out next to the rail (see user.css
+  // ".apple-search-open") and focuses it. Escape, a click outside, or a
+  // navigation (Enter / result click) closes it.
+  const OPEN = "apple-search-open";
+  const section = () => sb.querySelector(".main-globalNav-searchInputSection");
+  const input = () => sb.querySelector(".main-globalNav-searchSection input");
+  const close = () => sb.classList.remove(OPEN);
+  const open = (iconBtn) => {
+    const r = iconBtn.getBoundingClientRect();
+    // the search container is zoomed (user.css); position: fixed inside a
+    // zoomed ancestor is scaled too, so compensate
+    const z = parseFloat(getComputedStyle(sb.querySelector(".main-globalNav-searchContainer") || sb).zoom) || 1;
+    sb.style.setProperty("--apple-search-zoom", String(z));
+    // popover padding is 6px (zoomed) → icon keeps its exact on-screen position
+    sb.style.setProperty("--apple-search-top", `${Math.round(r.top / z - 6)}px`);
+    sb.classList.add(OPEN);
+    requestAnimationFrame(() => { input()?.focus(); input()?.select?.(); });
+  };
   document.addEventListener("click", (e) => {
     if (!sb.classList.contains("apple-sidebar-collapsed")) return;
     const btn = e.target.closest?.(".main-globalNav-searchInputContainer [class*='form-input-icon__icon--leading'] button");
-    if (!btn || !sb.contains(btn)) return;
-    e.preventDefault();
-    e.stopPropagation();
-    Spicetify?.Platform?.History?.push("/search");
+    if (btn && sb.contains(btn)) {
+      if (sb.classList.contains(OPEN)) { /* let the click reach Spotify: it submits/focuses */ return; }
+      e.preventDefault(); e.stopPropagation(); open(btn); return;
+    }
+    if (sb.classList.contains(OPEN) && !section()?.contains(e.target)) close();
   }, true);
+  document.addEventListener("keydown", (e) => {
+    if (!sb.classList.contains(OPEN)) return;
+    if (e.key === "Escape") { close(); input()?.blur(); }
+    if (e.key === "Enter" && e.target === input()) setTimeout(close, 150);
+  }, true);
+  const closeOnNav = () => Spicetify?.Platform?.History ? Spicetify.Platform.History.listen(() => { if (document.activeElement !== input()) close(); }) : setTimeout(closeOnNav, 500);
+  closeOnNav();
 })();
 
 /* ---------------------------------------------------------------------------
@@ -282,7 +317,9 @@ ${allSongsFor} .main-rootlist-wrapper > div:nth-child(2) > div:nth-child(1) > di
 /* Artist page: "Fans also like" shelf */
 [data-test-uri^="spotify:artist"] ${fansAlsoLike} > .main-shelf-shelfGrid { column-gap: 20px; --min-column-width: 160px !important; }
 [data-test-uri^="spotify:artist"] ${fansAlsoLike} [data-encore-id="cardSubtitle"] { display: none; }
-[data-test-uri^="spotify:artist"] ${fansAlsoLike} { margin-top: 48px; margin-bottom: 20px; order: 3; }
+[data-test-uri^="spotify:artist"] ${fansAlsoLike} { margin-top: 12px; margin-bottom: 12px; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section${fansAlsoLike} { order: 9 !important; margin-top: 24px; margin-bottom: 48px; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section${appearsOn} { order: 3 !important; }
 [data-test-uri^="spotify:artist"] ${fansAlsoLike} .main-shelf-header { zoom: 1.4; margin-bottom: 5px; }
 
 /* Artist page shelves (Discography / Appears On / Artist Playlists / Fans also like / Discovered on / Featuring) */

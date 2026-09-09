@@ -47,3 +47,14 @@ html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child
 #queue-panel li [data-encore-id="listRow"] { position: relative; }
 #queue-panel li [data-encore-id="listRow"]::after { content: ""; position: absolute; left: 68px; right: 8px; bottom: 0; height: 1px; background: rgb(255 255 255 / 8%); pointer-events: none; }
 #queue-panel li:hover [data-encore-id="listRow"]::after { opacity: 0; }
+
+/* Never let panel rows grow wider than the panel: long subtitles (several
+   artist links in "Played") overflowed the window and scrolled the whole UI */
+#Desktop_PanelContainer_Id, #Desktop_PanelContainer_Id .main-nowPlayingView-mainContainer, #queue-panel, #history-panel { overflow-x: hidden; max-width: 100%; }
+#Desktop_PanelContainer_Id li [data-encore-id="listRow"] { max-width: 100%; }
+#Desktop_PanelContainer_Id li [class*="list-row__header"] { min-width: 0; overflow: hidden; }
+#Desktop_PanelContainer_Id li [class*="list-row__column"] { min-width: 0; overflow: hidden; }
+#Desktop_PanelContainer_Id [data-encore-id="listRowTitle"] { display: block; min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#Desktop_PanelContainer_Id [data-encore-id="listRowSubtitle"] { display: flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; overflow: hidden; white-space: nowrap; }
+#Desktop_PanelContainer_Id [data-encore-id="listRowSubtitle"] > span { display: inline-flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#Desktop_PanelContainer_Id [data-encore-id="listRowSubtitle"] > span > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; }

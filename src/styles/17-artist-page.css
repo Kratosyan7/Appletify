@@ -422,3 +422,18 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
 .cubl27eU3uN3hmAiqdmQ .main-entityHeader-title > h1 { font-size: 2.5rem !important; }
 
 
+
+/* --- Apple Music section order -------------------------------------------
+   Latest release + Top Songs → Discography → Appears On → Artist Playlists →
+   Fans also like (Similar Artists) → About last. The content column is a flex
+   column, so `order` re-sorts Spotify's sections without touching the DOM.
+   ("Fans also like" order is set in theme.js via its localized aria-label.) */
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing { display: flex; flex-direction: column; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) { order: 1; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf { order: 4; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf:has(.artist-artistDiscography-cardGrid),
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf:has([class*="Discography"]),
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf:nth-of-type(1) { order: 2; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > .main-gridContainer-gridContainer:has(h2) { order: 8 !important; margin-top: 48px !important; margin-bottom: 40px; }
+/* uniform vertical rhythm between sections */
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf { margin-top: 12px; margin-bottom: 12px; }

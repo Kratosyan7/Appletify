@@ -46,19 +46,27 @@
 /* Sections: controls left, now-playing widget centered, extras right.
    .player-controls has container-type: inline-size, so its intrinsic width is
    always 0 — the controls block needs an explicit width (#27, #29). */
+/* Three-column grid: controls | now-playing box | extras. The middle column
+   is `auto`, the sides are equal `1fr`, so the box sits at the exact centre of
+   the bar whatever the widths of the two button groups. */
 .main-nowPlayingBar-nowPlayingBar {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(200px, 380px) minmax(0, 1fr);
     align-items: center;
     height: var(--apple-playbar-height);
     padding: 0 20px 0 28px;
     gap: 12px;
 }
-.main-nowPlayingBar-center { order: 1; width: 200px; max-width: none; flex: 0 0 auto; margin: 0; }
+.main-nowPlayingBar-center { order: 1; width: 200px; max-width: none; margin: 0; justify-self: start; }
 .main-nowPlayingBar-left {
-    order: 2; flex: 1 1 0; min-width: 0; width: auto; margin: 0; padding: 0;
-    display: flex; justify-content: center;
+    order: 2; min-width: 0; width: 100%; margin: 0; padding: 0;
+    display: flex; justify-content: center; justify-self: stretch;
+    /* centre on the whole window, not on the main view: shift left by half the
+       real sidebar width (set by theme.js) and by the bar's padding asymmetry
+       (28px left vs 20px right) */
+    transform: translateX(calc(var(--apple-sidebar-width, 72px) * -0.5 - 4px));
 }
-.main-nowPlayingBar-right { order: 3; flex: 0 1 auto; width: auto; min-width: 0; justify-content: flex-end; }
+.main-nowPlayingBar-right { order: 3; width: auto; min-width: 0; justify-content: flex-end; justify-self: end; }
 
 /* Extra controls spacing */
 .main-nowPlayingBar-extraControls { gap: 10px; margin-right: 0; }
@@ -88,7 +96,7 @@
     grid-template-rows: auto auto;
     align-items: center;
     top: 0;
-    width: min(100%, 380px);
+    width: 100%;
     min-width: 0;
     box-sizing: border-box;
     padding: 6px 8px 0 6px;

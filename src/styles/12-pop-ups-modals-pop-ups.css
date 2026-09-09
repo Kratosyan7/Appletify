@@ -131,7 +131,9 @@
 
 [data-testid="search-modal-input"] { color: white !important; }
 
-
-
-
-
+/* Toasts ("Added to playlist" etc.) are notistack snackbars on Spotify's white
+   elevated box; the theme's global white text made them unreadable — dark text */
+.notistack-Snackbar .e-10810-legacy-box--elevated,
+.notistack-Snackbar .e-10810-legacy-box--elevated *,
+.notistack-Snackbar [data-encore-id="text"] { color: #141414 !important; }
+.notistack-Snackbar .e-10810-legacy-box--elevated { background-color: rgba(255, 255, 255, 0.96) !important; border-radius: 12px; }
