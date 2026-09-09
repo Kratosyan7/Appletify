@@ -143,7 +143,7 @@
 }
 
 /* Entity header container with background image */
-.main-entityHeader-container.main-entityHeader-withBackgroundImage { height: 45vh; min-height: unset; }
+/* (a former hashed-class rule set 45vh here; it must not touch the artist banner, whose height is 73vh above) */
 
 [data-test-uri^="spotify:artist"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .eFZahdafW8vQ7xY1kfBg > .main-entityHeader-imageContainer { position: absolute; left: 36%; top: 17%; }
 [data-test-uri^="spotify:artist"] .main-entityHeader-container.main-entityHeader-withBackgroundImage > .main-entityHeader-backgroundColor { opacity: 0.4; }
