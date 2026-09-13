@@ -3179,6 +3179,8 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-expandButton { left: 0 !important; top: 0 !important; }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInput { height: 40px !important; border-radius: 20px !important; padding-left: 40px !important; }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-overlay { height: 40px !important; align-items: center; }
+/* magnifier of the expanded field sits exactly where the collapsed button's icon is (12px from the left edge) */
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-searchIconContainer { padding: 8px 8px 8px 12px !important; }
 
 /* =============================================================================
    24. QUEUE PANEL — Apple Music "Up Next"
