@@ -985,7 +985,7 @@ body:not(:has(.Root__main-view-overlay #SpicyLyricsPage:is(.Fullscreen))) #Spicy
 /*Play*/ :is(.main-trackList-rowImagePlayButton, [data-encore-id="buttonPrimary"]):has(path[d^="m7.05"]) path {
     d: path("m184.57 775.41c10.417 0 20.834-1.546 31.25-4.639 10.417-3.092 22.624-8.707 36.621-16.845l475.59-276.37c19.206-11.394 34.668-24.089 46.387-38.086 11.719-13.998 17.578-31.088 17.578-51.27s-5.859-37.353-17.578-51.514c-11.719-14.16-27.181-26.774-46.387-37.841l-475.59-276.37c-13.997-8.138-26.204-13.753-36.621-16.846-10.416-3.0924-20.833-4.6387-31.25-4.6387-22.135 0-42.155 8.2194-60.058 24.658-17.904 16.439-26.856 39.632-26.856 69.58v585.94c0 29.948 8.9517 53.141 26.856 69.58 17.903 16.439 37.923 24.658 60.058 24.658");
     scale: 2.5%;
-    transform: translateY(52px);
+    transform: translate(60px, 52px); /* +60 path units ≈ 2px: optical centring of the triangle */
 }
 
 /* Tracklist row pause icon */
@@ -3210,8 +3210,6 @@ html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child
 /* shortcuts grid (top tiles) */
 [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper, [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper img { border-radius: 8px; }
 [data-testid="home-page"] .view-homeShortcutsGrid-draggable { border-radius: 10px; }
-/* hover play button centered on the cover */
-[data-testid="home-page"] .main-card-PlayButtonContainer, main .main-card-PlayButtonContainer { left: 50% !important; top: 50% !important; right: auto !important; bottom: auto !important; translate: -50% -50%; }
 
 /* =============================================================================
    26. RESPONSIVE — narrow windows
