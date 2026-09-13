@@ -330,8 +330,11 @@ section > section > div.artist-artistDiscography-cardGrid > div { --min-column-w
 [data-test-uri^="spotify:artist"] div:has(> ._at4B8TNnOvLAPLPKRVC) .mqt5apqYvBIhikzEzJbw.Uxt8HzMKLW_ZXsxT9NgQ { font-weight: 400; }
 [data-test-uri^="spotify:artist"] div:has(> ._at4B8TNnOvLAPLPKRVC) { order: 2; }
 
-/* Hide on-tour section via content check */
-[data-test-uri^="spotify:artist"] > div > div > div.contentSpacing > div:has(.artist-artistOnTour-onTourShelfGrid) { display: none; }
+/* Hide the "On Tour" block. Spotify 1.2.9x renders it as a class-less div whose header links to
+   /artist/<id>/concerts and whose rows link to /concert/<id> - both are stable, unlike the hashed classes. */
+[data-test-uri^="spotify:artist"] .contentSpacing > div:has(a[href*="/concerts"]),
+[data-test-uri^="spotify:artist"] .contentSpacing > div:has(a[href^="/concert/"]),
+[data-test-uri^="spotify:artist"] > div > div > div.contentSpacing > div:has(.artist-artistOnTour-onTourShelfGrid) { display: none !important; }
 
 /* More by artist background block */
 /* ⚠️ DYNAMIC CLASS — .lLVLck3qrPA1TLtWobAd = "More by" shelf */
