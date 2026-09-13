@@ -3174,8 +3174,8 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 /* the collapsed search box is a 32px box with the button hanging 8px outside it - make it a real 40px slot */
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInputContainer { min-width: 40px !important; height: 40px !important; min-height: 40px !important; }
 /* collapsed: the wrapper is a 42px pill by default, which peeks out behind the 40px round button */
-[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInputContainer:not(.x-filterBox-expandedOrHasFilter) { width: 40px !important; border-radius: 50% !important; }
-[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInputContainer:not(.x-filterBox-expandedOrHasFilter) .x-filterBox-filterInput { width: 40px !important; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInputContainer:not(.x-filterBox-expandedOrHasFilter) { width: 40px !important; border-radius: 50% !important; overflow: hidden; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInputContainer:not(.x-filterBox-expandedOrHasFilter) input.x-filterBox-filterInput { width: 40px !important; max-width: 40px !important; min-width: 0 !important; padding: 0 !important; }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-expandButton { left: 0 !important; top: 0 !important; }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInput { height: 40px !important; border-radius: 20px !important; padding-left: 40px !important; }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-overlay { height: 40px !important; align-items: center; }
