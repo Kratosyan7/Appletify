@@ -3360,6 +3360,12 @@ html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child
 .main-nowPlayingView-section [data-encore-id="listRowSubtitle"] { font-size: 12px; color: rgb(255 255 255 / 55%); }
 .main-nowPlayingView-section img { border-radius: 6px; }
 
+/* ---- Now Playing view only on request (Appletify setting "npvOnlyManual", guard in theme.js) ----
+   Spotify re-opens the view on launch and on playback start. Until theme.js has seen an explicit request
+   (cover click / Alt+Shift+R) it adds no "appletify-npv-allowed" class, and the auto-opened view stays
+   invisible while the guard closes it - no flash. The queue is unaffected: it has no NPV_Panel_OpenDiv. */
+html:not(.appletify-no-npvOnlyManual):not(.appletify-npv-allowed) .Root__right-sidebar:has([data-testid="NPV_Panel_OpenDiv"]) { display: none !important; }
+
 /* =============================================================================
    28. PODCASTS — show & episode pages (scoped via the episode list testid)
    ============================================================================= */

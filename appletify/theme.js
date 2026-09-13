@@ -671,34 +671,36 @@ ${appearsOn} > .main-gridContainer-gridContainer { --min-column-width: 230px !im
    bar or inside the panel, or the Alt+Shift+R shortcut.
    --------------------------------------------------------------------------- */
 (function npvGuardMod() {
-  const enabled = () => !document.documentElement.classList.contains("appletify-no-npvOnlyManual");
+  const html = document.documentElement;
+  const enabled = () => !html.classList.contains("appletify-no-npvOnlyManual");
+  // While "appletify-npv-allowed" is absent the CSS keeps an auto-opened view invisible (27-now-playing-view.css),
+  // so it never flashes before the guard closes it.
   let intentUntil = 0;
-  const markIntent = () => { intentUntil = Date.now() + 1500; };
+  const markIntent = () => { intentUntil = Date.now() + 1500; html.classList.add("appletify-npv-allowed"); };
   document.addEventListener("pointerdown", (e) => {
     const t = e.target;
-    if (t instanceof Element && t.closest(".Root__now-playing-bar, .Root__right-sidebar, #Desktop_PanelContainer_Id, .main-nowPlayingView-container")) markIntent();
+    if (t instanceof Element && t.closest(".main-nowPlayingWidget-coverArt, .main-coverSlotCollapsed-container, [data-testid='NPV_Panel_OpenDiv']")) markIntent();
   }, true);
   document.addEventListener("keydown", (e) => { if (e.altKey && e.shiftKey && e.code === "KeyR") markIntent(); }, true);
   const container = () => document.querySelector("#Desktop_PanelContainer_Id");
-  const npvOpen = () => { const c = container(); return !!c && c.getBoundingClientRect().width > 0 && !!c.querySelector("[data-testid='NPV_Panel_OpenDiv']"); };
+  // Spotify's own sidebar state ("now_playing_view" / "queue" / "disabled") - independent of our CSS hiding the panel
+  const npvOpen = () => {
+    let state = null;
+    try { state = Spicetify.Platform.LocalStorageAPI.getItem("ui.right_sidebar_content"); } catch (_) {}
+    if (state !== null) return state === "now_playing_view";
+    const c = container(); return !!c && c.getBoundingClientRect().width > 0 && !!c.querySelector("[data-testid='NPV_Panel_OpenDiv']");
+  };
   // Alt+Shift+R is Spotify's own "toggle Now Playing view" shortcut - only fired while the view is open, so it always closes
   const close = () => {
     try { if (Spicetify.Mousetrap?.trigger) { Spicetify.Mousetrap.trigger("alt+shift+r"); return true; } } catch (_) {}
     const b = container()?.querySelector("[data-testid='PanelHeader_CloseButton'], button[aria-label='Close']");
     if (!b) return false; b.click(); return true;
   };
-  let wasOpen = npvOpen();
   const check = () => {
+    if (!enabled()) { html.classList.add("appletify-npv-allowed"); return; }
     const open = npvOpen();
-    if (enabled() && open && !wasOpen && Date.now() > intentUntil) { if (close()) { wasOpen = false; return; } }
-    wasOpen = open;
+    if (open && !html.classList.contains("appletify-npv-allowed")) { close(); return; }
+    if (!open && Date.now() > intentUntil) html.classList.remove("appletify-npv-allowed");
   };
-  // launch: close whatever Spotify restored from the previous session
-  let tries = 0;
-  const boot = setInterval(() => {
-    tries++;
-    if (!enabled() || tries > 60) { clearInterval(boot); return; }
-    if (npvOpen() && close()) { clearInterval(boot); wasOpen = false; }
-  }, 250);
-  setInterval(check, 300);
+  setInterval(check, 150);
 })();
