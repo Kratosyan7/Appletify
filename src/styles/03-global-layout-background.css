@@ -224,3 +224,5 @@ html, body, #main, .Root { overflow-x: clip !important; }
 
 /* ---- library rail: the accent highlight of the selected item is rounded like the cover inside it ---- */
 .main-yourLibraryX-listItem[role="row"][aria-selected="true"] > div[role="gridcell"] { border-radius: 12px; overflow: hidden; }
+/* square 64px cell in the collapsed rail: 48px cover + 8px on every side (the default cell is 62px wide, 6px on the right) */
+.Root__nav-bar.apple-sidebar-collapsed .main-yourLibraryX-listItem[role="row"] > div[role="gridcell"] { width: 64px !important; min-width: 64px !important; box-sizing: border-box; }
