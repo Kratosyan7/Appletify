@@ -216,15 +216,64 @@ body:has(#SpicyLyricsPage):not(:has([id*=dribbblish])):not(.sltm__ThemeMatch__te
 .main-nowPlayingWidget-trackInfo .main-trackInfo-xsmallBadges { display: none; }
 .main-trackInfo-overlay .main-trackInfo-artists button { display: none; }
 
-/* --- Setting "topPlaybar" OFF: floating pill at the bottom (classic look) --- */
+/* --- Setting "topPlaybar" OFF: Apple Music mini-player pill at the bottom ---
+   [controls] [cover] [title]                    [lyrics] [queue] [volume]
+   with a thin progress line along the bottom of the pill. */
 html.appletify-no-topPlaybar .Root__now-playing-bar {
-    top: auto; bottom: 28px; left: 50%; right: auto;
-    width: 66%; min-width: min(760px, 96%); height: 84px;
+    top: auto; bottom: 22px; left: 50%; right: auto;
+    width: min(820px, 94%); min-width: 0; height: 64px;
     transform: translateX(-50%);
-    border-radius: 100px; background: rgb(38 38 40 / 85%);
-    box-shadow: 0 10px 40px rgb(0 0 0 / 25%), inset 0 1px 0 rgb(255 255 255 / 8%);
+    border-radius: 32px; background: rgb(44 44 46 / 88%);
+    backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: 0 0 0 0.5px rgb(0 0 0 / 40%), inset 0 0 0 0.5px rgb(255 255 255 / 12%), 0 16px 40px rgb(0 0 0 / 40%);
+    overflow: hidden;
 }
-html.appletify-no-topPlaybar .main-view-container__scroll-node-child { padding-top: 0; padding-bottom: 120px; }
+html.appletify-no-topPlaybar .main-view-container__scroll-node-child { padding-top: 0; padding-bottom: 110px; }
 html.appletify-no-topPlaybar .main-topBar-container:has(.marketplace-tabBar.marketplace-tabBar-nav) { top: 0; }
-html.appletify-no-topPlaybar .main-nowPlayingBar-nowPlayingBar { height: 84px; padding: 0 28px; }
-html.appletify-no-topPlaybar .main-nowPlayingBar-left { transform: none; }
+html.appletify-no-topPlaybar .Root__now-playing-bar > aside { height: 100%; }
+html.appletify-no-topPlaybar .main-nowPlayingBar-nowPlayingBar {
+    display: flex; align-items: center; height: 64px; padding: 0 16px 0 12px; gap: 8px;
+}
+html.appletify-no-topPlaybar .main-nowPlayingBar-center { order: 1; width: 196px; flex: 0 0 auto; }
+html.appletify-no-topPlaybar .player-controls__buttons { gap: 2px; }
+html.appletify-no-topPlaybar .main-nowPlayingBar-left {
+    order: 2; flex: 1 1 auto; min-width: 0; width: auto; transform: none; justify-content: flex-start;
+}
+html.appletify-no-topPlaybar .main-nowPlayingBar-right { order: 3; flex: 0 0 auto; }
+/* the "LCD" box becomes a plain cover + title row */
+html.appletify-no-topPlaybar .main-nowPlayingWidget-nowPlaying {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%; padding: 0; background: none; border: 0; box-shadow: none; border-radius: 0; overflow: visible;
+}
+html.appletify-no-topPlaybar .main-nowPlayingWidget-nowPlaying .cover-art { width: 40px !important; height: 40px !important; }
+html.appletify-no-topPlaybar .main-nowPlayingWidget-coverArtContainer { border-radius: 6px; }
+html.appletify-no-topPlaybar .main-nowPlayingWidget-trackInfo { margin: 0; flex: 1 1 auto; min-width: 0; }
+html.appletify-no-topPlaybar .main-trackInfo-container { justify-items: start; }
+html.appletify-no-topPlaybar .main-trackInfo-name, html.appletify-no-topPlaybar .main-trackInfo-artists { justify-self: start; justify-content: flex-start; text-align: left; }
+html.appletify-no-topPlaybar .main-nowPlayingWidget-trackInfo .main-trackInfo-overlay a { font-size: 14px; font-weight: 600; }
+html.appletify-no-topPlaybar .main-trackInfo-artists, html.appletify-no-topPlaybar .main-trackInfo-artists a { font-size: 12px; }
+html.appletify-no-topPlaybar .main-nowPlayingWidget-actionButtonWrapper { margin: 0 4px; }
+/* progress: thin line along the bottom of the pill, no timers */
+/* containing block = the pill itself (the widget and its column are made static) */
+html.appletify-no-topPlaybar .main-nowPlayingBar-left, html.appletify-no-topPlaybar .main-nowPlayingWidget-nowPlaying { position: static !important; }
+/* .main-nowPlayingBar-left is a size container (container-type: inline-size), which would become the
+   containing block of the absolutely positioned progress line — switch containment off here */
+html.appletify-no-topPlaybar .main-nowPlayingBar-left { container-type: normal !important; contain: none !important; }
+/* Spotify puts transform: translate(0) on the widget — another containing block; drop it too */
+html.appletify-no-topPlaybar .main-nowPlayingWidget-nowPlaying, html.appletify-no-topPlaybar .main-nowPlayingBar-left, html.appletify-no-topPlaybar .main-nowPlayingWidget-trackInfo { transform: none !important; will-change: auto !important; filter: none !important; perspective: none !important; }
+html.appletify-no-topPlaybar .main-nowPlayingBar-left,
+html.appletify-no-topPlaybar .main-nowPlayingWidget-trackInfo, html.appletify-no-topPlaybar .main-nowPlayingBar-nowPlayingBar { position: static !important; }
+html.appletify-no-topPlaybar .Root__now-playing-bar > aside { position: relative; }
+html.appletify-no-topPlaybar .playback-bar {
+    position: absolute !important; left: 216px !important; right: 300px !important; bottom: 0 !important; top: auto !important;
+    margin: 0 !important; padding: 0 !important; height: 6px !important; width: auto !important; z-index: 2;
+}
+html.appletify-no-topPlaybar [data-testid="playback-position"], html.appletify-no-topPlaybar [data-testid="playback-duration"] { display: none; }
+html.appletify-no-topPlaybar .playback-progressbar-container { height: 6px; }
+html.appletify-no-topPlaybar .x-progressBar-progressBarBg { background-color: rgb(255 255 255 / 10%); height: 3px; }
+html.appletify-no-topPlaybar .x-progressBar-fillColor { border-radius: 2px; }
+/* right group: icons only */
+html.appletify-no-topPlaybar .main-nowPlayingBar-extraControls { gap: 6px; }
+html.appletify-no-topPlaybar .main-nowPlayingBar-volumeBar .volume-bar__slider-container { width: 0; overflow: hidden; transition: width .2s ease; }
+html.appletify-no-topPlaybar .main-nowPlayingBar-volumeBar:hover .volume-bar__slider-container { width: 80px; }
+html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px !important; }
