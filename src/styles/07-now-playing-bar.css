@@ -303,3 +303,7 @@ html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px
 .main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)) { opacity: 0; width: 0 !important; min-width: 0 !important; margin-right: -2px !important; overflow: hidden; transition: opacity .2s ease-in-out, width .2s ease-in-out, margin .2s ease-in-out; }
 .main-nowPlayingWidget-nowPlaying:hover .main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)),
 .main-nowPlayingWidget-nowPlaying:has(:focus-visible) .main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)) { opacity: 1; width: 28px !important; min-width: 28px !important; margin-right: 0 !important; }
+/* the medium / low / muted glyphs are drawn 3.82 units higher than the high one (speaker body 2.9..39.9 vs 6.8..43.7):
+   shift them down so the speaker body sits at the same height in every state */
+.main-nowPlayingBar-volumeBar:is(.apple-vol-medium, .apple-vol-low) > button:has(path[d^="M9.741"]) svg path,
+.main-nowPlayingBar-volumeBar > button:has(path[d^="M13.86"]) svg path { transform: translate(8px, 19.82px); }
