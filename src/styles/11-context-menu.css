@@ -110,7 +110,11 @@
 .main-contextMenu-menuItemButton:hover, .main-contextMenu-menuItemButton:focus-visible { background-color: var(--appletify-accent, #ff375f) !important; color: #fff !important; }
 .main-contextMenu-menuItemButton:hover *, .main-contextMenu-menuItemButton:focus-visible * { background-color: transparent !important; color: #fff !important; -webkit-text-fill-color: #fff !important; }
 .main-contextMenu-menuItemButton:hover svg, .main-contextMenu-menuItemButton:focus-visible svg { fill: #fff !important; }
-.main-contextMenu-dividerBefore { margin-top: 5px !important; padding-top: 5px !important; border-top: 1px solid rgb(255 255 255 / 12%) !important; }
+/* the divider class sits either on a menu button ("Share") or on a standalone div between groups */
+button.main-contextMenu-dividerBefore { margin-top: 5px !important; padding-top: 5px !important; border-top: 1px solid rgb(255 255 255 / 12%) !important; }
+div.main-contextMenu-dividerBefore, div.main-contextMenu-dividerAfter, .main-contextMenu-menu > hr, .main-contextMenu-menu [role="separator"] {
+    height: 1px !important; padding: 0 !important; border: 0 !important; margin: 5px 0 !important; background: rgb(255 255 255 / 12%) !important;
+}
 
 /* nested submenus (Add to other playlist, Move to folder, Share...) stay compact and scroll */
 .main-contextMenu-menuItem .main-contextMenu-menu,
