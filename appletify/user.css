@@ -729,9 +729,10 @@ html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px
 .main-nowPlayingWidget-actionButtonWrapper > button:hover { background: rgb(255 255 255 / 8%); }
 /* the "Hide" (x) button: Spotify only hides it for curated contexts (data-feedback-curated); make it hover-only everywhere.
    It is always the first of three buttons (Hide, Add, ...), so target every button except the last two. */
-.main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)) { opacity: 0; transition: opacity .2s ease-in-out; }
+/* while hidden it also takes no space, so the title runs right up to "+"; it slides open on hover */
+.main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)) { opacity: 0; width: 0 !important; min-width: 0 !important; margin-right: -2px !important; overflow: hidden; transition: opacity .2s ease-in-out, width .2s ease-in-out, margin .2s ease-in-out; }
 .main-nowPlayingWidget-nowPlaying:hover .main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)),
-.main-nowPlayingWidget-nowPlaying:has(:focus-visible) .main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)) { opacity: 1; }
+.main-nowPlayingWidget-nowPlaying:has(:focus-visible) .main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)) { opacity: 1; width: 28px !important; min-width: 28px !important; margin-right: 0 !important; }
 
 /* =============================================================================
    8. APPLE-STYLE ICONS (SVG path overrides)
