@@ -107,6 +107,7 @@ const AppletifySettings = (() => {
     { key: "nextFrom",      label: "Queue: show where the music is playing from (\u201cNext from\u201d)" },
     { key: "hideJam",       label: "Queue: hide the \u201cStart a Jam\u201d bar" },
     { key: "topPlaybar",    label: "Player bar at the top (off = floating pill at the bottom)" },
+    { key: "pillBottom",    label: "Floating pill at the bottom (off = pill docked at the top; applies when the player bar is not at the top)" },
     { key: "bigCovers",     label: "48px covers in playlists and the queue (off = 40px)" },
     { key: "darkTheme",     label: "Dark theme (off = light Apple Music look)" },
     { key: "npvOnlyManual", label: "Now Playing view opens only on request (not on launch or when playback starts)" },

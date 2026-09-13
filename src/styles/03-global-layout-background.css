@@ -221,3 +221,7 @@ html, body, #main, .Root { overflow-x: clip !important; }
     box-shadow: 0 12px 40px rgb(0 0 0 / 45%);
     backdrop-filter: blur(20px);
 }
+
+/* ---- library rail: the accent highlight of the selected item is rounded like the cover inside it ---- */
+.main-yourLibraryX-listItem [role="row"][aria-selected="true"] > div,
+.main-yourLibraryX-listItem [role="row"][aria-selected="true"] > div[aria-colindex] { border-radius: 12px; overflow: hidden; }

@@ -330,6 +330,10 @@ html, body, #main, .Root { overflow-x: clip !important; }
     backdrop-filter: blur(20px);
 }
 
+/* ---- library rail: the accent highlight of the selected item is rounded like the cover inside it ---- */
+.main-yourLibraryX-listItem [role="row"][aria-selected="true"] > div,
+.main-yourLibraryX-listItem [role="row"][aria-selected="true"] > div[aria-colindex] { border-radius: 12px; overflow: hidden; }
+
 /* =============================================================================
    4. COLORS (accent, buttons, interactive elements)
    ============================================================================= */
@@ -742,6 +746,11 @@ html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px
 .main-nowPlayingBar-volumeBar > button:has(path[d^="M13.86"]) svg path { transform: translate(8px, 19.82px); }
 /* same story in the playbar: the (hidden) badges column + 8px gap shifted the artists line right of the title */
 .main-nowPlayingWidget-trackInfo.main-trackInfo-container { column-gap: 0 !important; }
+
+/* --- Setting "pillBottom" OFF (only matters with the top bar off): the same pill, docked at the top --- */
+html.appletify-no-topPlaybar.appletify-no-pillBottom .Root__now-playing-bar { top: 14px; bottom: auto; }
+html.appletify-no-topPlaybar.appletify-no-pillBottom .main-view-container__scroll-node-child { padding-top: 92px; padding-bottom: 24px; }
+html.appletify-no-topPlaybar.appletify-no-pillBottom .main-topBar-container:has(.marketplace-tabBar.marketplace-tabBar-nav) { top: 92px; }
 
 /* =============================================================================
    8. APPLE-STYLE ICONS (SVG path overrides)

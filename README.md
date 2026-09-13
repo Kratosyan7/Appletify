@@ -53,6 +53,7 @@ immediately and are remembered:
 - Dark theme (off = light Apple Music look)
 - Now Playing view opens only on request: not on launch and not when playback starts (open it from the player bar cover or with Alt+Shift+R)
 - Player bar at the top (off = floating pill at the bottom, the classic look)
+- Floating pill at the bottom (off = the pill is docked at the top of the window)
 - Apple logo instead of the Home icon in the sidebar
 - Play counts on album pages
 - 48px covers in playlists and the queue (off = 40px)
