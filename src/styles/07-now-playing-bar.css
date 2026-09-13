@@ -258,7 +258,10 @@ html.appletify-no-topPlaybar .main-trackInfo-artists, html.appletify-no-topPlayb
 /* text runs right up to the buttons: no extra margin, the widget gap is the only spacing */
 html.appletify-no-topPlaybar .main-nowPlayingWidget-actionButtonWrapper { margin: 0 2px 0 0; }
 html.appletify-no-topPlaybar .main-nowPlayingWidget-nowPlaying:has(.main-nowPlayingWidget-actionButtonWrapper) { gap: 10px 4px; }
-html.appletify-no-topPlaybar .main-nowPlayingWidget-coverArt, html.appletify-no-topPlaybar .main-coverSlotCollapsed-container { margin-right: 6px; }
+html.appletify-no-topPlaybar .main-coverSlotCollapsed-container { margin-right: 6px; }
+/* the inner cover keeps no margin - it would widen the grey cover button and show as a strip next to the art */
+html.appletify-no-topPlaybar .main-nowPlayingWidget-coverArt { margin: 0 !important; }
+html.appletify-no-topPlaybar .main-nowPlayingWidget-coverArtContainer, html.appletify-no-topPlaybar .main-coverSlotCollapsed-container { width: 40px !important; }
 /* progress: thin line along the bottom of the pill, no timers */
 /* containing block = the pill itself (the widget and its column are made static) */
 html.appletify-no-topPlaybar .main-nowPlayingBar-left, html.appletify-no-topPlaybar .main-nowPlayingWidget-nowPlaying { position: static !important; }
