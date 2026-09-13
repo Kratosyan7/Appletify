@@ -290,4 +290,7 @@ html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px
 .appletify-more-button { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 0; background: none; color: rgba(255, 255, 255, .7); cursor: pointer; border-radius: 50%; padding: 0; }
 .appletify-more-button:hover { color: #fff; background: rgb(255 255 255 / 8%); }
 .appletify-more-button svg { width: 18px; height: 18px; fill: currentColor; }
-.main-nowPlayingWidget-actionButtonWrapper { display: flex; align-items: center; gap: 2px; }
+.main-nowPlayingWidget-actionButtonWrapper { display: flex; align-items: center; gap: 4px; }
+/* Hide / Add to Liked are 16px-wide buttons by default: give them the same 32px round hit area as the "..." button */
+.main-nowPlayingWidget-actionButtonWrapper > button { width: 32px !important; height: 32px !important; min-width: 32px; padding: 0 !important; margin: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 50%; }
+.main-nowPlayingWidget-actionButtonWrapper > button:hover { background: rgb(255 255 255 / 8%); }
