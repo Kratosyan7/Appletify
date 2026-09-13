@@ -3222,8 +3222,10 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-entityHeader-container:not(.main-entityHeader-withBackgroundImage) .main-entityHeader-headerText { padding-top: 36px !important; }
 
 /* ---- track list flush with the cover's left edge: no row padding, index column left-aligned ---- */
+/* keep the 16px inner padding (so the hover highlight extends left of the number) but pull the row 16px left,
+   so the number itself still starts at the cover edge */
 [data-testid="playlist-page"] .main-trackList-trackListHeaderRow,
-[data-testid="playlist-page"] .main-trackList-trackListRowGrid { padding-left: 0 !important; }
+[data-testid="playlist-page"] .main-trackList-trackListRowGrid { padding-left: 16px !important; margin-left: -16px !important; }
 [data-testid="playlist-page"] .main-trackList-trackListRowGrid .main-trackList-rowSectionIndex,
 [data-testid="playlist-page"] .main-trackList-trackListHeaderRow .main-trackList-rowSectionIndex { justify-self: start; }
 [data-testid="playlist-page"] .main-trackList-trackListRowGrid .main-trackList-rowSectionIndex { margin-left: -2px; } /* glyph side bearing: digit ink starts exactly at the cover edge */
