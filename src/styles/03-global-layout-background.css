@@ -223,5 +223,4 @@ html, body, #main, .Root { overflow-x: clip !important; }
 }
 
 /* ---- library rail: the accent highlight of the selected item is rounded like the cover inside it ---- */
-.main-yourLibraryX-listItem [role="row"][aria-selected="true"] > div,
-.main-yourLibraryX-listItem [role="row"][aria-selected="true"] > div[aria-colindex] { border-radius: 12px; overflow: hidden; }
+.main-yourLibraryX-listItem[role="row"][aria-selected="true"] > div[role="gridcell"] { border-radius: 12px; overflow: hidden; }
