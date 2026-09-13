@@ -3231,7 +3231,8 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-trackList-trackListRowGrid .main-trackList-rowSectionIndex { margin-left: -2px; } /* glyph side bearing: digit ink starts exactly at the cover edge */
 [data-testid="playlist-page"] .main-trackList-rowMarker { justify-content: flex-start !important; }
 [data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-number { text-align: left !important; }
-[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 0 !important; translate: 0 -50% !important; }
+/* the button is scaled 1.5x around its centre (09-tracklist): -12px puts the triangle's centre on the digit's centre */
+[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: -12px !important; translate: 0 -50% !important; }
 
 /* =============================================================================
    24. QUEUE PANEL — Apple Music "Up Next"
