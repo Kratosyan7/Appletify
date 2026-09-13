@@ -110,3 +110,9 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-overlay { height: 40px !important; align-items: center; }
 /* magnifier of the expanded field sits exactly where the collapsed button's icon is (12px from the left edge) */
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-searchIconContainer { padding: 8px 8px 8px 12px !important; }
+
+/* ---- "Turn on mix": Spotify adds a decorative glow SVG (drawn for its 56px round button) under Play.
+   Stretched over our 130x40 pill it looks broken - hide it, keep the pill as-is. ---- */
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarPlayButtonContainer > div[aria-hidden="true"]:has(svg) { display: none !important; }
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBar .main-playButton-PlayButton > button { background: transparent !important; box-shadow: none !important; }
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBar .main-playButton-PlayButton > button > span { background-color: #2f2f2f !important; opacity: 1 !important; }
