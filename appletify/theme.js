@@ -109,6 +109,7 @@ const AppletifySettings = (() => {
     { key: "topPlaybar",    label: "Player bar at the top (off = floating pill at the bottom)" },
     { key: "bigCovers",     label: "48px covers in playlists and the queue (off = 40px)" },
     { key: "darkTheme",     label: "Dark theme (off = light Apple Music look)" },
+    { key: "npvOnlyManual", label: "Now Playing view opens only on request (not on launch or when playback starts)" },
   ];
   const ACCENTS = [["Apple Music red", "#ff375f"], ["Pink", "#ff2d92"], ["Orange", "#ff9f0a"], ["Green", "#30d158"], ["Blue", "#0a84ff"], ["Purple", "#bf5af2"], ["Spotify green", "#1ed760"]];
   const load = () => { try { return { ...JSON.parse(localStorage.getItem(KEY) || "{}") }; } catch (_) { return {}; } };
@@ -661,4 +662,43 @@ ${appearsOn} > .main-gridContainer-gridContainer { --min-column-width: 230px !im
   globalObs.observe(document.body, { childList: true, subtree: true });
 
   checkAlbum();
+})();
+
+/* ---------------------------------------------------------------------------
+   Now Playing view guard — Spotify re-opens the right-hand Now Playing view on
+   launch and whenever playback starts from a context. With the option on, the
+   view only stays open after an explicit user action: a click in the player
+   bar or inside the panel, or the Alt+Shift+R shortcut.
+   --------------------------------------------------------------------------- */
+(function npvGuardMod() {
+  const enabled = () => !document.documentElement.classList.contains("appletify-no-npvOnlyManual");
+  let intentUntil = 0;
+  const markIntent = () => { intentUntil = Date.now() + 1500; };
+  document.addEventListener("pointerdown", (e) => {
+    const t = e.target;
+    if (t instanceof Element && t.closest(".Root__now-playing-bar, .Root__right-sidebar, #Desktop_PanelContainer_Id, .main-nowPlayingView-container")) markIntent();
+  }, true);
+  document.addEventListener("keydown", (e) => { if (e.altKey && e.shiftKey && e.code === "KeyR") markIntent(); }, true);
+  const container = () => document.querySelector("#Desktop_PanelContainer_Id");
+  const npvOpen = () => { const c = container(); return !!c && c.getBoundingClientRect().width > 0 && !!c.querySelector("[data-testid='NPV_Panel_OpenDiv']"); };
+  // Alt+Shift+R is Spotify's own "toggle Now Playing view" shortcut - only fired while the view is open, so it always closes
+  const close = () => {
+    try { if (Spicetify.Mousetrap?.trigger) { Spicetify.Mousetrap.trigger("alt+shift+r"); return true; } } catch (_) {}
+    const b = container()?.querySelector("[data-testid='PanelHeader_CloseButton'], button[aria-label='Close']");
+    if (!b) return false; b.click(); return true;
+  };
+  let wasOpen = npvOpen();
+  const check = () => {
+    const open = npvOpen();
+    if (enabled() && open && !wasOpen && Date.now() > intentUntil) { if (close()) { wasOpen = false; return; } }
+    wasOpen = open;
+  };
+  // launch: close whatever Spotify restored from the previous session
+  let tries = 0;
+  const boot = setInterval(() => {
+    tries++;
+    if (!enabled() || tries > 60) { clearInterval(boot); return; }
+    if (npvOpen() && close()) { clearInterval(boot); wasOpen = false; }
+  }, 250);
+  setInterval(check, 300);
 })();
