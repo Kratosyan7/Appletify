@@ -3135,6 +3135,8 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 .main-view-container:has([data-testid="playlist-page"] .main-entityHeader-withBackgroundImage) > .before-scroll-node { display: none !important; }
 [data-testid="playlist-page"] div.main-entityHeader-container.main-entityHeader-withBackgroundImage {
     height: 460px !important; min-height: 460px !important;
+    /* same left/right edges as the track list (25px inside the content box) */
+    width: calc(100% - 50px) !important; max-width: none !important; margin-left: 25px !important; margin-right: 25px !important; box-sizing: border-box;
     background-image: var(--apple-banner, none); background-size: cover; background-position: center 35%;
     border-radius: 16px; overflow: hidden; box-shadow: 0 16px 40px rgb(0 0 0 / 30%);
 }
@@ -3142,7 +3144,7 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .main-entityHeader-title,
 [data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .main-entityHeader-metaData * { text-shadow: 0 1px 12px rgb(0 0 0 / 35%); }
 [data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .main-actionBar-ActionBarContainer,
-[data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .playlist-playlist-playlistContent > .main-actionBar-ActionBarContainer { top: 382px !important; left: 24px !important; }
+[data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .playlist-playlist-playlistContent > .main-actionBar-ActionBarContainer { top: 382px !important; left: 49px !important; }
 
 /* =============================================================================
    24. QUEUE PANEL — Apple Music "Up Next"
