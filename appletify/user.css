@@ -1249,21 +1249,9 @@ html.appletify-no-bigCovers #queue-panel li { height: 54px; }
 }
 
 
-/*Context menu hover color*/
-.main-contextMenu-menuItemButton:before {
-    content: "";
-    position: absolute;
-    inset: 5px 6px 5px 6px;
-    z-index: 0;
-    opacity: 0;
-    border-radius: 10px;
-}
-.main-contextMenu-menuItemButton:hover::before {
-    background: var(--appletify-accent, #ff375f);
-    opacity: 1;
-}
-
-.main-contextMenu-menuItemButton > *{z-index:3;}
+/* Context menu hover: handled below (accent background on the button itself);
+   the old ::before overlay painted above the label and hid the text */
+.main-contextMenu-menuItemButton::before { content: none !important; }
 
 .main-contextMenu-menuItemButton:not([aria-checked=true]):focus, .main-contextMenu-menuItemButton:hover{
     background-color:unset;
@@ -1320,8 +1308,8 @@ html.appletify-no-bigCovers #queue-panel li { height: 54px; }
     color: rgba(255, 255, 255, 0.92) !important;
 }
 .main-contextMenu-menuItemButton::after { content: none !important; }
-.main-contextMenu-menuItemButton:hover, .main-contextMenu-menuItemButton:focus-visible,
-.main-contextMenu-menuItemButton:hover *, .main-contextMenu-menuItemButton:focus-visible * { background-color: var(--appletify-accent, #ff375f) !important; color: #fff !important; }
+.main-contextMenu-menuItemButton:hover, .main-contextMenu-menuItemButton:focus-visible { background-color: var(--appletify-accent, #ff375f) !important; color: #fff !important; }
+.main-contextMenu-menuItemButton:hover *, .main-contextMenu-menuItemButton:focus-visible * { background-color: transparent !important; color: #fff !important; -webkit-text-fill-color: #fff !important; }
 .main-contextMenu-menuItemButton:hover svg, .main-contextMenu-menuItemButton:focus-visible svg { fill: #fff !important; }
 .main-contextMenu-dividerBefore { margin-top: 5px !important; padding-top: 5px !important; border-top: 1px solid rgb(255 255 255 / 12%) !important; }
 
