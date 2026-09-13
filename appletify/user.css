@@ -168,6 +168,14 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight { min-width: 0; width: 100%; height: auto; flex: 0 0 auto; justify-content: center; margin-top: 14px; }
 /* Profile avatar centered in the rail, in line with the search / Apple icons */
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-topBar-topbarContentRight { justify-content: center; width: 100%; }
+/* Windows: Spotify gives .main-globalNav-contentRight a negative inline-end margin (room for the window controls)
+   and may add extra buttons (Install app, What's new, Friend activity) next to the avatar - both push the avatar
+   off-centre in the rail. Neutralise them: no margins/padding, only the avatar (the one button with a <figure>) stays. */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight { margin: 14px 0 0 !important; padding: 0 !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight > :not(.main-topBar-topbarContentRight) { display: none !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-topBar-topbarContentRight { margin: 0 !important; padding: 0 !important; gap: 0 !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-topBar-topbarContentRight > :not(:has(figure)) { display: none !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-topBar-topbarContentRight > button:has(figure) { margin: 0 !important; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer { flex-direction: column; align-items: center; gap: 6px; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection input,
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection input::placeholder { color: transparent; }
