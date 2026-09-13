@@ -5,7 +5,7 @@
 /* Translucent frosted glass context menu */
 .main-contextMenu-menu {
     border-radius: 16px;
-    overflow: visible;
+    overflow: visible; /* submenus live inside the parent menu, so the root must not clip */
     background-color: rgba(40, 40, 40, 0.7);
     box-shadow: 0 0 0 .5px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.12) inset, 0 12px 32px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.3);
     padding: 0px;
@@ -111,3 +111,9 @@
 .main-contextMenu-menuItemButton:hover *, .main-contextMenu-menuItemButton:focus-visible * { background-color: transparent !important; color: #fff !important; -webkit-text-fill-color: #fff !important; }
 .main-contextMenu-menuItemButton:hover svg, .main-contextMenu-menuItemButton:focus-visible svg { fill: #fff !important; }
 .main-contextMenu-dividerBefore { margin-top: 5px !important; padding-top: 5px !important; border-top: 1px solid rgb(255 255 255 / 12%) !important; }
+
+/* nested submenus (Add to other playlist, Move to folder, Share...) stay compact and scroll */
+.main-contextMenu-menuItem .main-contextMenu-menu,
+.main-contextMenu-menu .main-contextMenu-menu { max-height: min(440px, calc(100vh - 48px)) !important; overflow: hidden auto !important; }
+.main-contextMenu-menu::-webkit-scrollbar { width: 8px; }
+.main-contextMenu-menu::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 25%); border-radius: 4px; border: 2px solid transparent; background-clip: padding-box; }
