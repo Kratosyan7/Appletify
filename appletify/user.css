@@ -737,6 +737,8 @@ html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px
    shift them down so the speaker body sits at the same height in every state */
 .main-nowPlayingBar-volumeBar:is(.apple-vol-medium, .apple-vol-low) > button:has(path[d^="M9.741"]) svg path,
 .main-nowPlayingBar-volumeBar > button:has(path[d^="M13.86"]) svg path { transform: translate(8px, 19.82px); }
+/* same story in the playbar: the (hidden) badges column + 8px gap shifted the artists line right of the title */
+.main-nowPlayingWidget-trackInfo.main-trackInfo-container { column-gap: 0 !important; }
 
 /* =============================================================================
    8. APPLE-STYLE ICONS (SVG path overrides)
@@ -1179,6 +1181,10 @@ html.appletify-no-bigCovers [data-testid="playlist-page"] .main-trackList-rowIma
 html.appletify-no-bigCovers #Desktop_PanelContainer_Id li [class*="header-side"], html.appletify-no-bigCovers #Desktop_PanelContainer_Id li .x-entityImage-imageContainer,
 html.appletify-no-bigCovers #Desktop_PanelContainer_Id li .x-entityImage-imageContainer img { width: 40px !important; height: 40px !important; }
 html.appletify-no-bigCovers #queue-panel li { height: 54px; }
+
+/* The row grid is "title title title" / "badges prefix subtitle" with 0px badge columns (badges are hidden above),
+   but the column gap still pushes the artist line 4px right of the title. Drop the gap so both lines start flush. */
+.main-trackList-rowMainContent { column-gap: 0 !important; }
 
 /* =============================================================================
    10. CARDS & PLAY BUTTONS (grid cards everywhere)

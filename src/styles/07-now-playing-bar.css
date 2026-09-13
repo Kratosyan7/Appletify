@@ -307,3 +307,5 @@ html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px
    shift them down so the speaker body sits at the same height in every state */
 .main-nowPlayingBar-volumeBar:is(.apple-vol-medium, .apple-vol-low) > button:has(path[d^="M9.741"]) svg path,
 .main-nowPlayingBar-volumeBar > button:has(path[d^="M13.86"]) svg path { transform: translate(8px, 19.82px); }
+/* same story in the playbar: the (hidden) badges column + 8px gap shifted the artists line right of the title */
+.main-nowPlayingWidget-trackInfo.main-trackInfo-container { column-gap: 0 !important; }
