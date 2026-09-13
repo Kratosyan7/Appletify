@@ -294,3 +294,8 @@ html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px
 /* Hide / Add to Liked are 16px-wide buttons by default: give them the same 32px round hit area as the "..." button */
 .main-nowPlayingWidget-actionButtonWrapper > button { width: 32px !important; height: 32px !important; min-width: 32px; padding: 0 !important; margin: 0 !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; border-radius: 50%; }
 .main-nowPlayingWidget-actionButtonWrapper > button:hover { background: rgb(255 255 255 / 8%); }
+/* the "Hide" (x) button: Spotify only hides it for curated contexts (data-feedback-curated); make it hover-only everywhere.
+   It is always the first of three buttons (Hide, Add, ...), so target every button except the last two. */
+.main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)) { opacity: 0; transition: opacity .2s ease-in-out; }
+.main-nowPlayingWidget-nowPlaying:hover .main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)),
+.main-nowPlayingWidget-nowPlaying:has(:focus-visible) .main-nowPlayingWidget-actionButtonWrapper > button:not(:nth-last-child(-n+2)) { opacity: 1; }
