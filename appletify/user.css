@@ -1815,7 +1815,7 @@ main .search-searchCategory-categoryGrid [role="checkbox"], main .search-searchC
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow .playlist-playlist-searchBoxContainerFlexCenter { gap: 10px; }
 
 
-[data-testid="playlist-page"] .playlist-playlist-searchBoxContainer {zoom:125%;}
+[data-testid="playlist-page"] .playlist-playlist-searchBoxContainer { zoom: 1; }
 [data-testid="playlist-page"] :is(.x-sortBox-sortDropdown, .x-filterBox-filterInputContainer){
 
     border-radius: 20px;
@@ -3145,6 +3145,27 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .main-entityHeader-metaData * { text-shadow: 0 1px 12px rgb(0 0 0 / 35%); }
 [data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .main-actionBar-ActionBarContainer,
 [data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .playlist-playlist-playlistContent > .main-actionBar-ActionBarContainer { top: 382px !important; left: 49px !important; }
+
+/* ---- playlist action row: uniform spacing and uniform round icon buttons ---- */
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow { gap: 14px !important; align-items: center !important; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > *,
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button { margin: 0 !important; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > .main-actionBar-ActionBarPlayButtonContainer { margin-right: 0 !important; }
+/* every secondary icon button (More, Mix, Download, Save...) gets the same 40px circle */
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button.e-10810-legacy-button-tertiary:not(:has(path[d^="M13.151"], path[d^="M18.788"])),
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-expandButton,
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-sortBox-sortDropdown {
+    width: 40px !important; height: 40px !important; min-width: 40px !important; padding: 0 !important; box-sizing: border-box;
+    display: inline-flex !important; align-items: center !important; justify-content: center !important;
+    background: rgb(47 47 47) !important; border-radius: 50% !important;
+}
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow > button.e-10810-legacy-button-tertiary:not(:has(path[d^="M13.151"], path[d^="M18.788"])) svg { width: 24px !important; height: 24px !important; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .playlist-playlist-searchBoxContainer { gap: 14px !important; margin: 0 !important; }
+/* the collapsed search box is a 32px box with the button hanging 8px outside it - make it a real 40px slot */
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInputContainer { min-width: 40px !important; height: 40px !important; min-height: 40px !important; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-expandButton { left: 0 !important; top: 0 !important; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-filterInput { height: 40px !important; border-radius: 20px !important; padding-left: 40px !important; }
+[data-testid="playlist-page"] .main-actionBar-ActionBarRow .x-filterBox-overlay { height: 40px !important; align-items: center; }
 
 /* =============================================================================
    24. QUEUE PANEL — Apple Music "Up Next"

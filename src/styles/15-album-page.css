@@ -133,7 +133,7 @@
 :is([data-testid="album-page"], [data-testid="playlist-page"]) .main-actionBar-ActionBarRow .playlist-playlist-searchBoxContainerFlexCenter { gap: 10px; }
 
 
-[data-testid="playlist-page"] .playlist-playlist-searchBoxContainer {zoom:125%;}
+[data-testid="playlist-page"] .playlist-playlist-searchBoxContainer { zoom: 1; }
 [data-testid="playlist-page"] :is(.x-sortBox-sortDropdown, .x-filterBox-filterInputContainer){
 
     border-radius: 20px;
