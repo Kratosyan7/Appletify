@@ -268,10 +268,7 @@
 [data-testid="album-page"] .DmrVJc9vWCbjU_DuRvfe > div > div > p:nth-child(2),
 [data-testid="album-page"] [data-encore-id="popoverTrigger"],
 [data-testid="album-page"] .main-entityHeader-pretitle,
-[data-testid="album-page"] .main-entityHeader-backgroundColor,
-[data-testid="album-page"] .main-entityHeader-imageContainer.main-entityHeader-imageContainerNew.main-entityHeader-imageContainerClickable { pointer-events: none; }
-
-[data-testid="album-page"] .main-entityHeader-imageContainer.main-entityHeader-imageContainerNew.main-entityHeader-imageContainerClickable { pointer-events: none; display: unset; }
+[data-testid="album-page"] .main-entityHeader-backgroundColor { pointer-events: none; }
 
 /*Hide album subtitle separators*/
 [data-testid="album-page"] .main-entityHeader-headerText .main-entityHeader-divider {
@@ -312,7 +309,7 @@
 [data-testid="album-page"] .main-entityHeader-metaData .main-entityHeader-creatorWrapper figure { display: none; }
 
 
-/* Remove album cover interactive interactable */
-[data-testid="album-page"] .main-entityHeader-imageContainer { pointer-events: none; }
+/* The cover stays clickable: Spotify opens its "View album artwork" viewer (640px art) */
+[data-testid="album-page"] .main-entityHeader-imageContainer { pointer-events: auto; cursor: zoom-in; }
 
 
