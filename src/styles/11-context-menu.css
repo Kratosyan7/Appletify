@@ -121,3 +121,7 @@ div.main-contextMenu-dividerBefore, div.main-contextMenu-dividerAfter, .main-con
 .main-contextMenu-menu .main-contextMenu-menu { max-height: min(440px, calc(100vh - 48px)) !important; overflow: hidden auto !important; }
 .main-contextMenu-menu::-webkit-scrollbar { width: 8px; }
 .main-contextMenu-menu::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 25%); border-radius: 4px; border: 2px solid transparent; background-clip: padding-box; }
+
+/* "Create" (+) menu: items are Encore list rows (icon + title + subtitle), taller than a plain menu item */
+.main-contextMenu-menuItemButton:has([data-encore-id="listRow"]) { height: auto !important; min-height: 56px !important; padding: 2px 10px !important; }
+.main-contextMenu-menuItemButton:has([data-encore-id="listRow"]) [data-encore-id="listRow"] { --box-min-block-size: 52px; padding-block: 4px !important; }
