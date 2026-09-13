@@ -666,6 +666,9 @@ html.appletify-no-topPlaybar .main-nowPlayingBar-nowPlayingBar {
 }
 html.appletify-no-topPlaybar .main-nowPlayingBar-center { order: 1; width: 196px; flex: 0 0 auto; }
 html.appletify-no-topPlaybar .player-controls__buttons { gap: 2px; }
+html.appletify-no-topPlaybar .player-controls { height: 40px !important; width: 100% !important; container-type: normal !important; display: flex; align-items: center; justify-content: center; }
+html.appletify-no-topPlaybar .player-controls__buttons { margin: 0 !important; position: static !important; transform: none !important; }
+html.appletify-no-topPlaybar .main-nowPlayingBar-center { align-self: center; display: flex; align-items: center; }
 html.appletify-no-topPlaybar .main-nowPlayingBar-left {
     order: 2; flex: 1 1 auto; min-width: 0; width: auto; transform: none; justify-content: flex-start;
 }
@@ -707,6 +710,17 @@ html.appletify-no-topPlaybar .main-nowPlayingBar-extraControls { gap: 6px; }
 html.appletify-no-topPlaybar .main-nowPlayingBar-volumeBar .volume-bar__slider-container { width: 0; overflow: hidden; transition: width .2s ease; }
 html.appletify-no-topPlaybar .main-nowPlayingBar-volumeBar:hover .volume-bar__slider-container { width: 80px; }
 html.appletify-no-topPlaybar #catjam-webm { height: 40px !important; width: 40px !important; }
+
+/* --- Volume icon by level (class set by theme.js: apple-vol-high/medium/low/off) --- */
+.main-nowPlayingBar-volumeBar.apple-vol-medium > button:has(path[d^="M9.741"]) svg path { d: path('M 25.65234375,2.943359375 C 26.51171875,2.943359375 26.94140625,3.587890625 26.94140625,4.404296875 L 26.94140625,38.392578125 C 26.94140625,39.208984375 26.51171875,39.853515625 25.65234375,39.853515625 C 25.05078125,39.853515625 24.556640625,39.53125 24.169921875,39.166015625 L 13.943359375,29.197265625 C 13.70703125,28.9609375 13.427734375,28.853515625 13.041015625,28.853515625 L 5.84375,28.853515625 C 4.060546875,28.853515625 2.578125,27.392578125 2.578125,25.609375 L 2.578125,16.9296875 C 2.578125,15.146484375 4.060546875,13.6640625 5.84375,13.6640625 L 13.041015625,13.6640625 C 13.427734375,13.6640625 13.70703125,13.556640625 13.943359375,13.341796875 L 24.169921875,3.65234375 C 24.556640625,3.265625 25.05078125,2.943359375 25.65234375,2.943359375 Z M 47.201171875,6.939453125 C 47.458984375,6.74609375 47.73828125,6.83203125 47.931640625,7.068359375 C 50.896484375,10.87109375 52.486328125,15.8125 52.486328125,21.3984375 C 52.486328125,27.005859375 50.896484375,31.92578125 47.931640625,35.728515625 C 47.759765625,35.96484375 47.458984375,36.05078125 47.201171875,35.857421875 C 46.943359375,35.685546875 46.943359375,35.384765625 47.115234375,35.10546875 C 49.5859375,31.23828125 51.43359375,26.76953125 51.43359375,21.3984375 C 51.43359375,16.005859375 49.88671875,11.30078125 47.072265625,7.6484375 C 46.87890625,7.412109375 46.943359375,7.111328125 47.201171875,6.939453125 Z M 38.865234375,12.6328125 C 39.1015625,12.4609375 39.423828125,12.50390625 39.595703125,12.740234375 C 41.25,14.845703125 42.41015625,17.939453125 42.41015625,21.3984375 C 42.41015625,24.87890625 41.25,27.951171875 39.595703125,30.056640625 C 39.423828125,30.29296875 39.123046875,30.357421875 38.865234375,30.1640625 C 38.62890625,29.970703125 38.5859375,29.669921875 38.779296875,29.369140625 C 40.240234375,27.37109375 41.357421875,24.599609375 41.357421875,21.3984375 C 41.357421875,18.154296875 40.21875,15.318359375 38.71484375,13.3203125 C 38.54296875,13.10546875 38.62890625,12.826171875 38.865234375,12.6328125 Z'); }
+.main-nowPlayingBar-volumeBar.apple-vol-low > button:has(path[d^="M9.741"]) svg path { d: path('M 25.65234375,2.943359375 C 26.51171875,2.943359375 26.94140625,3.587890625 26.94140625,4.404296875 L 26.94140625,38.392578125 C 26.94140625,39.208984375 26.51171875,39.853515625 25.65234375,39.853515625 C 25.05078125,39.853515625 24.556640625,39.53125 24.169921875,39.166015625 L 13.943359375,29.197265625 C 13.70703125,28.9609375 13.427734375,28.853515625 13.041015625,28.853515625 L 5.84375,28.853515625 C 4.060546875,28.853515625 2.578125,27.392578125 2.578125,25.609375 L 2.578125,16.9296875 C 2.578125,15.146484375 4.060546875,13.6640625 5.84375,13.6640625 L 13.041015625,13.6640625 C 13.427734375,13.6640625 13.70703125,13.556640625 13.943359375,13.341796875 L 24.169921875,3.65234375 C 24.556640625,3.265625 25.05078125,2.943359375 25.65234375,2.943359375 Z M 38.865234375,12.6328125 C 39.1015625,12.4609375 39.423828125,12.50390625 39.595703125,12.740234375 C 41.25,14.845703125 42.41015625,17.939453125 42.41015625,21.3984375 C 42.41015625,24.87890625 41.25,27.951171875 39.595703125,30.056640625 C 39.423828125,30.29296875 39.123046875,30.357421875 38.865234375,30.1640625 C 38.62890625,29.970703125 38.5859375,29.669921875 38.779296875,29.369140625 C 40.240234375,27.37109375 41.357421875,24.599609375 41.357421875,21.3984375 C 41.357421875,18.154296875 40.21875,15.318359375 38.71484375,13.3203125 C 38.54296875,13.10546875 38.62890625,12.826171875 38.865234375,12.6328125 Z'); }
+
+/* --- "More" (…) button injected by theme.js next to the like button: opens the
+   track context menu (share, go to radio, …) --- */
+.appletify-more-button { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 0; background: none; color: rgba(255, 255, 255, .7); cursor: pointer; border-radius: 50%; padding: 0; }
+.appletify-more-button:hover { color: #fff; background: rgb(255 255 255 / 8%); }
+.appletify-more-button svg { width: 18px; height: 18px; fill: currentColor; }
+.main-nowPlayingWidget-actionButtonWrapper { display: flex; align-items: center; gap: 2px; }
 
 /* =============================================================================
    8. APPLE-STYLE ICONS (SVG path overrides)
@@ -2064,7 +2078,7 @@ main .search-searchCategory-categoryGrid [role="checkbox"], main .search-searchC
 /* Number / playing indicator / hover play button centered in the index column */
 [data-testid="playlist-page"] .main-trackList-rowMarker { display: flex; justify-content: center; align-items: center; padding: 0; }
 [data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-number { margin: 0; padding: 0; text-align: center; width: 100%; left: 0 !important; right: 0 !important; }
-[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 50%; top: 50%; translate: -50% -50%; }
+[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 50%; top: 50%; translate: calc(-50% + 2px) -50%; }
 
 /* Playing icon */
 [data-testid="playlist-page"] .main-trackList-playingIcon { display: block; z-index: 99; margin-left: 5px; }
@@ -3098,8 +3112,13 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-entityHeader-metaData > div.main-entityHeader-metaDataText:not(.main-entityHeader-creatorWrapper) * { font-size: 13px !important; font-weight: 600; color: rgba(255, 255, 255, 0.55); }
 [data-testid="playlist-page"] .main-entityHeader-metaData > div.main-entityHeader-metaDataText:not(.main-entityHeader-creatorWrapper) { margin-top: 6px; }
 /* action bar: Play / Shuffle / search under the meta, flush with the cover bottom */
-[data-testid="playlist-page"] .main-actionBar-ActionBarContainer,
-[data-testid="playlist-page"] > .main-actionBar-ActionBarContainer { position: absolute; left: 382px !important; right: auto !important; top: 362px !important; margin-top: 0 !important; width: auto !important; min-width: 360px; }
+[data-testid="playlist-page"] > .main-actionBar-ActionBarContainer { position: absolute; left: 382px !important; right: auto !important; top: 282px !important; margin-top: 0 !important; width: auto !important; min-width: 360px; z-index: 2; }
+/* the playlist "Add / Mix / Name & details" toolbar is a second ActionBarContainer inside
+   the content: keep it in flow under the header instead of on top of Play / Shuffle */
+[data-testid="playlist-page"] .playlist-playlist-playlistContent .main-actionBar-ActionBarContainer { position: static !important; top: auto !important; left: auto !important; margin: 6px 0 10px 24px !important; width: auto !important; min-width: 0; }
+[data-testid="playlist-page"] .playlist-playlist-playlistContent > .contentSpacing:has(.main-actionBar-ActionBarContainer) { height: auto !important; }
+/* the page section is the containing block, so the offset is the same with the playbar at the top or at the bottom */
+[data-testid="playlist-page"] { position: relative; }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) {
     display: flex; align-items: center; justify-content: center; gap: 6px;
     width: auto; min-width: 130px; height: 40px; padding: 0 18px; border-radius: 30px;
@@ -3107,6 +3126,13 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) svg { width: 18px; height: 18px; fill: var(--appletify-accent, #ff375f); }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"])::after { content: var(--appletify-i18n-shuffle, "Shuffle"); font-size: 18px; font-weight: 700; color: var(--appletify-accent, #ff375f); margin-bottom: 3px; }
+
+/* --- Playlists with a banner instead of a cover (daylist): taller hero ---- */
+[data-testid="playlist-page"] div.main-entityHeader-container.main-entityHeader-withBackgroundImage { height: 460px !important; min-height: 460px !important; }
+[data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .main-entityHeader-headerText { padding-top: 36px; }
+.main-view-container:has([data-testid="playlist-page"] .main-entityHeader-withBackgroundImage) > .before-scroll-node > div > div:nth-child(1) { height: 470px !important; top: 0 !important; }
+.main-view-container:has([data-testid="playlist-page"] .main-entityHeader-withBackgroundImage) > .before-scroll-node > div > div:nth-child(2) { height: 470px !important; }
+[data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .main-actionBar-ActionBarContainer { top: 382px !important; left: 24px !important; }
 
 /* =============================================================================
    24. QUEUE PANEL — Apple Music "Up Next"
@@ -3182,6 +3208,8 @@ html.appletify-no-nextFrom #queue-panel > div > div:last-child > div:first-child
 /* shortcuts grid (top tiles) */
 [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper, [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper img { border-radius: 8px; }
 [data-testid="home-page"] .view-homeShortcutsGrid-draggable { border-radius: 10px; }
+/* hover play button centered on the cover */
+[data-testid="home-page"] .main-card-PlayButtonContainer, main .main-card-PlayButtonContainer { left: 50% !important; top: 50% !important; right: auto !important; bottom: auto !important; translate: -50% -50%; }
 
 /* =============================================================================
    26. RESPONSIVE — narrow windows

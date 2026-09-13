@@ -231,6 +231,48 @@ const AppletifySettings = (() => {
 })();
 
 /* ---------------------------------------------------------------------------
+   2b. Playbar extras: "…" button (track context menu) and volume-level classes
+   --------------------------------------------------------------------------- */
+(function playbarExtrasMod() {
+  const wrap = document.querySelector(".main-nowPlayingWidget-actionButtonWrapper");
+  const vol = document.querySelector(".main-nowPlayingBar-volumeBar");
+  if (!wrap || !vol || !Spicetify?.Player) { setTimeout(playbarExtrasMod, 500); return; }
+
+  // "…": open the same context menu as a right-click on the track title
+  if (!wrap.querySelector(".appletify-more-button")) {
+    const btn = document.createElement("button");
+    btn.className = "appletify-more-button";
+    btn.type = "button";
+    btn.setAttribute("aria-label", AppletifyLocale.get("more.label.context", "More options for {0}").replace(/\{0\}/, "").trim());
+    btn.innerHTML = '<svg viewBox="0 0 16 16"><path d="M3 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm6.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM16 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>';
+    btn.addEventListener("click", (e) => {
+      e.preventDefault(); e.stopPropagation();
+      const target = document.querySelector(".main-trackInfo-name a, .main-nowPlayingWidget-coverArtContainer, .main-trackInfo-name");
+      if (!target) return;
+      const r = btn.getBoundingClientRect();
+      target.dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true, clientX: r.left + r.width / 2, clientY: r.top + r.height / 2 }));
+    });
+    wrap.appendChild(btn);
+  }
+
+  // volume level → class on the volume bar (icon paths in user.css)
+  const LEVELS = ["apple-vol-off", "apple-vol-low", "apple-vol-medium", "apple-vol-high"];
+  let last = null;
+  const update = () => {
+    let v = 1;
+    try { v = Spicetify.Player.getVolume(); } catch (_) {}
+    const cls = v <= 0.001 ? LEVELS[0] : v < 0.34 ? LEVELS[1] : v < 0.67 ? LEVELS[2] : LEVELS[3];
+    if (cls === last) return;
+    last = cls;
+    const bar = document.querySelector(".main-nowPlayingBar-volumeBar");
+    if (!bar) return;
+    LEVELS.forEach((c) => bar.classList.toggle(c, c === cls));
+  };
+  update();
+  setInterval(update, 400);
+})();
+
+/* ---------------------------------------------------------------------------
    3. Locale-dependent styles
    Spotify localizes aria-label / title attributes, so every selector that
    matches on them is generated here from the current dictionary instead of

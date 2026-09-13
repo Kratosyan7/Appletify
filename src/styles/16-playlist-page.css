@@ -79,7 +79,7 @@
 /* Number / playing indicator / hover play button centered in the index column */
 [data-testid="playlist-page"] .main-trackList-rowMarker { display: flex; justify-content: center; align-items: center; padding: 0; }
 [data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-number { margin: 0; padding: 0; text-align: center; width: 100%; left: 0 !important; right: 0 !important; }
-[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 50%; top: 50%; translate: -50% -50%; }
+[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 50%; top: 50%; translate: calc(-50% + 2px) -50%; }
 
 /* Playing icon */
 [data-testid="playlist-page"] .main-trackList-playingIcon { display: block; z-index: 99; margin-left: 5px; }

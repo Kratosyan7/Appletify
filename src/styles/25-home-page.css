@@ -11,3 +11,5 @@
 /* shortcuts grid (top tiles) */
 [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper, [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper img { border-radius: 8px; }
 [data-testid="home-page"] .view-homeShortcutsGrid-draggable { border-radius: 10px; }
+/* hover play button centered on the cover */
+[data-testid="home-page"] .main-card-PlayButtonContainer, main .main-card-PlayButtonContainer { left: 50% !important; top: 50% !important; right: auto !important; bottom: auto !important; translate: -50% -50%; }
