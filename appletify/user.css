@@ -3112,10 +3112,11 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-entityHeader-metaData > div.main-entityHeader-metaDataText:not(.main-entityHeader-creatorWrapper) * { font-size: 13px !important; font-weight: 600; color: rgba(255, 255, 255, 0.55); }
 [data-testid="playlist-page"] .main-entityHeader-metaData > div.main-entityHeader-metaDataText:not(.main-entityHeader-creatorWrapper) { margin-top: 6px; }
 /* action bar: Play / Shuffle / search under the meta, flush with the cover bottom */
-[data-testid="playlist-page"] > .main-actionBar-ActionBarContainer { position: absolute; left: 382px !important; right: auto !important; top: 282px !important; margin-top: 0 !important; width: auto !important; min-width: 360px; z-index: 2; }
+[data-testid="playlist-page"] > .main-actionBar-ActionBarContainer,
+[data-testid="playlist-page"] > .playlist-playlist-playlistContent > .main-actionBar-ActionBarContainer { position: absolute !important; left: 382px !important; right: auto !important; top: 282px !important; margin: 0 !important; width: auto !important; min-width: 360px; z-index: 2; }
 /* the playlist "Add / Mix / Name & details" toolbar is a second ActionBarContainer inside
    the content: keep it in flow under the header instead of on top of Play / Shuffle */
-[data-testid="playlist-page"] .playlist-playlist-playlistContent .main-actionBar-ActionBarContainer { position: static !important; top: auto !important; left: auto !important; margin: 6px 0 10px 24px !important; width: auto !important; min-width: 0; }
+[data-testid="playlist-page"] .playlist-playlist-playlistContent > .contentSpacing .main-actionBar-ActionBarContainer { position: static !important; top: auto !important; left: auto !important; margin: 6px 0 10px 24px !important; width: auto !important; min-width: 0; }
 [data-testid="playlist-page"] .playlist-playlist-playlistContent > .contentSpacing:has(.main-actionBar-ActionBarContainer) { height: auto !important; }
 /* the page section is the containing block, so the offset is the same with the playbar at the top or at the bottom */
 [data-testid="playlist-page"] { position: relative; }
@@ -3132,7 +3133,8 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .main-entityHeader-headerText { padding-top: 36px; }
 .main-view-container:has([data-testid="playlist-page"] .main-entityHeader-withBackgroundImage) > .before-scroll-node > div > div:nth-child(1) { height: 470px !important; top: 0 !important; }
 .main-view-container:has([data-testid="playlist-page"] .main-entityHeader-withBackgroundImage) > .before-scroll-node > div > div:nth-child(2) { height: 470px !important; }
-[data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .main-actionBar-ActionBarContainer { top: 382px !important; left: 24px !important; }
+[data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .main-actionBar-ActionBarContainer,
+[data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .playlist-playlist-playlistContent > .main-actionBar-ActionBarContainer { top: 382px !important; left: 24px !important; }
 
 /* =============================================================================
    24. QUEUE PANEL — Apple Music "Up Next"
