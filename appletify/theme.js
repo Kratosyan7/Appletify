@@ -273,6 +273,24 @@ const AppletifySettings = (() => {
 })();
 
 /* ---------------------------------------------------------------------------
+   2c. Hero banner (daylist-style playlists): copy Spotify's fixed background
+   layer image onto the header as --apple-banner (see user.css §23)
+   --------------------------------------------------------------------------- */
+(function bannerMod() {
+  let raf = null;
+  const sync = () => {
+    raf = null;
+    const header = document.querySelector('[data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage');
+    if (!header) return;
+    const layer = document.querySelector(".main-view-container > .before-scroll-node > div > div:nth-child(1)");
+    const bg = layer && layer.style.backgroundImage;
+    if (bg && bg !== "none" && header.style.getPropertyValue("--apple-banner") !== bg) header.style.setProperty("--apple-banner", bg);
+  };
+  new MutationObserver(() => { if (!raf) raf = requestAnimationFrame(sync); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style"] });
+  sync();
+})();
+
+/* ---------------------------------------------------------------------------
    3. Locale-dependent styles
    Spotify localizes aria-label / title attributes, so every selector that
    matches on them is generated here from the current dictionary instead of

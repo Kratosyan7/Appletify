@@ -67,10 +67,18 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"]) svg { width: 18px; height: 18px; fill: var(--appletify-accent, #ff375f); }
 [data-testid="playlist-page"] .main-actionBar-ActionBarRow > button:has(path[d^="M13.151"], path[d^="M18.788"])::after { content: var(--appletify-i18n-shuffle, "Shuffle"); font-size: 18px; font-weight: 700; color: var(--appletify-accent, #ff375f); margin-bottom: 3px; }
 
-/* --- Playlists with a banner instead of a cover (daylist): taller hero ---- */
-[data-testid="playlist-page"] div.main-entityHeader-container.main-entityHeader-withBackgroundImage { height: 460px !important; min-height: 460px !important; }
+/* --- Playlists with a banner instead of a cover (daylist): rounded hero ----
+   Spotify paints the banner on a fixed layer behind the page (with a dark
+   gradient); theme.js copies the image URL into --apple-banner on the header,
+   so the hero scrolls with the page and is shown undimmed. */
+.main-view-container:has([data-testid="playlist-page"] .main-entityHeader-withBackgroundImage) > .before-scroll-node { display: none !important; }
+[data-testid="playlist-page"] div.main-entityHeader-container.main-entityHeader-withBackgroundImage {
+    height: 460px !important; min-height: 460px !important;
+    background-image: var(--apple-banner, none); background-size: cover; background-position: center 35%;
+    border-radius: 16px; overflow: hidden; box-shadow: 0 16px 40px rgb(0 0 0 / 30%);
+}
 [data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .main-entityHeader-headerText { padding-top: 36px; }
-.main-view-container:has([data-testid="playlist-page"] .main-entityHeader-withBackgroundImage) > .before-scroll-node > div > div:nth-child(1) { height: 470px !important; top: 0 !important; }
-.main-view-container:has([data-testid="playlist-page"] .main-entityHeader-withBackgroundImage) > .before-scroll-node > div > div:nth-child(2) { height: 470px !important; }
+[data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .main-entityHeader-title,
+[data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage .main-entityHeader-metaData * { text-shadow: 0 1px 12px rgb(0 0 0 / 35%); }
 [data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .main-actionBar-ActionBarContainer,
 [data-testid="playlist-page"]:has(.main-entityHeader-withBackgroundImage) > .playlist-playlist-playlistContent > .main-actionBar-ActionBarContainer { top: 382px !important; left: 24px !important; }
