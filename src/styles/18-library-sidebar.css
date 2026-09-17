@@ -48,7 +48,7 @@
 
 .main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY button span span svg { fill: white; scale: 1.3; }
 .main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY button > span { background-color: #00000080; backdrop-filter: blur(30px); }
-.main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY .e-10810-button-primary:hover .e-10810-button-primary__inner { background-color: unset; }
+.main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY .e-10860-button-primary:hover .e-10860-button-primary__inner { background-color: unset; }
 
 /* Library "play" button in list items */
 #Desktop_LeftSidebar_Id [role="grid"] .ix_8kg3iUb9VS5SmTnBY button > span { background-color: unset; backdrop-filter: unset; }
@@ -223,7 +223,7 @@
     backdrop-filter: blur(30px);
 }
 
-.main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY .e-10810-button-primary:hover .e-10810-button-primary__inner {
+.main-yourLibraryX-libraryContainer .ix_8kg3iUb9VS5SmTnBY .e-10860-button-primary:hover .e-10860-button-primary__inner {
     background-color: unset;
 }
 
@@ -241,7 +241,7 @@
 }
 
 /* Expanded sidebar: search bar transparent */
-.main-yourLibraryX-libraryContainer.YourLibraryX.sikBfynL1Y6I25nVpbAg .main-globalNav-searchSection .main-topBar-searchBar {
+.main-yourLibraryX-libraryContainer.YourLibraryX.sikBfynL1Y6I25nVpbAg .main-globalNav-searchSection .main-globalNav-searchInputContainer {
     background-color: transparent;
 }
 
@@ -250,7 +250,7 @@
 }
 
 /* ⚠️ DYNAMIC CLASS — .sikBfynL1Y6I25nVpbAg = expanded sidebar search bar shadow */
-.main-yourLibraryX-libraryContainer.YourLibraryX.sikBfynL1Y6I25nVpbAg .b7r2WRiu5f9Q99qmyreh .main-topBar-searchBar {
+.main-yourLibraryX-libraryContainer.YourLibraryX.sikBfynL1Y6I25nVpbAg .b7r2WRiu5f9Q99qmyreh .main-globalNav-searchInputContainer {
     box-shadow: none !important;
 }
 
@@ -260,7 +260,7 @@
 }
 
 /* ⚠️ DYNAMIC CLASS — .IYex0sXu8fnCz1FqFbRe = clear X button in search bar */
-.main-topBar-searchBar .IYex0sXu8fnCz1FqFbRe {
+.main-globalNav-searchInputContainer .IYex0sXu8fnCz1FqFbRe {
     display: none;
 }
 
@@ -269,7 +269,7 @@
 }
 
 /* Profile avatar button zoom */
-[data-encore-id="buttonTertiary"]:has(.main-avatar-avatar) {
+[data-encore-id="buttonTertiary"]:has(figure.main-image-image) {
     zoom: 1.3;
     margin-right: 19px;
     background-color: unset;

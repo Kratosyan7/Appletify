@@ -117,10 +117,10 @@
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .main-card-imageContainer
 {width:260px;}
 
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .e-10810-card__main
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .e-10860-card__main
 {width:260px;}
 
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .e-10810-card__button{
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) .e-10860-card__button{
     display:none;
 }
 
@@ -128,7 +128,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.e-10810-card__main{padding: 2px 0px 2px;}
+.e-10860-card__main{padding: 2px 0px 2px;}
 
 [data-test-uri^="spotify:artist"] :is(.main-entityHeader-overlay, .main-entityHeader-backgroundColor) { background: unset; background-color: unset !important; }
 
@@ -186,7 +186,7 @@
 
 
 /* Artist "fans also like" round images */
-[data-test-uri^="spotify:artist:"] .main-gridContainer-gridContainer:has(.main-avatar-avatar.THD8_ePsjnvqfZokXdKS) { display: none; }
+[data-test-uri^="spotify:artist:"] .main-gridContainer-gridContainer:has(figure.main-image-image.THD8_ePsjnvqfZokXdKS) { display: none; }
 [data-test-uri^="spotify:artist:"] .main-gridContainer-gridContainer:has(.iFZMKULilfEIXBIuSDJW) { order: 3; position: relative; margin: 60px 0 40px 0; }
 
 .main-gridContainer-gridContainer:has(.iFZMKULilfEIXBIuSDJW)::before {
@@ -210,12 +210,12 @@
 
 /*Shelves*/
 
-[data-test-uri^="spotify:artist"] .contentSpacing > .main-shelf-shelf{
+[data-test-uri^="spotify:artist"] .contentSpacing > section:has(h2){
     padding-left: 60px;
     container-type: inline-size;
     scrollbar-width: none;
 }
-[data-test-uri^="spotify:artist"] .main-shelf-shelf .main-gridContainer-gridContainer{
+[data-test-uri^="spotify:artist"] section:has(h2) .main-gridContainer-gridContainer{
 display: grid;
 grid-auto-flow: column;
 grid-auto-columns: var(--min-column-width);
@@ -266,25 +266,25 @@ section > section > div.artist-artistDiscography-cardGrid > div { --min-column-w
     border-radius: 100px;
     box-shadow: inset 0 1.5px 1px rgb(255 255 255 / 8%), inset 0 -1px 1px rgb(155 155 155 / 19%);
 }
-[data-test-uri^="spotify:artist"] .e-10810-legacy-chip__inner{
+[data-test-uri^="spotify:artist"] .e-10860-legacy-chip__inner{
     padding: 8px;
     padding-inline: 18px;
     background-color:unset;
     font-size: 15px;
 }
 
-[data-test-uri^="spotify:artist"] .e-10810-legacy-chip__inner--selected{
+[data-test-uri^="spotify:artist"] .e-10860-legacy-chip__inner--selected{
     color: rgba(255, 255, 255, .92);
     background-color: #747474;
     box-shadow: inset 0 1px 1px rgb(255 255 255 / 10%), inset 0 -1px 1px rgb(255 255 255 / 10%);
 }
-[aria-checked="true"] .e-10810-legacy-chip:hover>.e-10810-legacy-chip__inner{background-color:unset;}
+[aria-checked="true"] .e-10860-legacy-chip:hover>.e-10860-legacy-chip__inner{background-color:unset;}
 [data-test-uri^="spotify:artist"] [data-encore-id="chip"] {margin-bottom: 0px;}
 
 
 
 /* Shelf headers */
-[data-test-uri^="spotify:artist"] .main-shelf-header h2 span a::after {
+[data-test-uri^="spotify:artist"] section:has(h2) > [data-encore-id="listRow"] h2 span a::after {
     background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%20fill%3D%22%23999999%22%20stroke%3D%22none%22%3E%3Cpath%20d%3D%22M19.817%2061.863c1.48%200%202.672-.515%203.702-1.546l24.243-23.63c1.352-1.385%201.996-2.737%202.028-4.443%200-1.674-.644-3.09-2.028-4.443L23.519%204.138c-1.03-.998-2.253-1.513-3.702-1.513-2.994%200-5.409%202.382-5.409%205.344%200%201.481.612%202.833%201.739%203.96l20.99%2020.347-20.99%2020.283c-1.127%201.126-1.739%202.478-1.739%203.96%200%202.93%202.415%205.344%205.409%205.344Z%22%2F%3E%3C%2Fsvg%3E") no-repeat center center;
     content: "";
     display: inline-block;
@@ -340,7 +340,7 @@ section > section > div.artist-artistDiscography-cardGrid > div { --min-column-w
 /* ⚠️ DYNAMIC CLASS — .lLVLck3qrPA1TLtWobAd = "More by" shelf */
 .lLVLck3qrPA1TLtWobAd { margin-bottom: 13px; margin-top: 66px; }
 
-section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before {
+section.lLVLck3qrPA1TLtWobAdsection:has(h2).Shelf.Sq2ZlLQM6q75ALS7Xctj::before {
     content: "";
     position: absolute;
     inset: -30px;
@@ -352,7 +352,7 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
 }
 
 
-.main-card-cardMetadata{
+[class*="_title-area_"]{
     font-size: 15px;
     min-height:unset;
 }
@@ -384,7 +384,7 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
 /* Things to HIDE on artist page ("Discovered on" / "Featuring" shelves are
    matched on localized aria-labels and generated in theme.js) */
 .artist-popularTrackList-seeMore,
-[data-test-uri^="spotify:artist"] .main-entityHeader-pretitle { display: none; }
+[data-test-uri^="spotify:artist"] .main-entityHeader-headerText > span[data-encore-id="text"]:first-child { display: none; }
 
 /*Hide top songs view count*/
 [data-test-uri^="spotify:artist"] .main-trackList-rowSectionVariable[aria-colindex="3"]{display:none;}
@@ -433,10 +433,10 @@ section.lLVLck3qrPA1TLtWobAd.main-shelf-shelf.Shelf.Sq2ZlLQM6q75ALS7Xctj::before
    ("Fans also like" order is set in theme.js via its localized aria-label.) */
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing { display: flex; flex-direction: column; }
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > div:nth-child(1) { order: 1; }
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf { order: 4; }
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf:has(.artist-artistDiscography-cardGrid),
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf:has([class*="Discography"]),
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf:nth-of-type(1) { order: 2; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section:has(h2) { order: 4; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section:has(h2):has(.artist-artistDiscography-cardGrid),
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section:has(h2):has([class*="Discography"]),
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section:has(h2):nth-of-type(1) { order: 2; }
 [data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > .main-gridContainer-gridContainer:has(h2) { order: 8 !important; margin-top: 48px !important; margin-bottom: 40px; }
 /* uniform vertical rhythm between sections */
-[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section.main-shelf-shelf { margin-top: 12px; margin-bottom: 12px; }
+[data-test-uri^="spotify:artist"] .main-actionBar-ActionBarContainer + .contentSpacing > section:has(h2) { margin-top: 12px; margin-bottom: 12px; }

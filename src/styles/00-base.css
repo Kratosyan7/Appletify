@@ -5,7 +5,7 @@
    these modules were verified against Spotify 1.2.98; classes that had
    disappeared were replaced by stable selectors (testid / semantic classes /
    :has()). After a Spotify update, re-check them against Apps/xpui/*.css.
-   Encore class prefix (.e-10810-*) changes with Spotify releases too — grep
+   Encore class prefix (.e-10860-*) changes with Spotify releases too — grep
    the DOM for "e-NNNNN-" and update the prefix when buttons lose styling.
    ============================================================================= */
 

@@ -32,3 +32,8 @@
 }
 
 
+
+/* Right panel (queue / Now Playing view): Spotify draws its own overlay scrollbar (.os-scrollbar), so the native one
+   must never show next to it - Spotify 1.3.0 sometimes leaves a native track visible inside the list. */
+#Desktop_PanelContainer_Id, #Desktop_PanelContainer_Id * { scrollbar-width: none !important; }
+#Desktop_PanelContainer_Id::-webkit-scrollbar, #Desktop_PanelContainer_Id *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }

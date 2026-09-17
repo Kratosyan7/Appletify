@@ -282,13 +282,19 @@ const AppletifySettings = (() => {
   let raf = null;
   const sync = () => {
     raf = null;
-    const header = document.querySelector('[data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage');
+    const header = document.querySelector('[data-testid="playlist-page"] .main-entityHeader-container');
     if (!header) return;
     const layer = document.querySelector(".main-view-container > .before-scroll-node > div > div:nth-child(1)");
     const bg = layer && layer.style.backgroundImage;
-    if (bg && bg !== "none" && header.style.getPropertyValue("--apple-banner") !== bg) header.style.setProperty("--apple-banner", bg);
+    // Spotify 1.3.0 dropped .main-entityHeader-withBackgroundImage: a "hero" playlist is one whose header has no cover
+    // container while the fixed scroll layer carries the artwork. Mark it so the CSS can style it like the old hero.
+    const hero = !!bg && bg !== "none" && !header.querySelector(".main-entityHeader-imageContainer");
+    // a data attribute survives React re-renders (className is re-written on every render)
+    if (hero) header.setAttribute("data-apple-hero", ""); else header.removeAttribute("data-apple-hero");
+    if (bg && bg !== "none" && (hero || header.classList.contains("main-entityHeader-withBackgroundImage")) && header.style.getPropertyValue("--apple-banner") !== bg) header.style.setProperty("--apple-banner", bg);
   };
-  new MutationObserver(() => { if (!raf) raf = requestAnimationFrame(sync); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style"] });
+  new MutationObserver(() => { if (!raf) raf = requestAnimationFrame(sync); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class"] });
+  setInterval(sync, 500);
   sync();
 })();
 

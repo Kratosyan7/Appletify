@@ -6,7 +6,7 @@
 [data-testid="home-page"] section a[href*="/section/"], [data-testid="home-page"] section a[href*="/genre/"] { font-size: 13px; color: rgb(255 255 255 / 55%); }
 /* cards */
 [data-testid="home-page"] .main-cardImage-imageWrapper, [data-testid="home-page"] .main-cardImage-image { border-radius: 8px !important; }
-[data-testid="home-page"] [data-encore-id="cardTitle"], [data-testid="home-page"] .main-card-cardMetadata a, [data-testid="home-page"] [class*="card__main"] a { font-size: 14px; font-weight: 600; }
+[data-testid="home-page"] [data-encore-id="cardTitle"], [data-testid="home-page"] [class*="_title-area_"] a, [data-testid="home-page"] [class*="card__main"] a { font-size: 14px; font-weight: 600; }
 [data-testid="home-page"] [data-encore-id="cardSubtitle"] { font-size: 13px; color: rgb(255 255 255 / 55%); }
 /* shortcuts grid (top tiles) */
 [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper, [data-testid="home-page"] .view-homeShortcutsGrid-imageWrapper img { border-radius: 8px; }

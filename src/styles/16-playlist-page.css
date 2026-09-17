@@ -16,11 +16,11 @@
 
 
 /* Title */
-[data-testid="playlist-page"] .main-entityHeader-title .e-10810-text.encore-text-headline-large.encore-internal-color-text-base { font-size: 2.3rem !important; }
+[data-testid="playlist-page"] .main-entityHeader-title .e-10860-text.encore-text-headline-large.encore-internal-color-text-base { font-size: 2.3rem !important; }
 
 /* Container */
 [data-testid="playlist-page"] .main-entityHeader-container { max-width: 95%; margin-bottom: 29px; }
-[data-testid="playlist-page"] .main-entityHeader-container.main-entityHeader-withBackgroundImage { height: 450px; }
+[data-testid="playlist-page"] .main-entityHeader-container:is(.main-entityHeader-withBackgroundImage, [data-apple-hero]) { height: 450px; }
 [data-testid="playlist-page"] .main-entityHeader-titleButton { height: 40%; }
 
 
@@ -78,11 +78,11 @@
 [data-testid="playlist-page"] .main-trackList-trackListRow { --tracklist-index-column-width: 28px; }
 /* Number / playing indicator / hover play button centered in the index column */
 [data-testid="playlist-page"] .main-trackList-rowMarker { display: flex; justify-content: center; align-items: center; padding: 0; }
-[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-number { margin: 0; padding: 0; text-align: center; width: 100%; left: 0 !important; right: 0 !important; }
+[data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowMarker > span { margin: 0; padding: 0; text-align: center; width: 100%; left: 0 !important; right: 0 !important; }
 [data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: 50%; top: 50%; translate: -50% -50%; }
 
 /* Playing icon */
-[data-testid="playlist-page"] .main-trackList-playingIcon { display: block; z-index: 99; margin-left: 5px; }
+[data-testid="playlist-page"] .main-trackList-rowMarker > img { display: block; z-index: 99; margin-left: 5px; }
 [data-testid="playlist-page"] .main-trackList-rowImagePlayButton { display: block; z-index: 99; }
 
 
@@ -92,11 +92,11 @@
 
 
 /*Hide artist underneath songs in abums if it is not multiple artists*/
-[data-testid="album-page"] .main-trackList-rowMainContentSubTitle:not(:has(> span > a:nth-child(2))){
+[data-testid="album-page"] .main-trackList-rowMainContent > span.standalone-ellipsis-one-line:not(:has(> span > a:nth-child(2))){
     display: none;
 }
 
-[data-testid="album-page"] .main-trackList-rowMainContentSubTitle{
+[data-testid="album-page"] .main-trackList-rowMainContent > span.standalone-ellipsis-one-line{
     grid-column: auto !important;
     grid-area: subtitle;
 }
@@ -118,7 +118,7 @@
 [data-testid="playlist-page"] .main-entityHeader-backgroundColor { display: none; }
 
 /* Play button hover */
-[data-testid="playlist-page"] .e-10810-button-primary:hover .e-10810-button-primary__inner { background-color: var(--background-highlight); }
+[data-testid="playlist-page"] .e-10860-button-primary:hover .e-10860-button-primary__inner { background-color: var(--background-highlight); }
 
 /* Inline curation (add music) section */
 .playlist-playlist-playlistInlineCurationSection { margin-left: 20px; margin-right: 20px; }
@@ -135,7 +135,7 @@
 /* Things to HIDE on playlist page */
 [data-testid="playlist-page"] [data-testid="recommended-track"],
 [data-testid="playlist-page"] .playlist-playlist-findMoreButton,
-[data-testid="playlist-page"] .main-entityHeader-pretitle,
+[data-testid="playlist-page"] .main-entityHeader-headerText > span[data-encore-id="text"]:first-child,
 [data-testid="playlist-page"] [data-encore-id="popoverTrigger"] { display: none; }
 /* "Invite collaborators" button — localized aria-label, generated in theme.js */
 

@@ -55,19 +55,18 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
 /* Collapsed sidebar (class toggled by theme.js): the 72px rail keeps nav
    arrows, custom-app buttons (Marketplace) and the profile avatar; only the
    noisy extras (extension status pill, What's New / friend activity) hide */
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .SLT_ConnectionIndicator,
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons { display: none; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .SLT_ConnectionIndicator { display: none; }
+   Keep the container, hide everything in it except the avatar (the only button with a <figure>). */
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons { display: flex !important; justify-content: center; width: 100%; margin: 0 !important; padding: 0 !important; gap: 0 !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons > :not(:has(figure)) { display: none !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons > button:has(figure) { margin: 0 !important; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight { min-width: 0; width: 100%; height: auto; flex: 0 0 auto; justify-content: center; margin-top: 14px; }
 /* Profile avatar centered in the rail, in line with the search / Apple icons */
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-topBar-topbarContentRight { justify-content: center; width: 100%; }
 /* Windows: Spotify gives .main-globalNav-contentRight a negative inline-end margin (room for the window controls)
    and may add extra buttons (Install app, What's new, Friend activity) next to the avatar - both push the avatar
    off-centre in the rail. Neutralise them: no margins/padding, only the avatar (the one button with a <figure>) stays. */
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight { margin: 14px 0 0 !important; padding: 0 !important; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight > :not(.main-topBar-topbarContentRight) { display: none !important; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-topBar-topbarContentRight { margin: 0 !important; padding: 0 !important; gap: 0 !important; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-topBar-topbarContentRight > :not(:has(figure)) { display: none !important; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-topBar-topbarContentRight > button:has(figure) { margin: 0 !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight > :not(.main-actionButtons) { display: none !important; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchContainer { flex-direction: column; align-items: center; gap: 6px; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection input,
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-searchSection input::placeholder { color: transparent; }
@@ -231,6 +230,6 @@ html, body, #main, .Root { overflow-x: clip !important; }
 }
 
 /* ---- library rail: the accent highlight of the selected item is rounded like the cover inside it ---- */
-.main-yourLibraryX-listItem[role="row"][aria-selected="true"] > div[role="gridcell"] { border-radius: 12px; overflow: hidden; }
+.main-yourLibraryX-libraryRootlist [role="row"][aria-selected="true"] > div[role="gridcell"] { border-radius: 12px; overflow: hidden; }
 /* square 64px cell in the collapsed rail: 48px cover + 8px on every side (the default cell is 62px wide, 6px on the right) */
-.Root__nav-bar.apple-sidebar-collapsed .main-yourLibraryX-listItem[role="row"] > div[role="gridcell"] { width: 64px !important; min-width: 64px !important; box-sizing: border-box; }
+.Root__nav-bar.apple-sidebar-collapsed .main-yourLibraryX-libraryRootlist [role="row"] > div[role="gridcell"] { width: 64px !important; min-width: 64px !important; box-sizing: border-box; }

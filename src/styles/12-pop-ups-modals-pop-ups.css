@@ -5,7 +5,7 @@
 /* Notistack (toast) nudge up */
 .notistack-CollapseWrapper { margin-top: -200px; }
 
-.e-10810-box--elevated {Background-color: rgb(61 61 61 / 92%);    border-radius: 20px;}
+.e-10860-box--elevated {Background-color: rgb(61 61 61 / 92%);    border-radius: 20px;}
 
 .encore-light-theme{--background-base:rgb(61 61 61 / 92%); }
 
@@ -35,7 +35,7 @@
 .GenericModal__overlay {background-color: rgba(0, 0, 0, .2);}
 
 /* Translucent elevated box (toasts, tooltips) */
-.e-91000-box--elevated, .e-10810-box--elevated {
+.e-91000-box--elevated, .e-10860-box--elevated {
     background-color: #525050cf;
     backdrop-filter: blur(28px) saturate(200%);
     border-radius: 13px;
@@ -44,7 +44,7 @@
     border: 0.5px solid hsla(0, 0%, 100%, .1);
 }
 
-:is(.e-91000-box--elevated, .e-10810-box--elevated) span { color: white; }
+:is(.e-91000-box--elevated, .e-10860-box--elevated) span { color: white; }
 
 /* Track credits modal */
 .main-trackCreditsModal-container {
@@ -133,10 +133,10 @@
 
 /* Toasts ("Added to playlist" etc.) are notistack snackbars on Spotify's white
    elevated box; the theme's global white text made them unreadable — dark text */
-.notistack-Snackbar .e-10810-legacy-box--elevated,
-.notistack-Snackbar .e-10810-legacy-box--elevated *,
+.notistack-Snackbar .e-10860-legacy-box--elevated,
+.notistack-Snackbar .e-10860-legacy-box--elevated *,
 .notistack-Snackbar [data-encore-id="text"] { color: #141414 !important; }
-.notistack-Snackbar .e-10810-legacy-box--elevated { background-color: rgba(255, 255, 255, 0.96) !important; border-radius: 12px; }
+.notistack-Snackbar .e-10860-legacy-box--elevated { background-color: rgba(255, 255, 255, 0.96) !important; border-radius: 12px; }
 
 /* --- macOS-style dialogs ------------------------------------------------- */
 .GenericModal { border-radius: 14px !important; background-color: rgb(44 44 46 / 92%) !important; backdrop-filter: blur(40px) saturate(180%); box-shadow: 0 0 0 0.5px rgb(0 0 0 / 50%), inset 0 0 0 0.5px rgb(255 255 255 / 12%), 0 24px 60px rgb(0 0 0 / 45%) !important; }

@@ -72,7 +72,7 @@
 .main-nowPlayingBar-extraControls { gap: 10px; margin-right: 0; }
 
 /* Volume bar order */
-.main-nowPlayingBar-right .volume-bar { order: 1; min-width: 110px; }
+.main-nowPlayingBar-right [data-testid="volume-bar"] { order: 1; min-width: 110px; }
 .main-nowPlayingBar-volumeBar { flex: 0 0 auto; }
 .main-nowPlayingBar-volumeBar .volume-bar__slider-container { width: 90px; }
 .main-nowPlayingBar-right button:has(.LyricsPageIcon) { order: 2 !important; }
@@ -80,7 +80,7 @@
 
 /* Extra controls ordering */
 .main-nowPlayingBar-extraControls > #SpicyLyrics_PopupLyricsButton { order: 1!important; }
-.main-nowPlayingBar-extraControls .main-genericButton-button:has(#SpicyLyricsPageSvg) { order: 2;}
+.main-nowPlayingBar-extraControls button:has(#SpicyLyricsPageSvg) { order: 2;}
 .main-nowPlayingBar-extraControls > .main-useDropTarget-base { order: 3; }
 .main-nowPlayingBar-extraControls > span { order: 4; }
 .main-nowPlayingBar-volumeBar { order: 5; }

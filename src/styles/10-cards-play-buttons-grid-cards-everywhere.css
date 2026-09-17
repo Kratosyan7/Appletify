@@ -12,12 +12,12 @@
 }
 
 /*Remove native item hover color*/
-.e-10810-box--interactive:after{
+.e-10860-box--interactive:after{
     content:unset;
 }
 
 
-.e-10810-card__column:has(>[href^="/artist/"]){
+.e-10860-card__column:has(>[href^="/artist/"]){
     align-items: center;
 }
 
@@ -37,14 +37,14 @@
     backdrop-filter: blur(60px) !important;
 }
 
-.main-card-PlayButtonContainer .e-10810-button-primary:hover .e-10810-button-primary__inner { background-color: unset; }
+.main-card-PlayButtonContainer .e-10860-button-primary:hover .e-10860-button-primary__inner { background-color: unset; }
 
 /* Round artist card images everywhere */
 [aria-labelledby*="card-title-spotify:artist"] .main-cardImage-imageWrapper { border-radius: 100%!important; }
 
 
 /* Card header text */
-.main-cardHeader-text { font-weight: 600; zoom: 1.21; }
-.main-card-card .main-cardHeader-link { margin-top: 30px; }
+[class*="_title-area_"] > span:first-child { font-weight: 600; zoom: 1.21; }
+[class*="_card-container_"] .main-cardHeader-link { margin-top: 30px; }
 
 

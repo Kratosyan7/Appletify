@@ -30,8 +30,8 @@
 .main-trackList-trackListRow[aria-selected="true"]:hover { background-color: #d60017; }
 
 /* Multi-selected row */
-.main-trackList-trackListRow.main-trackList-selected,
-.main-trackList-trackListRow.main-trackList-selected:hover { background-color: #a30012; }
+.main-trackList-trackListRow:is([aria-selected="true"], :has(> [aria-selected="true"])),
+.main-trackList-trackListRow:is([aria-selected="true"], :has(> [aria-selected="true"])):hover { background-color: #a30012; }
 
 /* Active row — unset highlight color */
 .main-trackList-trackListRow:has(.main-trackList-rowMainContent .encore-internal-color-text-bright-accent) .main-trackList-rowMarker { color: unset; }
@@ -40,14 +40,14 @@
 .main-trackList-trackListRow[aria-selected="true"] .Up3ALJRog0ejdGp8Bbyo { display: none; }
 
 /* Active/playing row tracklist color */
-.main-trackList-trackListRow.main-trackList-active .main-trackList-rowMarker { color: rgba(253, 253, 253, 0.392); }
-.main-trackList-trackListRow.main-trackList-active .main-trackList-rowTitle { color: white; }
+.main-trackList-trackListRow:has(.main-trackList-rowMarker > img) .main-trackList-rowMarker { color: rgba(253, 253, 253, 0.392); }
+.main-trackList-trackListRow:has(.main-trackList-rowMarker > img) .main-trackList-rowTitle { color: white; }
 
 /* Playing icon white */
-.main-trackList-playingIcon { filter: grayscale(100%) brightness(200%); }
+.main-trackList-rowMarker > img { filter: grayscale(100%) brightness(200%); }
 
 /* Three dots button (always visible, red) */
-.main-trackList-rowMoreButton {
+.main-trackList-rowSectionEnd > button:last-child {
     opacity: 1;
     color: var(--appletify-accent, #ff375f);
     margin-left: 10px;
@@ -64,7 +64,7 @@
     font-size: 17px;
 }
 
-.main-trackList-duration{
+.main-trackList-rowDuration{
     color: rgba(255, 255, 255, 0.64);
     font-size: 16px;
 }
@@ -85,7 +85,7 @@
     grid-template: "title badges" "subtitle subtitle" / auto 1fr;
 }
 
-[data-testid="album-page"] .main-trackList-rowMainContentSubTitle{
+[data-testid="album-page"] .main-trackList-rowMainContent > span.standalone-ellipsis-one-line{
     grid-area: subtitle;
     grid-column-start:unset;
 }
@@ -98,20 +98,20 @@
 .x-explicit-label { background-color: rgba(255, 255, 255, 0.64); zoom: 0.7; }
 
 /* Three-dots button in track rows */
-.main-trackList-rowMoreButton {
+.main-trackList-rowSectionEnd > button:last-child {
     opacity: 1 !important;
     color: var(--appletify-accent, #ff375f) !important;
     padding-right: 9px;
     scale: 1.2;
 }
 
-.main-trackList-trackListRow:hover:not(.main-trackList-disabled) .main-trackList-rowMoreButton { color: unset; }
+.main-trackList-trackListRow:hover:not(.main-trackList-disabled) .main-trackList-rowSectionEnd > button:last-child { color: unset; }
 
 /* Three-dots button on the selected row */
-.main-trackList-trackListRowGrid[aria-selected="true"] .main-trackList-rowMoreButton { color: white; }
+.main-trackList-trackListRowGrid[aria-selected="true"] .main-trackList-rowSectionEnd > button:last-child { color: white; }
 
 /* Track time column */
-.main-trackList-duration {
+.main-trackList-rowDuration {
     color: rgba(255, 255, 255, 0.64);
     font-size: 15px;
     padding-right: 8px;

@@ -98,7 +98,7 @@
     padding-top: 7px;
 }
 
-.marketplace-grid .main-card-draggable .main-card-cardMetadata .marketplace-card__bottom-meta {
+.marketplace-grid .main-card-draggable [class*="_title-area_"] .marketplace-card__bottom-meta {
     display: none;
 }
 
