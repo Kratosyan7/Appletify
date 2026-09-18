@@ -59,7 +59,8 @@ html, body, .Root__top-container, .Root__globalNav, .Root__nav-bar {
    Keep the container, hide everything in it except the avatar (the only button with a <figure>). */
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons { display: flex !important; justify-content: center; width: 100%; margin: 0 !important; padding: 0 !important; gap: 0 !important; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons > :not(:has(figure)) { display: none !important; }
-#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons > button:has(figure) { margin: 0 !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons > button:has(figure) { margin: 0 !important; width: 42px !important; height: 42px !important; padding: 0 !important; }
+#Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight .main-actionButtons > button:has(figure) figure { width: 28px !important; height: 28px !important; }
 #Desktop_LeftSidebar_Id.apple-sidebar-collapsed .main-globalNav-contentRight { min-width: 0; width: 100%; height: auto; flex: 0 0 auto; justify-content: center; margin-top: 14px; }
 /* Profile avatar centered in the rail, in line with the search / Apple icons */
 /* Windows: Spotify gives .main-globalNav-contentRight a negative inline-end margin (room for the window controls)

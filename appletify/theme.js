@@ -62,35 +62,33 @@ function attrTemplate(attr, template) {
   const navTarget = document.querySelector("#Desktop_LeftSidebar_Id > nav > div");
   const searchSection = document.querySelector("#global-nav-bar > div.main-globalNav-searchSection");
   const libraryContainer = document.querySelector("#Desktop_LeftSidebar_Id > nav > div > div.main-yourLibraryX-libraryContainer.YourLibraryX");
-  const newElement = document.querySelector(".playback-bar");
-  const nowPlayingWidget = document.querySelector(".main-nowPlayingWidget-nowPlaying");
-
   const nowPlayingBar = document.querySelector(".Root__now-playing-bar");
   const mainViewContainer = document.querySelector(".main-view-container");
 
-  if (
-    !globalNavBar ||
-    !navTarget ||
-    !searchSection ||
-    !libraryContainer ||
-    !newElement ||
-    !nowPlayingWidget ||
-    !nowPlayingBar ||
-    !mainViewContainer
-  ) {
+  if (!globalNavBar || !navTarget || !searchSection || !libraryContainer || !nowPlayingBar || !mainViewContainer) {
     setTimeout(moveNavElementsMod, 300);
     return;
   }
 
   navTarget.insertBefore(globalNavBar, navTarget.firstChild);
   libraryContainer.insertBefore(searchSection, libraryContainer.firstChild);
-  nowPlayingWidget.appendChild(newElement);
 
   // The now-playing bar lives inside the main view (see user.css §7): pinned
   // to the top by default, or a floating pill at the bottom when the
   // "topPlaybar" setting is off. Positioning is handled in CSS.
   mainViewContainer.insertBefore(nowPlayingBar, mainViewContainer.firstChild);
   document.body.classList.add("apple-playbar-top");
+
+  // The progress line is kept inside the now-playing widget. Spotify 1.3.0 only
+  // renders the widget while something is loaded in the player (it is an empty
+  // ".now-playing" div at a cold start), so attach it whenever the widget appears.
+  const attachProgress = () => {
+    const widget = document.querySelector(".main-nowPlayingWidget-nowPlaying");
+    const bar = document.querySelector(".playback-bar");
+    if (widget && bar && bar.parentElement !== widget) widget.appendChild(bar);
+  };
+  attachProgress();
+  setInterval(attachProgress, 500);
 })();
 
 /* ---------------------------------------------------------------------------

@@ -157,3 +157,6 @@ html.appletify-no-bigCovers #queue-panel li { height: 54px; }
 /* The row grid is "title title title" / "badges prefix subtitle" with 0px badge columns (badges are hidden above),
    but the column gap still pushes the artist line 4px right of the title. Drop the gap so both lines start flush. */
 .main-trackList-rowMainContent { column-gap: 0 !important; }
+
+/* Spotify 1.3.0: the "Music video" badge moved into the artist line as an icon span followed by a bullet - hide both */
+.main-trackList-rowMainContent > span:has(> span[title] > svg[data-encore-id="icon"]) { display: none !important; }

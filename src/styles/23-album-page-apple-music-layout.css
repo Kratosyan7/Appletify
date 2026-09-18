@@ -133,3 +133,6 @@ html.appletify-no-playCounts [data-testid="album-page"] .main-trackList-rowSecti
 [data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowMarker > span { text-align: left !important; }
 /* the button is scaled 1.5x around its centre (09-tracklist): -7px puts the triangle's left edge on the digit's left edge */
 [data-testid="playlist-page"] .main-trackList-rowMarker .main-trackList-rowImagePlayButton { left: -7px !important; translate: 0 -50% !important; }
+
+/* ---- Spotify 1.3.0 draws a cover-tinted colour layer + gradient inside the header; Apple Music headers are flat ---- */
+:is([data-testid="album-page"], [data-testid="playlist-page"]) .main-entityHeader-container:not([data-apple-hero]) > div:not(.main-entityHeader-contentWrapper) { display: none !important; }
